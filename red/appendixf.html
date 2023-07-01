@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<TITLE>Appendix F - OpenGL Programming Guide </TITLE>
+
+</HEAD>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="0" width="95%" bgcolor="#226666">
+<tr><td>
+<table border="0" cellpadding="15" cellspacing="0" width="100%" bgcolor="#F2FFF6">
+<tr align=center><td>
+<font size="4" color="#226666"><b>OpenGL Programming Guide</b></font>
+</td></tr>
+</table>
+</td></tr>
+<tr align="right" bgcolor="#ffffff"><td>
+
+<a href="./index.html" onMouseOver="status='OpenGL Programming Guide Index';return true" onMouseOut="status=''">
+<font color="#000000">Programming Guide</font></a> &gt; 
+Appendix f
+</td></tr>
+</table>
+</div>
+<br><br>
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr><td>
+
+<H2>Appendix F<BR>
+Homogeneous Coordinates and Transformation Matrices</H2>
+
+<hr size="1" noshade style="color:#226666;">
+
+<P>This appendix presents a brief discussion of homogeneous coordinates. It also lists the form of the transformation matrices used for rotation, scaling, translation, perspective projection, and orthographic projection. These topics are introduced and discussed in <A HREF="chapter03.html">Chapter 3</A>. For a more detailed discussion of these subjects, see almost any book on three-dimensional computer graphics - for example, <I>Computer Graphics: Principles and Practice</I> by Foley, van Dam, Feiner, and Hughes (Reading, MA: Addison-Wesley, 1990) - or a text on projective geometry - for example, <I>The Real Projective Plane</I>, by H. S. M. Coxeter, 2nd ed. (Cambridge: Cambridge University Press, 1961). In the discussion that follows, the term homogeneous coordinates always means three-dimensional homogeneous coordinates, although projective geometries exist for all dimensions. </P>
+<P>This appendix has the following major sections: </P>
+
+<UL><LI>
+<A HREF="#name1">"Homogeneous Coordinates"</A><BR>
+</LI><LI>
+<A HREF="#name2">"Transformation Matrices"</A>
+</LI></UL>
+
+<br>
+<a name = name1>
+<H2>Homogeneous Coordinates</H2>
+
+<P>OpenGL commands usually deal with two- and three-dimensional vertices, but in fact all are treated internally as three-dimensional homogeneous vertices comprising four coordinates. Every column vector (<VAR>x, y, z, w</VAR>)T represents a homogeneous vertex if at least one of its elements is nonzero. If the real number <VAR>a</VAR> is nonzero, then (<VAR>x, y, z, w</VAR>)T and (<VAR>a</VAR>x,<VAR> a</VAR>y,<VAR> a</VAR>z,<VAR> a</VAR>w)T represent the same homogeneous vertex. (This is just like fractions: <VAR>x</VAR>/<VAR>y</VAR> = (<VAR>a</VAR>x)/(<VAR>a</VAR>y).) A three-dimensional euclidean space point (<VAR>x, y, z</VAR>)T becomes the homogeneous vertex with coordinates (<VAR>x, y, z</VAR>, 1.0)T, and the two-dimensional euclidean point (<VAR>x, y</VAR>)T becomes (<VAR>x, y</VAR>, 0.0, 1.0)T. </P>
+<P>As long as <VAR>w</VAR> is nonzero, the homogeneous vertex (<VAR>x, y, z, w</VAR>)T corresponds to the three-dimensional point (<VAR>x/w, y/w, z/w</VAR>)T. If <VAR>w</VAR> = 0.0, it corresponds to no euclidean point, but rather to some idealized "point at infinity." To understand this point at infinity, consider the point (1, 2, 0, 0), and note that the sequence of points (1, 2, 0, 1), (1, 2, 0, 0.01), and (1, 2.0, 0.0, 0.0001), corresponds to the euclidean points (1, 2), (100, 200), and (10000, 20000). This sequence represents points rapidly moving toward infinity along the line 2<VAR>x</VAR> = <VAR>y</VAR>. Thus, you can think of (1, 2, 0, 0) as the point at infinity in the direction of that line. </P>
+<B><P>Note: </B>OpenGL might not handle homogeneous clip coordinates with <VAR>w</VAR> &lt; 0 correctly. To be sure that your code is portable to all OpenGL systems, use only nonnegative <VAR>w</VAR> values. </P>
+<H3>Transforming Vertices</H3>
+<P>Vertex transformations (such as rotations, translations, scaling, and shearing) and projections (such as perspective and orthographic) can all be represented by applying an appropriate 4 <FONT FACE="Symbol">&#180;</font>
+ 4 matrix to the coordinates representing the vertex. If <B>v</B> represents a homogeneous vertex and <B>M</B> is a 4 <FONT FACE="Symbol">&#180;</font>
+ 4 transformation matrix, then <B>Mv</B> is the image of <B>v</B> under the transformation by <B>M</B>. (In computer-graphics applications, the transformations used are usually nonsingular - in other words, the matrix <B>M</B> can be inverted. This isn't required, but some problems arise with nonsingular transformations.) </P>
+<P>After transformation, all transformed vertices are clipped so that <VAR>x</VAR>, <VAR>y</VAR>, and <VAR>z</VAR> are in the range [-<VAR>w</VAR>, <VAR>w</VAR>] (assuming <VAR>w</VAR> &gt; 0). Note that this range corresponds in euclidean space to [-1.0, 1.0]. </P>
+<H3>Transforming Normals</H3>
+<P>Normal vectors aren't transformed in the same way as vertices or position vectors. Mathematically, it's better to think of normal vectors not as vectors, but as planes perpendicular to those vectors. Then, the transformation rules for normal vectors are described by the transformation rules for perpendicular planes. </P>
+<P>A homogeneous plane is denoted by the row vector (<VAR>a, b, c, d</VAR>), where at least one of <VAR>a, b, c</VAR>, or <VAR>d</VAR> is nonzero. If <VAR>q</VAR> is a nonzero real number, then (<VAR>a, b, c, d</VAR>) and (<VAR>qa, qb, qc, qd</VAR>) represent the same plane. A point (<VAR>x, y, z, w</VAR>)T is on the plane (<VAR>a, b, c, d</VAR>) if <VAR>ax</VAR>+<VAR>by</VAR>+<VAR>cz</VAR>+<VAR>dw</VAR> = 0. (If <VAR>w</VAR> = 1, this is the standard description of a euclidean plane.) In order for (<VAR>a, b, c, d</VAR>) to represent a euclidean plane, at least one of <VAR>a</VAR>, <VAR>b</VAR>, or <VAR>c</VAR> must be nonzero. If they're all zero, then (0, 0, 0, <VAR>d</VAR>) represents the "plane at infinity," which contains all the "points at infinity." </P>
+<P>If <B>p</B> is a homogeneous plane and <B>v</B> is a homogeneous vertex, then the statement "<B>v</B> lies on plane <B>p</B>" is written mathematically as <B>pv</B> = 0, where <B>pv</B> is normal matrix multiplication. If <B>M</B> is a nonsingular vertex transformation (that is, a 4 <FONT FACE="Symbol">&#180;</font>
+ 4 matrix that has an inverse <B>M</B>-1), then <B>pv</B> = 0 is equivalent to <B>pM</B>-1<B>Mv</B> = 0, so <B>Mv</B> lies on the plane <B>pM</B>-1. Thus, <B>pM</B>-1 is the image of the plane under the vertex transformation <B>M</B>. </P>
+<P>If you like to think of normal vectors as vectors instead of as the planes perpendicular to them, let <B>v</B> and <B>n</B> be vectors such that <B>v</B> is perpendicular to <B>n</B>. Then, <B>n</B>T<B>v</B> = 0. Thus, for an arbitrary nonsingular transformation <B>M</B>, <B>n</B>T<B>M</B>-1<B>Mv</B> = 0, which means that nTM-1 is the transpose of the transformed normal vector. Thus, the transformed normal vector is<B> (M</B>-1<B>)</B>T<B>n</B>. In other words, normal vectors are transformed by the inverse transpose of the transformation that transforms points. Whew! </P>
+
+<br>
+<a name = name2>
+<H2>Transformation Matrices</H2>
+
+<P>Although any nonsingular matrix <B>M</B> represents a valid projective transformation, a few special matrices are particularly useful. These matrices are listed in the following subsections. </P>
+<H3>Translation</H3>
+<P>The call <B>glTranslate*(</B><VAR>x, y, z</VAR><B>)</B> generates <B>T</B>, where </P>
+<P><IMG SRC="images/Image18.gif"></P>
+<H3>Scaling</H3>
+<P>The call <B>glScale*(</B><VAR>x, y, z</VAR><B>)</B> generates S, where </P>
+<P><IMG SRC="images/Image19.gif"></P>
+<P>Notice that S-1 is defined only if <VAR>x</VAR>, <VAR>y</VAR>, and <VAR>z</VAR> are all nonzero. </P>
+<H3>Rotation</H3>
+<P>The call <B>glRotate*(</B><VAR>a, x, y, z</VAR><B>)</B> generates R as follows: </P>
+<P>Let v = (x, y, z)T, and u = v/||v|| = (x', y', z')T. </P>
+<P>Also let </P>
+<P><IMG SRC="images/Image20.gif"></P>
+<P>Then </P>
+<P><IMG SRC="images/Image21.gif"></P>
+<P>The <B>R</B> matrix is always defined. If <VAR>x=y=z</VAR>=0, then <B>R</B> is the identity matrix. You can obtain the inverse of <B>R</B>, <B>R-1</B>, by substituting -<VAR> &amp;agr; </VAR>for <VAR>a</VAR>, or by transposition. </P>
+<P>The <B>glRotate*()</B> command generates a matrix for rotation about an arbitrary axis. Often, you're rotating about one of the coordinate axes; the corresponding matrices are as follows: </P>
+<P><IMG SRC="images/Image22.gif"></P>
+<P>As before, the inverses are obtained by transposition. </P>
+<H3>Perspective Projection</H3>
+<P>The call <B>glFrustum(</B><VAR>l, r, b, t, n, f</VAR><B>)</B> generates <B>R</B>, where </P>
+<P><IMG SRC="images/Image23.gif"></P>
+<B><P>R</B> is defined as long as <VAR>l</VAR> <FONT FACE="Symbol">&#180;</font>
+ <VAR>r</VAR>, <VAR>t</VAR> <FONT FACE="Symbol">&#180;</font>
+ <VAR>b</VAR>, and <VAR>n</VAR> <FONT FACE="Symbol">&#180;</font>
+ <VAR>f</VAR>. </P>
+<H3>Orthographic Projection</H3>
+<P>The call <B>glOrtho(</B><VAR>l, r, b, t, n, f</VAR><B> )</B> generates <B>R</B>, where </P>
+<P><IMG SRC="images/Image24.gif"></P>
+<B><P>R</B> is defined as long as <VAR>l</VAR> <FONT FACE="Symbol">&#180;</font>
+ <VAR>r</VAR>, <VAR>t</VAR> <FONT FACE="Symbol">&#180;</font>
+ <VAR>b</VAR>, and <VAR>n</VAR> <FONT FACE="Symbol">&#180;</font>
+ <VAR>f</VAR>. </P>
+
+<hr size="1" noshade style="color:#226666;">
+<center>
+<A HREF="appendixe.html"><img src="images/ArrowLeft.gif" border=0 ></A>
+<a href="index.html"><img src="images/ArrowHome.gif" border=0 ></a>
+<A HREF="appendixg.html"><img src="images/ArrowRight.gif" border=0 ></A>
+</center>
+
+</td></tr>
+</table>
+</div>
+
+</BODY>
+</HTML>
+

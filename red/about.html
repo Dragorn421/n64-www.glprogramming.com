@@ -1,0 +1,233 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<TITLE>OpenGL Programming Guide </TITLE>
+
+</HEAD>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="0" width="95%" bgcolor="#226666">
+<tr><td>
+<table border="0" cellpadding="15" cellspacing="0" width="100%" bgcolor="#F2FFF6">
+<tr align=center><td>
+<font size="4" color="#226666"><b>OpenGL Programming Guide</b></font>
+</td></tr>
+</table>
+</td></tr>
+<tr align="right" bgcolor="#ffffff"><td>
+ 
+<a href="./index.html" onMouseOver="status='OpenGL Programming Guide Index';return true" onMouseOut="status=''">
+<font color="#000000">Programming Guide</font></a> &gt; 
+About Page
+</td></tr>
+</table>
+</div>
+<br><br>
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr><td>
+
+<H2 ALIGN="CENTER">The Official Guide to <BR>
+Learning OpenGL, Version 1.1</H2>
+<hr size="1" noshade style="color:#226666;">
+
+<H2>About This Guide</H2>
+
+<p>The OpenGL graphics system is a software interface to graphics hardware. (The GL stands for Graphics Library.) It allows you to create interactive programs that produce color images of moving three-dimensional objects. With OpenGL, you can control computer-graphics technology to produce realistic pictures or ones that depart from reality in imaginative ways. This guide explains how to program with the OpenGL graphics system to deliver the visual effect you want. </P>
+
+<br>
+<a name = name1>
+<H2>What This Guide Contains</H2>
+
+<P>This guide has 14 chapters, one more than the ideal number. The first five chapters present basic information that you need to understand to be able to draw a properly colored and lit three-dimensional object on the screen. </P>
+
+<UL>
+<LI>
+<A HREF="chapter01.html">Chapter 1, </A><B>"Introduction to OpenGL,"</B><br> provides a glimpse into the kinds of things OpenGL can do. It also presents a simple OpenGL program and explains essential programming details you need to know for subsequent chapters.<BR>
+</LI><LI>
+<A HREF="chapter02.html"> Chapter 2, </A><B>"State Management and Drawing Geometric Objects,"</B><br>
+explains how to create a three-dimensional geometric description of an object that is eventually drawn on the screen. <BR>
+</LI><LI>
+<A HREF="chapter03.html">Chapter 3, </A><B>"Viewing,"</B></LI>
+<LI> describes how such three-dimensional models are transformed before being drawn onto a two-dimensional screen. You can control these transformations to show a particular view of a model. <BR>
+</LI>
+<LI><A HREF="chapter04.html">Chapter 4, </A><B>"Color,"</B><br>
+describes how to specify the color and shading method used to draw an object. <BR>
+</LI><LI>
+<A HREF="chapter05.html">Chapter 5, </A><B>"Lighting,"</B><br>
+explains how to control the lighting conditions surrounding an object and how that object responds to light (that is, how it reflects or absorbs light). Lighting is an important topic, since objects usually don't look three-dimensional until they're lit.<br>
+</LI></UL>
+<P>The remaining chapters explain how to optimize or add sophisticated features to your three-dimensional scene. You might choose not to take advantage of many of these features until you're more comfortable with OpenGL. Particularly advanced topics are noted in the text where they occur. </P>
+
+<UL><LI>
+<A HREF="chapter06.html">Chapter 6, </A><B>"Blending, Antialiasing, Fog, and Polygon Offset,"</B><br>
+describes techniques essential to creating a realistic scene - alpha blending (to create transparent objects), antialiasing (to eliminate jagged edges), atmospheric effects (to simulate fog or smog), and polygon offset (to remove visual artifacts when highlighting the edges of filled polygons).<BR>
+</LI><LI>
+<A HREF="chapter07.html">Chapter 7, </A><B>"Display Lists,"</B><br>
+discusses how to store a series of OpenGL commands for execution at a later time. You'll want to use this feature to increase the performance of your OpenGL program. <BR>
+</LI><LI>
+<A HREF="chapter08.html">Chapter 8, </A><B>"Drawing Pixels, Bitmaps, Fonts, and Images,"</B><br>
+discusses how to work with sets of two-dimensional data as bitmaps or images. One typical use for bitmaps is describing characters in fonts.<BR>
+</LI><LI>
+<A HREF="chapter09.html">Chapter 9, </A><B>"Texture Mapping,"</B><br>
+explains how to map one- and two-dimensional images called textures onto three-dimensional objects. Many marvelous effects can be achieved through texture mapping. <BR>
+</LI><LI>
+<A HREF="chapter10.html">Chapter 10, </A><B>"The Framebuffer,"</B><br>
+describes all the possible buffers that can exist in an OpenGL implementation and how you can control them. You can use the buffers for such effects as hidden-surface elimination, stenciling, masking, motion blur, and depth-of-field focusing.<BR>
+</LI><LI>
+<A HREF="chapter11.html">Chapter 11, </A><B>"Tessellators and Quadrics,"</B><br>
+shows how to use the tessellation and quadrics routines in the GLU (OpenGL Utility Library).<BR>
+</LI><LI>
+<A HREF="chapter12.html">Chapter 12, </A><B>"Evaluators and NURBS,"</B><br>
+gives an introduction to advanced techniques for efficiently generating curves or surfaces. <BR>
+</LI><LI>
+<A HREF="chapter13.html">Chapter 13, </A><B>"Selection and Feedback,"</B><br>
+explains how you can use OpenGL's selection mechanism to select an object on the screen. It also explains the feedback mechanism, which allows you to collect the drawing information OpenGL produces rather than having it be used to draw on the screen. <BR>
+</LI><LI>
+<A HREF="chapter14.html">Chapter 14, </A><B>"Now That You Know,"</B><br>
+describes how to use OpenGL in several clever and unexpected ways to produce interesting results. These techniques are drawn from years of experience with both OpenGL and the technological precursor to OpenGL, the Silicon Graphics IRIS Graphics Library.<BR>
+</LI></UL>
+<P>In addition, there are several appendices that you will likely find useful. </P>
+
+<UL><LI>
+<A HREF="appendixa.html">Appendix A, </A><B>"Order of Operations,"</B><br>
+gives a technical overview of the operations OpenGL performs, briefly describing them in the order in which they occur as an application executes.<BR>
+</LI><LI>
+<A HREF="appendixb.html">Appendix B, </A><B>"State Variables,"</B><br>
+lists the state variables that OpenGL maintains and describes how to obtain their values.<BR>
+</LI><LI>
+<A HREF="appendixc.html">Appendix C, </A><B>"OpenGL and Window Systems,"</B><br>
+briefly describes the routines available in window-system specific libraries, which are extended to support OpenGL rendering. WIndow system interfaces to the X Window System, Apple MacIntosh, IBM OS/2, and Microsoft Windows NT and Windows 95 are discussed here.<BR>
+</LI><LI>
+<A HREF="appendixd.html">Appendix D, </A><B>"Basics of GLUT: The OpenGL Utility Toolkit,"</B><br>
+discusses the library that handles window system operations. GLUT is portable and it makes code examples shorter and more comprehensible.<BR>
+</LI><LI>
+<A HREF="appendixe.html">Appendix E, </A><B>"Calculating Normal Vectors,"</B><br>
+tells you how to calculate normal vectors for different types of geometric objects. <BR>
+</LI><LI>
+<A HREF="appendixf.html">Appendix F, </A><B>"Homogeneous Coordinates and Transformation Matrices,"</B><br>
+explains some of the mathematics behind matrix transformations.<BR>
+</LI><LI>
+<A HREF="appendixg.html">Appendix G, </A><B>"Programming Tips,"</B><br>
+lists some programming tips based on the intentions of the designers of OpenGL that you might find useful. <BR>
+</LI><LI>
+<A HREF="appendixh.html">Appendix H, </A><B>"OpenGL Invariance,"</B><br>
+describes when and where an OpenGL implementation must generate the exact pixel values described in the OpenGL specification. <BR>
+</LI><LI>
+<A HREF="appendixi.html">Appendix I, </A><B>"Color Plates,"</B><br>
+contains the color plates that appear in the printed version of this guide.
+</LI>
+</UL>
+
+<br>
+<a name = name2>
+<H2>What's New in This Edition</H2>
+<P>To the question, "What's new in this edition?" the wiseacre answer is "About 100 pages." The more informative answer follows. </P>
+
+<UL>
+<LI>Detailed information about the following new features of OpenGL Version 1.1 has been added. </LI>
+
+<UL>
+<LI>Vertex arrays<BR>
+</LI>
+<LI>Texturing enhancements, including texture objects (including residency and prioritization), internal texture image format, texture subimages, texture proxies, and copying textures from frame buffer data<BR>
+</LI>
+<LI>Polygon offset<BR>
+</LI>
+<LI>Logical operation in RGBA mode</LI></UL>
+
+<LI>Program examples have been converted to Mark Kilgard's GLUT, which stands for Graphics Library Utility Toolkit. GLUT is an increasingly popular windowing toolkit, which is well-documented and has been ported to different window systems.<BR>
+</LI>
+<LI>More detail about some topics that were in the first edition, especially coverage of the OpenGL Utility (GLU) Library. </LI>
+
+<UL>
+<LI>An entire chapter on GLU tessellators and quadrics<BR>
+</LI>
+<LI>A section (in <A HREF="chapter03.html">Chapter 3</A>) on the use of <B>gluProject()</B> and <B>gluUnProject()</B>, which mimics or reverses the operations of <BR>
+the geometric processing pipeline (This has been the subject of frequent discussions on the Internet newsgroup on OpenGL, <I>comp.graphics.api.opengl</I>.)<BR>
+</LI>
+<LI>Expanded coverage (and more diagrams) about images<BR>
+</LI>
+<LI>Changes to GLU NURBS properties<BR>
+</LI>
+<LI>Error handling and vendor-specific extensions to OpenGL<BR>
+</LI>
+<LI><A HREF="appendixc.html">Appendix C</A> expanded to include OpenGL interfaces to several window/operating systems</LI></UL>
+</UL>
+<DIR>
+<DIR>
+
+<P>The first edition's appendix on the OpenGL Utility Library was removed, and its information has been integrated into other chapters.<BR>
+</P></DIR>
+</DIR>
+
+
+<UL>
+<LI>A much larger and more informative index<BR>
+</LI>
+<LI>Bug fixes and minor topic reordering. Moving the display list chapter is the most noticeable change.</LI></UL>
+
+<br>
+<a name = name3>
+<H2>What You Should Know Before Reading This Guide</H2>
+<P>This guide assumes only that you know how to program in the C language and that you have some background in mathematics (geometry, trigonometry, linear algebra, calculus, and differential geometry). Even if you have little or no experience with computer-graphics technology, you should be able to follow most of the discussions in this book. Of course, computer graphics is a huge subject, so you may want to enrich your learning experience with supplemental reading. </P>
+
+<UL>
+<I><LI>Computer Graphics: Principles and Practice</I> by James D. Foley, Andries van Dam, Steven K. Feiner, and John F. Hughes (Reading, MA: Addison-Wesley, 1990) - This book is an encyclopedic treatment of the subject of computer graphics. It includes a wealth of information but is probably best read after you have some experience with the subject.<BR>
+</LI>
+<I><LI>3D Computer Graphics: A User's Guide for Artists and Designers</I> by Andrew S. Glassner (New York: Design Press, 1989) - This book is a nontechnical, gentle introduction to computer graphics. It focuses on the visual effects that can be achieved rather than on the techniques needed to achieve them.</LI></UL>
+
+<P>Once you begin programming with OpenGL, you might want to obtain the <I>OpenGL Reference Manual</I> by the OpenGL Architecture Review Board (Reading, MA: Addison-Wesley Developers Press, 1996), which is designed as a companion volume to this guide. The <I>Reference Manual</I> provides a technical view of how OpenGL operates on data that describes a geometric object or an image to produce an image on the screen. It also contains full descriptions of each set of related OpenGL commands - the parameters used by the commands, the default values for those parameters, and what the commands accomplish. Many OpenGL implementations have this same material on-line, in the form of <I>man</I> pages or other help documents, and it's probably more up-to-date. There is also a http version on the World Wide Web; consult Silicon Graphics OpenGL Web Site (<A HREF="http://www.sgi.com/products/software/opengl/">http://www.sgi.com/products/software/opengl/</A>) for the latest pointer. </P>
+<P>OpenGL is really a hardware-independent specification of a programming interface, and you use a particular implementation of it on a particular kind of hardware. This guide explains how to program with any OpenGL implementation. However, since implementations may vary slightly - in performance and in providing additional, optional features, for example - you might want to investigate whether supplementary documentation is available for the particular implementation you're using. In addition, you might have OpenGL-related utilities, toolkits, programming and debugging support, widgets, sample programs, and demos available to you with your system. </P>
+
+<br>
+<a name = name4>
+<H2>How to Obtain the Sample Code</H2>
+<P>This guide contains many sample programs to illustrate the use of particular OpenGL programming techniques. These programs make use of Mark Kilgard's OpenGL Utility Toolkit (GLUT). GLUT is documented in <I>OpenGL Programming for the X Window System</I> by Mark Kilgard (Reading, MA: Addison-Wesley Developers Press, 1996). The section "<A HREF="chapter01.html#name6">OpenGL-Related Libraries</A>" in Chapter 1 and <A HREF="appendixd.html">Appendix D</A> gives more information about using GLUT. If you have access to the Internet, you can obtain the source code for both the sample programs and GLUT for free via anonymous ftp (file-transfer protocol). </P>
+<P>For the source code examples found in this book, grab this file:</P>
+<PRE>ftp://sgigate.sgi.com/pub/opengl/opengl1_1.tar.Z</PRE>
+<P>The files you receive are compressed <I>tar</I> archives. To uncompress and extract the files, type</P>
+<PRE>uncompress opengl1_1.tar
+tar xf opengl1_1.tar</PRE>
+<P>For Mark Kilgard's source code for an X Window System version of GLUT, you need to know what the most current version is. The filename will be <I>glut-i.j.tar.Z</I>, where <I>i</I> is the major revision number and <I>j</I> is the minor revision number of the most recent version. Check the directory for the right numbers, then grab this file:</P>
+<PRE>ftp://sgigate.sgi.com/pub/opengl/xjournal/GLUT/glut-i.j.tar.Z</PRE>
+<P>This file must also be uncompressed and extracted by using the <I>tar</I> command. The sample programs and GLUT library are created as subdirectories from wherever you are in the file directory structure. </P>
+<P>Other ports of GLUT (for example, for Microsoft Windows NT) are springing up. A good place to start searching for the latest developments in GLUT and for OpenGL, in general, is Silicon Graphics' OpenGL Web Site: </P>
+<PRE><A HREF="http://www.sgi.com/products/software/opengl">http://www.sgi.com/products/software/opengl/</A></PRE>
+<P>Many implementations of OpenGL might also include the code samples as part of the system. This source code is probably the best source for your implementation, because it might have been optimized for your system. Read your machine-specific OpenGL documentation to see where the code samples can be found. </P>
+
+<br>
+<a name = name5>
+<H2>Errata</H2>
+<P>Although this book is ideal and perfec in every conceivable way, there is a a pointer to an errata list from the Silicon Graphics OpenGL Web Site: </P>
+<P><a href="http://www.sgi.com/products/software/opengl/">http://www.sgi.com/products/software/opengl/</a></P>
+<P>The authors are quite certain there will be a little note there to reassure the reader of the pristeen quality of this book. </P>
+
+<br>
+<a name = name6>
+<H2>Style Conventions</H2>
+<P>These style conventions are used in this guide: </P>
+
+<UL>
+<B><LI>Bold</B> - Command and routine names and matrices<BR>
+</LI>
+<I><LI>Italics</I> - Variables, arguments, parameter names, spatial dimensions, matrix components, and the first occurrence of key terms<BR>
+</LI>
+<LI>Regular - Enumerated types and defined constants</LI></UL>
+
+<P>Code examples are set off from the text in a monospace font, and command summaries are shaded with gray boxes. </P>
+<P>In a command summary, braces are used to identify choices among data types. In the following example, <B>glCommand</B> has four possible suffixes: s, i, f, and d, which stand for the data types GLshort, GLint, GLfloat, and GLdouble. In the function prototype for <B>glCommand</B>, <VAR>TYPE</VAR> is a wildcard that represents the data type indicated by the suffix. </P>
+<I><DL>
+<DT>void <B>glCommand</B>{sifd}(</I><VAR>TYPEx1</VAR><I>, </I><VAR>TYPEy1</VAR><I>, </I><VAR>TYPEx2</VAR><I>, </I><VAR>TYPEy2</VAR><I>);</DT>
+</DL></I>
+
+</td></tr>
+</table>
+</div>
+
+</BODY>
+</HTML>
+

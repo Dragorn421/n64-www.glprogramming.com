@@ -1,0 +1,167 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<TITLE>Appendix D - OpenGL Programming Guide </TITLE>
+
+</HEAD>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="0" width="95%" bgcolor="#226666">
+<tr><td>
+<table border="0" cellpadding="15" cellspacing="0" width="100%" bgcolor="#F2FFF6">
+<tr align=center><td>
+<font size="4" color="#226666"><b>OpenGL Programming Guide</b></font>
+</td></tr>
+</table>
+</td></tr>
+<tr align="right" bgcolor="#ffffff"><td>
+ 
+<a href="./index.html" onMouseOver="status='OpenGL Programming Guide Index';return true" onMouseOut="status=''">
+<font color="#000000">Programming Guide</font></a> &gt; 
+Appendix d
+</td></tr>
+</table>
+</div>
+<br><br>
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr><td>
+
+<H2>Appendix D<BR>
+Basics of GLUT: The OpenGL Utility Toolkit</H2>
+
+<hr size="1" noshade style="color:#226666;">
+
+<P>This appendix describes a subset of Mark Kilgard's OpenGL Utility Toolkit (GLUT), which is fully documented in his book, <I>OpenGL Programming for the X Window System</I> (Reading, MA: Addison-Wesley Developers Press, 1996). GLUT has become a popular library for OpenGL programmers, because it standardizes and simplifies window and event management. GLUT has been ported atop a variety of OpenGL implementations, including both the X Window System and Microsoft Windows NT. </P>
+<P>This appendix has the following major sections: </P>
+
+<UL>
+<LI><A HREF="#name1">"Initializing and Creating a Window"</A><BR>
+</LI>
+<LI><A HREF="#name2">"Handling Window and Input Events"</A><BR>
+</LI>
+<LI><A HREF="#name3">"Loading the Color Map"</A><BR>
+</LI>
+<LI><A HREF="#name4">"Initializing and Drawing Three-Dimensional Objects"</A><BR>
+</LI>
+<LI><A HREF="#name5">"Managing a Background Process"</A><BR>
+</LI>
+<LI><A HREF="#name6">"Running the Program"</A></LI></UL>
+
+<P>(See <A HREF="about.html#name4">"How to Obtain the Sample Code"</A> in the Preface for information about how to obtain the source code for GLUT.) </P>
+<P>With GLUT, your application structures its event handling to use callback functions. (This method is similar to using the Xt Toolkit, also known as the X Intrinsics, with a widget set.) For example, first you open a window and register callback routines for specific events. Then, you create a main loop without an exit. In that loop, if an event occurs, its registered callback functions are executed. Upon completion of the callback functions, flow of control is returned to the main loop. </P>
+
+<br>
+<a name = name1>
+<H2>Initializing and Creating a Window</H2>
+<P>Before you can open a window, you must specify its characteristics: Should it be single-buffered or double-buffered? Should it store colors as RGBA values or as color indices? Where should it appear on your display? To specify the answers to these questions, call <B>glutInit()</B>, <B>glutInitDisplayMode()</B>, <B>glutInitWindowSize()</B>, and<B> glutInitWindowPosition() </B>before you call <B>glutCreateWindow()</B> to open the window. </P>
+<I><DL>
+<DT>void <B>glutInit</B>(int </I><VAR>argc</VAR><I>, char **</I><VAR>argv</VAR><I>);</I> </DT>
+<B><I><DD>glutInit()</B> should be called before any other GLUT routine, because it initializes the GLUT library. <B>glutInit()</B> will also process command line options, but the specific options are window system dependent. For the X Window System, -iconic, -geometry, and -display are examples of command line options, processed by <B>glutInit()</B>. (The parameters to the <B>glutInit()</B> should be the same as those to <B>main()</B>.)</I> </DD>
+<I><DT>void <B>glutInitDisplayMode</B>(unsigned int </I><VAR>mode</VAR><I>);</I> </DT>
+<I><DD>Specifies a display mode (such as RGBA or color-index, or single- or double-buffered) for windows created when <B>glutCreateWindow()</B> is called. You can also specify that the window have an associated depth, stencil, and/or accumulation buffer. The </I><VAR>mask</VAR><I> argument is a bitwise ORed combination of GLUT_RGBA or GLUT_INDEX, GLUT_SINGLE or GLUT_DOUBLE, and any of the buffer-enabling flags: GLUT_DEPTH, GLUT_STENCIL, or GLUT_ACCUM. For example, for a double-buffered, RGBA-mode window with a depth and stencil buffer, use GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH | GLUT_STENCIL. The default value is GLUT_RGBA | GLUT_SINGLE (an RGBA, single-buffered window). </DD>
+<DT>void <B>glutInitWindowSize</B>(int </I><VAR>width</VAR><I>, int </I><VAR>height</VAR><I>);<BR>
+void <B>glutInitWindowPosition</B>(int </I><VAR>x</VAR><I>, int </I><VAR>y</VAR><I>);</I> </DT>
+<I><DD>Requests windows created by <B>glutCreateWindow()</B> to have an initial size and position. The arguments (</I><VAR>x, y</VAR><I>) indicate the location of a corner of the window, relative to the entire display. The </I><VAR>width</VAR><I> and </I><VAR>height</VAR><I> indicate the window's size (in pixels). The initial window size and position are hints and may be overridden by other requests.</I> </DD>
+<I><DT>int <B>glutCreateWindow</B>(char *</I><VAR>name</VAR><I>);</I> </DT>
+<I><DD>Opens a window with previously set characteristics (display mode, width, height, and so on). The string </I><VAR>name</VAR><I> may appear in the title bar if your window system does that sort of thing. The window is not initially displayed until <B>glutMainLoop()</B> is entered, so do not render into the window until then.</I> </DD>
+<I><DD>The value returned is a unique integer identifier for the window. This identifier can be used for controlling and rendering to multiple windows (each with an OpenGL rendering context) from the same application.</DD>
+</DL>
+</I>
+
+<br>
+<a name = name2>
+<H2>Handling Window and Input Events</H2>
+<P>After the window is created, but before you enter the main loop, you should register callback functions using the following routines. </P>
+<I><DL>
+<DT>void <B>glutDisplayFunc</B>(void (*</I><VAR>func</VAR><I>)(void));</I> </DT>
+<I><DD>Specifies the function that's called whenever the contents of the window need to be redrawn. The contents of the window may need to be redrawn when the window is initially opened, when the window is popped and window damage is exposed, and when <B>glutPostRedisplay()</B> is explicitly called.</I> </DD>
+<I><DT>void <B>glutReshapeFunc</B>(void (*</I><VAR>func</VAR><I>)(int </I><VAR>width</VAR><I>, int </I><VAR>height</VAR><I>));</I> </DT>
+<I><DD>Specifies the function that's called whenever the window is resized or moved. The argument </I><VAR>func</VAR><I> is a pointer to a function that expects two arguments, the new width and height of the window. Typically, </I><VAR>func</VAR><I> calls <B>glViewport()</B>, so that the display is clipped to the new size, and it redefines the projection matrix so that the aspect ratio of the projected image matches the viewport, avoiding aspect ratio distortion. If <B>glutReshapeFunc()</B> isn't called or is deregistered by passing NULL, a default reshape function is called, which calls <B>glViewport</B>(</I><VAR>0</VAR><I>, </I><VAR>0</VAR><I>, </I><VAR>width</VAR><I>, </I><VAR>height</VAR><I>).</I> </DD>
+<I><DT>void <B>glutKeyboardFunc</B>(void (*</I><VAR>func</VAR><I>)(unsigned int </I><VAR>key</VAR><I>, int </I><VAR>x</VAR><I>, int </I><VAR>y</VAR><I>); </DT>
+<DD>Specifies the function, </I><VAR>func</VAR><I>, that's called when a key that generates an ASCII character is pressed. The </I><VAR>key</VAR><I> callback parameter is the generated ASCII value. The </I><VAR>x</VAR><I> and </I><VAR>y</VAR><I> callback parameters indicate the location of the mouse (in window-relative coordinates) when the key was pressed.</I> </DD>
+<I><DT>void <B>glutMouseFunc</B>(void (*</I><VAR>func</VAR><I>)(int </I><VAR>button</VAR><I>, int </I><VAR>state</VAR><I>, int </I><VAR>x</VAR><I>, int </I><VAR>y</VAR><I>));</I> </DT>
+<I><DD>Specifies the function, </I><VAR>func</VAR><I>, that's called when a mouse button is pressed or released. The </I><VAR>button</VAR><I> callback parameter is one of GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, or GLUT_RIGHT_BUTTON. The </I><VAR>state</VAR><I> callback parameter is either GLUT_UP or GLUT_DOWN, depending upon whether the mouse has been released or pressed. The </I><VAR>x</VAR><I> and </I><VAR>y</VAR><I> callback parameters indicate the location (in window-relative coordinates) of the mouse when the event occurred.</I> </DD>
+<I><DT>void <B>glutMotionFunc</B>(void (*</I><VAR>func</VAR><I>)(int </I><VAR>x</VAR><I>, int </I><VAR>y</VAR><I>));</I> </DT>
+<I><DD>Specifies the function, </I><VAR>func</VAR><I>, that's called when the mouse pointer moves within the window while one or more mouse buttons is pressed. The </I><VAR>x</VAR><I> and </I><VAR>y</VAR><I> callback parameters indicate the location (in window-relative coordinates) of the mouse when the event occurred.</I> </DD>
+<I><DT>void <B>glutPostRedisplay</B>(void);</I> </DT>
+<I><DD>Marks the current window as needing to be redrawn. At the next opportunity, the callback function registered by <B>glutDisplayFunc()</B> will be called.</DD>
+</DL>
+</I>
+
+<br>
+<a name = name3>
+<H2>Loading the Color Map</H2>
+<P>If you're using color-index mode, you might be surprised to discover there's no OpenGL routine to load a color into a color lookup table. This is because the process of loading a color map depends entirely on the window system. GLUT provides a generalized routine to load a single color index with an RGB value, <B>glutSetColor()</B>. </P>
+<I><DL>
+<DT>void <B>glutSetColor</B>(GLint </I><VAR>index</VAR><I>, GLfloat </I><VAR>red</VAR><I>, GLfloat </I><VAR>green</VAR><I>, GLfloat </I><VAR>blue</VAR><I>);</I> </DT>
+<I><DD>Loads the index in the color map, </I><VAR>index</VAR><I>, with the given </I><VAR>red</VAR><I>, </I><VAR>green</VAR><I>, and </I><VAR>blue</VAR><I> values. These values are normalized to lie in the range [0.0,1.0].</DD>
+</DL>
+</I>
+
+<br>
+<a name = name4>
+<H2>Initializing and Drawing Three-Dimensional Objects</H2>
+<P>Many sample programs in this guide use three-dimensional models to illustrate various rendering properties. The following drawing routines are included in GLUT to avoid having to reproduce the code to draw these models in each program. The routines render all their graphics in immediate mode. Each three-dimensional model comes in two flavors: wireframe without surface normals, and solid with shading and surface normals. Use the solid version when you're applying lighting. Only the teapot generates texture coordinates. </P>
+<I><DL>
+<DT>void <B>glutWireSphere</B>(GLdouble </I><VAR>radius, </VAR><I>GLint</I><VAR> slices</VAR><I>, GLint</I><VAR> stacks</VAR><I>);<BR>
+void <B>glutSolidSphere</B>(GLdouble </I><VAR>radius, </VAR><I>GLint</I><VAR> slices</VAR><I>, GLint</I><VAR> stacks</VAR><I>);</DT>
+<DT>void <B>glutWireCube</B>(GLdouble </I><VAR>size</VAR><I>); <BR>
+void <B>glutSolidCube</B>(GLdouble </I><VAR>size</VAR><I>);</DT>
+<DT>void <B>glutWireTorus</B>(GLdouble </I><VAR>innerRadius</VAR><I>, GLdouble </I><VAR>outerRadius</VAR><I>,</I><VAR><BR>
+</VAR><I>GLint</I><VAR> nsides, </VAR><I>GLint</I><VAR> rings</VAR><I>); <BR>
+void <B>glutSolidTorus</B>(GLdouble </I><VAR>innerRadius</VAR><I>, GLdouble </I><VAR>outerRadius</VAR><I>,</I><VAR><BR>
+</VAR><I>GLint</I><VAR> nsides, </VAR><I>GLint</I><VAR> rings</VAR><I>); </DT>
+<DT>void <B>glutWireIcosahedron</B>(void); <BR>
+void <B>glutSolidIcosahedron</B>(void); </DT>
+<DT>void <B>glutWireOctahedron</B>(void); <BR>
+void <B>glutSolidOctahedron</B>(void); </DT>
+<DT>void <B>glutWireTetrahedron</B>(void); <BR>
+void <B>glutSolidTetrahedron</B>(void); </DT>
+<DT>void <B>glutWireDodecahedron</B>(GLdouble </I><VAR>radius</VAR><I>); <BR>
+void <B>glutSolidDodecahedron</B>(GLdouble </I><VAR>radius</VAR><I>); </DT>
+<DT>void <B>glutWireCone</B>(GLdouble </I><VAR>radius</VAR><I>, GLdouble </I><VAR>height, </VAR><I>GLint</I><VAR> slices</VAR><I>,</I><VAR><BR>
+</VAR><I>GLint</I><VAR> stacks</VAR><I>); <BR>
+void <B>glutSolidCone</B>(GLdouble </I><VAR>radius</VAR><I>, GLdouble </I><VAR>height, </VAR><I>GLint</I><VAR> slices</VAR><I>,</I><VAR><BR>
+</VAR><I>GLint</I><VAR> stacks</VAR><I>); </DT>
+<DT>void <B>glutWireTeapot</B>(GLdouble </I><VAR>size</VAR><I>); <BR>
+void <B>glutSolidTeapot</B>(GLdouble </I><VAR>size</VAR><I>);</DT>
+</DL>
+</I>
+
+<br>
+<a name = name5>
+<H2>Managing a Background Process</H2>
+<P>You can specify a function that's to be executed if no other events are pending - for example, when the event loop would otherwise be idle - with <B>glutIdleFunc()</B>. This is particularly useful for continuous animation or other background processing. </P>
+<I><DL>
+<DT>void <B>glutIdleFunc</B>(void (*</I><VAR>func)</VAR><I>(void)); </DT>
+<DD>Specifies the function, </I><VAR>func</VAR><I>, to be executed if no other events are pending. If NULL (zero) is passed in, execution of </I><VAR>func</VAR><I> is disabled.</DD>
+</DL>
+</I>
+
+<br>
+<a name = name6>
+<H2>Running the Program</H2>
+<P>After all the setup is completed, GLUT programs enter an event processing loop, <B>glutMainLoop()</B>. </P>
+<I><DL>
+<DT>void <B>glutMainLoop</B>(void);</I> </DT>
+<I><DD>Enters the GLUT processing loop, never to return. Registered callback functions will be called when the corresponding events instigate them.</DD>
+</DL></I>
+
+<hr size="1" noshade style="color:#226666;">
+<center>
+<A HREF="appendixc.html"><img src="images/ArrowLeft.gif" border=0></A>
+<a href="index.html"><img src="images/ArrowHome.gif" border=0></a>
+<A HREF="appendixe.html"><img src="images/ArrowRight.gif" border=0></A>
+</center>
+
+</td></tr>
+</table>
+</div>
+
+</BODY>
+</HTML>
+

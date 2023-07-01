@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<TITLE>Appendix E - OpenGL Programming Guide </TITLE>
+
+</HEAD>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="0" width="95%" bgcolor="#226666">
+<tr><td>
+<table border="0" cellpadding="15" cellspacing="0" width="100%" bgcolor="#F2FFF6">
+<tr align=center><td>
+<font size="4" color="#226666"><b>OpenGL Programming Guide</b></font>
+</td></tr>
+</table>
+</td></tr>
+<tr align="right" bgcolor="#ffffff"><td>
+ 
+<a href="./index.html" onMouseOver="status='OpenGL Programming Guide Index';return true" onMouseOut="status=''">
+<font color="#000000">Programming Guide</font></a> &gt; 
+Appendix e
+</td></tr>
+</table>
+</div>
+<br><br>
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr><td>
+
+<H2>Appendix E<BR>
+Calculating Normal Vectors</H2>
+
+<hr size="1" noshade style="color:#226666;">
+
+<P>This appendix describes how to calculate normal vectors for surfaces. You need to define normals to use the OpenGL lighting facility, which is described in <A HREF="chapter05.html">Chapter 5</A>. <A HREF="chapter02.html#name5">"Normal Vectors" in Chapter 2</A> introduces normals and the OpenGL command for specifying them. This appendix goes through the details of calculating them. It has the following major sections: </P>
+
+<UL>
+<LI><A HREF="#name1">"Finding Normals for Analytic Surfaces"</A><BR>
+</LI>
+<LI><A HREF="#name2">"Finding Normals from Polygonal Data"</A></LI></UL>
+
+<P>Since normals are perpendicular to a surface, you can find the normal at a particular point on a surface by first finding the flat plane that just touches the surface at that point. The normal is the vector that's perpendicular to that plane. On a perfect sphere, for example, the normal at a point on the surface is in the same direction as the vector from the center of the sphere to that point. For other types of surfaces, there are other, better means for determining the normals, depending on how the surface is specified. </P>
+<P>Recall that smooth curved surfaces are approximated by a large number of small flat polygons. If the vectors perpendicular to these polygons are used as the surface normals in such an approximation, the surface appears faceted, since the normal direction is discontinuous across the polygonal boundaries. In many cases, however, an exact mathematical description exists for the surface, and true surface normals can be calculated at every point. Using the true normals improves the rendering considerably, as shown in <A HREF="#figure1">Figure E-1</A>. Even if you don't have a mathematical description, you can do better than the faceted look shown in the figure. The two major sections in this appendix describe how to calculate normal vectors for these two cases: </P>
+
+<UL>
+<LI><A HREF="#name1">"Finding Normals for Analytic Surfaces"</A> explains what to do when you have a mathematical description of a surface.<BR>
+</LI>
+<LI><A HREF="#name2">"Finding Normals from Polygonal Data"</A> covers the case when you have only the polygonal data to describe a surface. </LI></UL>
+<DIR>
+<DIR>
+
+<a name = figure1>
+<P><IMG SRC="images/Image6.gif"></P>
+<B><P>Figure E-1 : </B>Rendering with Polygonal Normals vs. True Normals </P>
+<P>&nbsp;</P></DIR>
+</DIR>
+
+<br>
+<a name = name1>
+<H2>Finding Normals for Analytic Surfaces</H2>
+<P>Analytic surfaces are smooth, differentiable surfaces that are described by a mathematical equation (or set of equations). In many cases, the easiest surfaces to find normals for are analytic surfaces for which you have an explicit definition in the following form: </P>
+<B><P>V</B>(<VAR>s,t</VAR>) = [ <B>X</B>(<VAR>s,t</VAR>) <B>Y</B>(<VAR>s,t</VAR>) <B>Z</B>(<VAR>s,t</VAR>) ] </P>
+<P>where <I>s</I> and <I>t</I> are constrained to be in some domain, and <B>X</B>, <B>Y</B>, and <B>Z</B> are differentiable functions of two variables. To calculate the normal, find </P>
+<P><IMG SRC="images/Image7.gif"></P>
+<P>which are vectors tangent to the surface in the <I>s</I> and <I>t</I> directions. The cross product </P>
+<P><IMG SRC="images/Image8.gif"></P>
+<P>is perpendicular to both and, hence, to the surface. The following shows how to calculate the cross product of two vectors. (Watch out for the degenerate cases where the cross product has zero length!) </P>
+<P><IMG SRC="images/Image9.gif"></P>
+<P>You should probably normalize the resulting vector. To normalize a vector [x y z], calculate its length </P>
+<P><IMG SRC="images/Image10.gif""></P>
+<P>and divide each component of the vector by the length. </P>
+<P>As an example of these calculations, consider the analytic surface </P>
+<B><P>V</B>(<VAR>s,t</VAR>) = [ <VAR>s</VAR>2<VAR> t</VAR>3 3-<VAR>st</VAR> ] </P>
+<P>From this we have </P>
+<P><IMG SRC="images/Image11.gif"></P>
+<P>So, for example, when<VAR> s</VAR>=1 and<VAR> t</VAR>=2, the corresponding point on the surface is (1, 8, 1), and the vector (-24, 2, 24) is perpendicular to the surface at that point. The length of this vector is 34, so the unit normal vector is (-24/34, 2/34, 24/34) = (-0.70588, 0.058823, 0.70588). </P>
+<P>For analytic surfaces that are described implicitly, as <B>F</B>(<VAR>x, y, z</VAR>) = 0, the problem is harder. In some cases, you can solve for one of the variables, say <VAR>z</VAR> = <B>G</B>(<VAR>x, y</VAR>), and put it in the explicit form given previously: </P>
+<P><IMG SRC="images/Image12.gif"></P>
+<P>Then continue as described earlier. </P>
+<P>If you can't get the surface equation in an explicit form, you might be able to make use of the fact that the normal vector is given by the gradient </P>
+<P><IMG SRC="images/Image13.gif"></P>
+<P>evaluated at a particular point (<VAR>x, y, z</VAR>). Calculating the gradient might be easy, but finding a point that lies on the surface can be difficult. As an example of an implicitly defined analytic function, consider the equation of a sphere of radius 1 centered at the origin: </P>
+<P>x2 + y2 + z2 - 1 = 0 ) </P>
+<P>This means that </P>
+<B><P>F</B> (x, y, z) = x2 + y2 + z2 - 1 </P>
+<P>which can be solved for<VAR> z</VAR> to yield </P>
+<P><IMG SRC="images/Image14.gif"></P>
+<P>Thus, normals can be calculated from the explicit form </P>
+<P><IMG SRC="images/Image15.gif"></P>
+<P>as described previously. </P>
+<P>If you could not solve for <VAR>z</VAR>, you could have used the gradient </P>
+<P><IMG SRC="images/Image16.gif"></P>
+<P>as long as you could find a point on the surface. In this case, it's not so hard to find a point - for example, (2/3, 1/3, 2/3) lies on the surface. Using the gradient, the normal at this point is (4/3, 2/3, 4/3). The unit-length normal is (2/3, 1/3, 2/3), which is the same as the point on the surface, as expected. </P>
+
+<br>
+<a name = name2>
+<H2>Finding Normals from Polygonal Data</H2>
+<P>As mentioned previously, you often want to find normals for surfaces that are described with polygonal data such that the surfaces appear smooth rather than faceted. In most cases, the easiest way for you to do this (though it might not be the most efficient way) is to calculate the normal vectors for each of the polygonal facets and then to average the normals for neighboring facets. Use the averaged normal for the vertex that the neighboring facets have in common. <A HREF="#figure2">Figure E-2</A> shows a surface and its polygonal approximation. (Of course, if the polygons represent the exact surface and aren't merely an approximation - if you're drawing a cube or a cut diamond, for example - don't do the averaging. Calculate the normal for each facet as described in the following paragraphs, and use that same normal for each vertex of the facet.) </P>
+
+<a name = figure2>
+<P><IMG SRC="images/Image17.gif"></P>
+<B><P>Figure E-2 : </B>Averaging Normal Vectors </P>
+
+<P>To find the normal for a flat polygon, take any three vertices <VAR>v</VAR>1, <VAR>v</VAR>2, and <VAR>v</VAR>3 of the polygon that do not lie in a straight line. The cross product </P>
+<P>[<VAR>v</VAR>1 - <VAR>v</VAR>2] <FONT FACE="Symbol">&#180;</font>
+ [<VAR>v</VAR>2 - <VAR>v</VAR>3] </P>
+<P>is perpendicular to the polygon. (Typically, you want to normalize the resulting vector.) Then you need to average the normals for adjoining facets to avoid giving too much weight to one of them. For instance, in the example shown in <A HREF="#figure2">Figure E-2</A>, if <VAR>n</VAR>1, <VAR>n</VAR>2, <VAR>n</VAR>3, and <VAR>n</VAR>4 are the normals for the four polygons meeting at point P, calculate <VAR>n</VAR>1+<VAR>n</VAR>2+<VAR>n</VAR>3+<VAR>n</VAR>4 and then normalize it. (You can get a better average if you weight the normals by the size of the angles at the shared intersection.) The resulting vector can be used as the normal for point P. </P>
+<P>Sometimes, you need to vary this method for particular situations. For instance, at the boundary of a surface (for example, point Q in <A HREF="#figure2">Figure E-2</A>), you might be able to choose a better normal based on your knowledge of what the surface should look like. Sometimes the best you can do is to average the polygon normals on the boundary as well. Similarly, some models have some smooth parts and some sharp corners (point R is on such an edge in <A HREF="#figure2">Figure E-2</A>). In this case, the normals on either side of the crease shouldn't be averaged. Instead, polygons on one side of the crease should be drawn with one normal, and polygons on the other side with another. </P>
+
+
+<hr size="1" noshade style="color:#226666;">
+<center>
+<A HREF="appendixd.html"><img src="images/ArrowLeft.gif" border=0></A>
+<a href="index.html"><img src="images/ArrowHome.gif" border=0></a>
+<A HREF="appendixf.html"><img src="images/ArrowRight.gif" border=0></A>
+</center>
+
+</td></tr>
+</table>
+</div>
+
+</BODY>
+</HTML>
+

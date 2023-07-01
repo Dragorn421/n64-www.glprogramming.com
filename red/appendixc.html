@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<TITLE>Appendix C - OpenGL Programming Guide </TITLE>
+
+</HEAD>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="0" width="95%" bgcolor="#226666">
+<tr><td>
+<table border="0" cellpadding="15" cellspacing="0" width="100%" bgcolor="#F2FFF6">
+<tr align=center><td>
+<font size="4" color="#226666"><b>OpenGL Programming Guide</b></font>
+</td></tr>
+</table>
+</td></tr>
+<tr align="right" bgcolor="#ffffff"><td>
+ 
+<a href="./index.html" onMouseOver="status='OpenGL Programming Guide Index';return true" onMouseOut="status=''">
+<font color="#000000">Programming Guide</font></a> &gt; 
+Appendix c
+</td></tr>
+</table>
+</div>
+<br><br>
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr><td>
+
+<H2>Appendix C <br>
+WGL: OpenGL Extension for Microsoft Windows NT and Windows 95</H2>
+
+<hr size="1" noshade style="color:#226666;">
+
+<P>OpenGL rendering is supported on systems that run Microsoft Windows NT and Windows 95. The functions and routines of the Win32 library are necessary to initialize the pixel format and control rendering for OpenGL. Some routines, which are prefixed by <B>wgl</B>, extend Win32 so that OpenGL can be fully supported. </P>
+<P>For Win32/WGL, the PIXELFORMATDESCRIPTOR is the key data structure to maintain pixel format information about the OpenGL window. A variable of data type PIXELFORMATDESCRIPTOR keeps track of pixel information, including pixel type (RGBA or color index), single- or double- buffering, resolution of colors, and presence of depth, stencil, and accumulation buffers. </P>
+<P>To get more information about WGL, you may want to start with technical articles available through the Microsoft Developer Network at</P>
+<PRE>http://www.microsoft.com/msdn/</PRE>
+<H3>Initialization</H3>
+<P>Use <B>GetVersion()</B> or the newer <B>GetVersionEx()</B> to determine version information. <B>ChoosePixelFormat()</B> tries to find a PIXELFORMATDESCRIPTOR with specified attributes. If a good match for the requested pixel format is found, then <B>SetPixelFormat()</B> should be called to actually use the pixel format. You should select a pixel format in the device context before calling <B>wglCreateContext()</B>. </P>
+<P>If you want to find out details about a given pixel format, use <B>DescribePixelFormat()</B> or, for overlays or underlays, <B>wglDescribeLayerPlane()</B>. </P>
+<H3>Controlling Rendering</H3>
+<P>Several WGL routines are provided for creating and managing an OpenGL rendering context, rendering to a bitmap, swapping front and back buffers, finding a color palette, and using either bitmap or outline fonts. </P>
+<H4>Managing an OpenGL Rendering Context</H4>
+<B><P>wglCreateContext()</B> creates an OpenGL rendering context for drawing on the device in the selected pixel format of the device context. (To create an OpenGL rendering context for overlay or underlay windows, use <B>wglCreateLayerContext()</B> instead.) To make a rendering context current, use <B>wglMakeCurrent()</B>; <B>wglGetCurrentContext()</B> returns the current context. You can also obtain the current device context with <B>wglGetCurrentDC()</B>. You can copy some OpenGL state variables from one context to another with <B>wglCopyContext()</B> or make two contexts share the same display lists and texture objects with <B>wglShareLists()</B>. When you're finished with a particular context, destroy it with <B>wglDestroyContext()</B>. </P>
+<H4>OpenGL Rendering to a Bitmap</H4>
+<P>Win32 has a few routines to allocate (and deallocate) bitmaps, to which you can render OpenGL directly. <B>CreateDIBitmap()</B> creates a device-dependent bitmap (DDB) from a device-independent bitmap (DIB). <B>CreateDIBSection()</B> creates a device-independent bitmap (DIB) that applications can write to directly. When finished with your bitmap, you can use <B>DeleteObject()</B> to free it up. </P>
+<H4>Synchronizing Execution</H4>
+<P>If you want to combine GDI and OpenGL rendering, be aware there are no equivalents to functions like <B>glXWaitGL()</B>, <B>glXWaitX()</B>, or <B>pglWaitGL()</B> in Win32. Although <B>glXWaitGL()</B> has no equivalent in Win32, you can achieve the same effect by calling <B>glFinish(),</B> which waits until all pending OpenGL commands are executed, or by calling <B>GdiFlush()</B>, which waits until all GDI drawing has completed. </P>
+<H4>Swapping Buffers</H4>
+<P>For windows that are double-buffered, the front and back buffers can be exchanged by calling <B>SwapBuffers()</B> or <B>wglSwapLayerBuffers()</B>; the latter for overlays and underlays. </P>
+<H4>Finding a Color Palette</H4>
+<P>To access the color palette for the standard (non-layer) bitplanes, use the standard GDI functions to set the palette entries. For overlay or underlay layers, use <B>wglRealizeLayerPalette()</B>, which maps palette entries from a given color-index layer plane into the physical palette or initializes the palette of an RGBA layer plane. <B>wglGetLayerPaletteEntries()</B> is used to query the entries in palettes of layer planes. </P>
+<H4>Using a Bitmap or Outline Font</H4>
+<P>WGL has two routines, <B>wglUseFontBitmaps()</B> and <B>wglUseFontOutlines()</B>, for converting system fonts to use with OpenGL. Both routines build a display list for each requested character from the specified font and font size. </P>
+<H3>WGL Prototypes</H3>
+<H4>Initialization</H4>
+<P>Determine version information: </P>
+<P>BOOL <B>GetVersion</B> ( LPOSVERSIONINFO <VAR>lpVersionInformation</VAR> ); </P>
+<P>BOOL <B>GetVersionEx</B> ( LPOSVERSIONINFO <VAR>lpVersionInformation</VAR> ); </P>
+<P>Pixel format availability, selection, and capability: </P>
+<P>int <B>ChoosePixelFormat</B> ( HDC <VAR>hdc</VAR>,<BR>
+CONST PIXELFORMATDESCRIPTOR * <VAR>ppfd</VAR> ); </P>
+<P>BOOL <B>SetPixelFormat</B> ( HDC <VAR>hdc</VAR>, int <VAR>iPixelFormat</VAR>,<BR>
+CONST PIXELFORMATDESCRIPTOR * <VAR>ppfd</VAR> ); </P>
+<P>int <B>DescribePixelFormat</B> ( HDC <VAR>hdc</VAR>, int <VAR>iPixelFormat</VAR>, UINT <VAR>nBytes</VAR>,<BR>
+LPPIXELFORMATDESCRIPTOR <VAR>ppfd</VAR> ); </P>
+<P>BOOL <B>wglDescribeLayerPlane</B> ( HDC <VAR>hdc</VAR>, int <VAR>iPixelFormat</VAR>,<BR>
+int <VAR>iLayerPlane</VAR>, UINT <VAR>nBytes</VAR>, LPLAYERPLANEDESCRIPTOR <VAR>plpd</VAR> ); </P>
+<H4>Controlling Rendering</H4>
+<P>Manage or query an OpenGL rendering context: </P>
+<P>HGLRC <B>wglCreateContext</B> ( HDC <VAR>hdc</VAR> ); </P>
+<P>HGLRC <B>wglCreateLayerContext</B> ( HDC <VAR>hdc</VAR>, int <VAR>iLayerPlane</VAR> ); </P>
+<P>BOOL <B>wglShareLists</B> ( HGLRC <VAR>hglrc1</VAR>, HGLRC <VAR>hglrc2</VAR> ); </P>
+<P>BOOL <B>wglDeleteContext</B> ( HGLRC <VAR>hglrc</VAR> ); </P>
+<P>BOOL <B>wglCopyContext</B> ( HGLRC <VAR>hglrcSource</VAR>, HGLRC <VAR>hlglrcDest</VAR>,<BR>
+UINT <VAR>mask</VAR> ); </P>
+<P>BOOL <B>wglMakeCurrent</B> ( HDC <VAR>hdc</VAR>, HGLRC <VAR>hglrc</VAR> ); </P>
+<P>HGLRC <B>wglGetCurrentContext</B> (VOID) ; </P>
+<P>HDC <B>wglGetCurrentDC</B> (VOID); </P>
+<P>Access and release the bitmap of the front buffer: </P>
+<P>HBITMAP <B>CreateDIBitmap</B> ( HDC <VAR>hdc</VAR>, <BR>
+CONST BITMAPINFOHEADER *<VAR>lpbmih</VAR>, DWORD <VAR>fdwInit</VAR>, <BR>
+CONST VOID *<VAR>lpbInit</VAR>, CONST BITMAPINFO *<VAR>lpbmi</VAR>, UINT <VAR>fuUsage</VAR> ); </P>
+<P>HBITMAP <B>CreateDIBSection</B> ( HDC <VAR>hdc</VAR>, CONST BITMAPINFO *<VAR>pbmi</VAR>, <BR>
+UINT <VAR>iUsage</VAR>, VOID *<VAR>ppvBits</VAR>, HANDLE <VAR>hSection</VAR>, DWORD <VAR>dwOffset</VAR> ); </P>
+<P>BOOL <B>DeleteObject</B> ( HGDIOBJ <VAR>hObject</VAR> ); </P>
+<P>Exchange front and back buffers: </P>
+<P>BOOL <B>SwapBuffers</B> ( HDC <VAR>hdc</VAR> ); </P>
+<P>BOOL <B>wglSwapLayerBuffers</B> ( HDC <VAR>hdc</VAR>, UINT <VAR>fuPlanes</VAR> ); </P>
+<P>Finding a color palette for overlay or underlay layers: </P>
+<P>int <B>wglGetLayerPaletteEntries</B> ( HDC <VAR>hdc</VAR>, int <VAR>iLayerPlane</VAR>, int <VAR>iStart</VAR>,<BR>
+int <VAR>cEntries</VAR>, CONST COLORREF *<VAR>pcr</VAR> ); </P>
+<P>BOOL <B>wglRealizeLayerPalette</B> ( HDC <VAR>hdc</VAR>, int <VAR>iLayerPlane</VAR>,<BR>
+BOOL <VAR>bRealize</VAR> ); </P>
+<P>Use a bitmap or an outline font: </P>
+<P>BOOL <B>wglUseFontBitmaps</B> ( HDC <VAR>hdc</VAR>, DWORD <VAR>first</VAR>, DWORD <VAR>count</VAR>,<BR>
+DWORD <VAR>listBase</VAR> ); </P>
+<P>BOOL <B>wglUseFontOutlines</B> ( HDC <VAR>hdc</VAR>, DWORD <VAR>first</VAR>, DWORD <VAR>count</VAR>,<BR>
+DWORD <VAR>listBase</VAR>, FLOAT <VAR>deviation</VAR>, FLOAT <VAR>extrusion</VAR>, int <VAR>format</VAR>,<BR>
+LPGLYPHMETRICSFLOAT <VAR>lpgmf</VAR> ); </P>
+
+<hr size="1" noshade style="color:#226666;">
+<center>
+<A HREF="appendixb.html"><img src="images/ArrowLeft.gif" border=0></A>
+<a href="index.html"><img src="images/ArrowHome.gif" border=0></a>
+<A HREF="appendixd.html"><img src="images/ArrowRight.gif" border=0></A>
+</center>
+
+</td></tr>
+</table>
+</div>
+
+</BODY>
+</HTML>
+

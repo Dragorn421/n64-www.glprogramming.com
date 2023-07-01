@@ -1,0 +1,3187 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<TITLE>Appendix B - OpenGL Programming Guide </TITLE>
+
+</HEAD>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="0" width="95%" bgcolor="#226666">
+<tr><td>
+<table border="0" cellpadding="15" cellspacing="0" width="100%" bgcolor="#F2FFF6">
+<tr align=center><td>
+<font size="4" color="#226666"><b>OpenGL Programming Guide</b></font>
+</td></tr>
+</table>
+</td></tr>
+<tr align="right" bgcolor="#ffffff"><td>
+ 
+<a href="./index.html" onMouseOver="status='OpenGL Programming Guide Index';return true" onMouseOut="status=''">
+<font color="#000000">Programming Guide</font></a> &gt; 
+Appendix b
+</td></tr>
+</table>
+</div>
+<br><br>
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr><td>
+
+<H2>Appendix B<BR>
+State Variables</H2>
+
+<hr size="1" noshade style="color:#226666;">
+
+<P>This appendix lists the queryable OpenGL state variables, their default values, and the commands for obtaining the values of these variables. The <I>OpenGL Reference Manual </I>contains detailed information on all the commands and constants discussed in this appendix. This appendix has these major sections: </P>
+
+<UL>
+<LI><A HREF="#name1">"The Query Commands"</A><BR>
+</LI>
+<LI><A HREF="#name2">"OpenGL State Variables"</A></LI></UL>
+
+<br>
+<a name = name1>
+<H2>The Query Commands</H2>
+<P>In addition to the basic commands to obtain the values of simple state variables (commands such as <B>glGetIntegerv()</B> and <B>glIsEnabled()</B>, which are described in <A HREF="chapter02.html#name3">"Basic State Management" in Chapter 2</A>), there are other specialized commands to return more complex state variables. The prototypes for these specialized commands are listed here. Some of these routines, such as <B>glGetError()</B> and <B>glGetString()</B>, have been discussed in more detail elsewhere in the book. </P>
+<P>To find out when you need to use these commands and their corresponding symbolic constants, use the tables in the next section, <A HREF="#name2">"OpenGL State Variables."</A> Also see the <I>OpenGL Reference Manual</I>. </P>
+<DL>
+<DT>void <B>glGetClipPlane</B>(GLenum <VAR>plane</VAR>, GLdouble *<VAR>equation</VAR>); </DT>
+</DL>
+<P>GLenum <B>glGetError</B>(void); </P>
+<P>void <B>glGetLight</B>{if}<B>v</B>(GLenum <VAR>light</VAR>, GLenum <VAR>pname</VAR>, <VAR>TYPE</VAR> *<VAR>params</VAR>); </P>
+<P>void <B>glGetMap</B>{ifd}<B>v</B>(GLenum <VAR>target</VAR>, GLenum <VAR>query</VAR>, <VAR>TYPE</VAR> *<VAR>v</VAR>); </P>
+<P>void <B>glGetMaterial</B>{if}<B>v</B>(GLenum <VAR>face</VAR>, GLenum <VAR>pname</VAR>, <VAR>TYPE</VAR> *<VAR>params</VAR>); </P>
+<P>void <B>glGetPixelMap</B>{f ui us}<B>v</B>(GLenum <VAR>map</VAR>, <VAR>TYPE</VAR> *<VAR>values</VAR>); </P>
+<P>void <B>glGetPolygonStipple</B>(GLubyte *<VAR>mask</VAR>); </P>
+<P>const GLubyte * <B>glGetString</B>(GLenum <VAR>name</VAR>); </P>
+<P>void <B>glGetTexEnv</B>{if}<B>v</B>(GLenum <VAR>target</VAR>, GLenum <VAR>pname</VAR>, <VAR>TYPE</VAR> *<VAR>params</VAR>); </P>
+<P>void <B>glGetTexGen</B>{ifd}<B>v</B>(GLenum <VAR>coord</VAR>, GLenum <VAR>pname</VAR>, <VAR>TYPE</VAR> *<VAR>params</VAR>); </P>
+<P>void <B>glGetTexImage</B>(GLenum <VAR>target</VAR>, GLint <VAR>level</VAR>, GLenum <VAR>format</VAR>, <BR>
+GLenum <VAR>type</VAR>, GLvoid *<VAR>pixels</VAR>); </P>
+<P>void <B>glGetTexLevelParameter</B>{if}<B>v</B>(GLenum <VAR>target</VAR>, GLint <VAR>level</VAR>, <BR>
+GLenum <VAR>pname</VAR>, <VAR>TYPE</VAR> *<VAR>params</VAR>); </P>
+<P>void <B>glGetTexParameter</B>{if}<B>v</B>(GLenum <VAR>target</VAR>, GLenum <VAR>pname</VAR>, <BR>
+<VAR>TYPE</VAR> *<VAR>params</VAR>); </P>
+<P>void <B>gluGetNurbsProperty</B>(GLUnurbsObj *<VAR>nobj</VAR>, GLenum <VAR>property</VAR>, <BR>
+GLfloat *<VAR>value</VAR>); </P>
+<P>const GLubyte * <B>gluGetString</B>(GLenum <VAR>name</VAR>); </P>
+<P>void <B>gluGetTessProperty</B>(GLUtesselator *<VAR>tess</VAR>, GLenum <VAR>which</VAR>, <BR>
+GLdouble *<VAR>data</VAR>); </P>
+
+<br>
+<a name = name2>
+<H2>OpenGL State Variables</H2>
+<P>The following pages contain tables that list the names of queryable state variables. For each variable, the tables list a description of it, its attribute group, its initial or minimum value, and the suggested <B>glGet*()</B> command to use for obtaining it. State variables that can be obtained using <B>glGetBooleanv()</B>, <B>glGetIntegerv()</B>, <B>glGetFloatv()</B>, or <B>glGetDoublev()</B> are listed with just one of these commands - the one that's most appropriate given the type of data to be returned. (Some vertex array variables can be queried only with <B>glGetPointerv()</B>.) These state variables can't be obtained using <B>glIsEnabled()</B>. However, state variables for which <B>glIsEnabled()</B> is listed as the query command can also be obtained using <B>glGetBooleanv()</B>, <B>glGetIntegerv()</B>, <B>glGetFloatv()</B>, and <B>glGetDoublev()</B>. State variables for which any other command is listed as the query command can be obtained only by using that command. </P>
+<P>If one or more attribute groups are listed, the state variable belongs to the listed group or groups. If no attribute group is listed, the variable doesn't belong to any group. <B>glPushAttrib()</B>, <B>glPushClientAttrib()</B>, <B>glPopAttrib()</B>, and <B>glPopClientAttrib()</B> may be used to save and restore all state values that belong to an attribute group. (See <A HREF="chapter02.html#name7">"Attribute Groups" in Chapter 2</A> for more information.) </P>
+<P>All queryable state variables, except the implementation-dependent ones, have initial values. If no initial value is listed, you need to consult either the section where that variable is discussed or the <I>OpenGL Reference Manual</I> to determine its initial value. </P>
+<H3>Current Values and Associated Data</H3>
+<a name = table1>
+<H4>Table B-1 : State Variables for Current Values and Associated Data</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=623>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_COLOR</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Current color</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1, 1, 1, 1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv(), glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_INDEX</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Current color index</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv(), glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_TEXTURE_COORDS</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Current texture coordinates</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0, 0, 0, 1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_NORMAL</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Current normal</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0, 0, 1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_RASTER_POSITION</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Current raster position</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0, 0, 0, 1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_RASTER_DISTANCE</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Current raster distance</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_RASTER_COLOR</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Color associated with raster position</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1, 1, 1, 1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv(), glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_RASTER_INDEX</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Color index associated with raster position</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv(), glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_RASTER_TEXTURE_COORDS</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Texture coordinates associated with raster position</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0, 0, 0, 1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_CURRENT_RASTER_POSITION_VALID</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Raster position valid bit</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_TRUE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="37%" VALIGN="TOP">
+<P>GL_EDGE_FLAG</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Edge flag</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>current</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_TRUE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Vertex Array</H3>
+<a name = table2>
+<H4>Table B-2 : (continued) Vertex Array State Variables </H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=628>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_VERTEX_ARRAY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Vertex array enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_VERTEX_ARRAY_SIZE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Coordinates per vertex</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>4</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_VERTEX_ARRAY_TYPE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Type of vertex coordinates</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FLOAT</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_VERTEX_ARRAY_STRIDE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Stride between vertices</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_VERTEX_ARRAY_POINTER</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Pointer to the vertex array</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>NULL</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_NORMAL_ARRAY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Normal array enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_NORMAL_ARRAY_TYPE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Type of normal coordinates</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FLOAT</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_NORMAL_ARRAY_STRIDE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Stride between normals</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_NORMAL_ARRAY_POINTER</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Pointer to the normal array</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>NULL</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_COLOR_ARRAY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>RGBA color array enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_COLOR_ARRAY_SIZE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Colors per vertex</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>4</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_COLOR_ARRAY_TYPE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Type of color components</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FLOAT</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_COLOR_ARRAY_STRIDE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Stride between colors</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_COLOR_ARRAY_POINTER</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Pointer to the color array</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>NULL</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_INDEX_ARRAY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Color-index array enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_INDEX_ARRAY_TYPE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Type of color indices</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FLOAT</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_INDEX_ARRAY_STRIDE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Stride between color indices</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_INDEX_ARRAY_POINTER</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Pointer to the index array</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>NULL</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_TEXTURE_COORD_ARRAY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Texture coordinate array enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_TEXTURE_COORD_ARRAY_SIZE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Texture coordinates per element</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>4</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_TEXTURE_COORD_ARRAY_TYPE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Type of texture coordinates</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FLOAT</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_TEXTURE_COORD_ARRAY_STRIDE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Stride between texture coordinates</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_TEXTURE_COORD_ARRAY_POINTER</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Pointer to the texture coordinate array</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>NULL</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_EDGE_FLAG_ARRAY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Edge flag array enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_EDGE_FLAG_ARRAY_STRIDE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Stride between edge flags</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_EDGE_FLAG_ARRAY_POINTER</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>Pointer to the edge flag array</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>vertex-array</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>NULL</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Transformation</H3>
+<a name = table3>
+<H4>Table B-3 : Transformation State Variables</H4>
+<P ALIGN="center">
+<TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=623>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_MODELVIEW_MATRIX</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Modelview matrix stack</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>Identity</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_PROJECTION_MATRIX</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Projection matrix stack</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>Identity</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_TEXTURE_MATRIX</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture matrix stack</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>Identity</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_VIEWPORT</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Viewport origin and extent</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>viewport</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_DEPTH_RANGE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Depth range near and far</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>viewport</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0, 1</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_MODELVIEW_STACK_DEPTH</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Modelview matrix stack pointer</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_PROJECTION_STACK_DEPTH</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Projection matrix stack pointer</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_TEXTURE_STACK_DEPTH</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture matrix stack pointer</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_MATRIX_MODE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Current matrix mode</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>transform</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_MODELVIEW</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_NORMALIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Current normal normalization on/off</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>transform/ enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_CLIP_PLANE<VAR>i</VAR></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+
+<P>User clipping plane coefficients</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>transform</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0, 0, 0, 0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetClipPlane()</TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<P>GL_CLIP_PLANE<VAR>i</VAR></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>i</VAR>th user clipping plane enabled</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>transform/ enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Coloring</H3>
+<a name = table4>
+<H4>Table B-4 : Coloring State Variables</H4>
+<P ALIGN="center">
+<TABLE BORDER CELLSPACING=1 CELLPADDING=8 WIDTH=604>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG_COLOR</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Fog color</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>0, 0, 0, 0</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG_INDEX</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Fog index</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG_DENSITY</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Exponential fog density</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG_START</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Linear fog start</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>0.0</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG_END</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Linear fog end</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG_MODE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Fog mode</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>GL_EXP</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_FOG</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>True if fog enabled</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>fog/enable</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>GL_SHADE_MODEL</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>glShadeModel() setting</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>GL_SMOOTH</TD>
+<TD WIDTH="20%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+</TABLE>
+</p>
+
+<br>
+<H3>Lighting</H3>
+<P>See also <A HREF="chapter05.html#table1">Table 5-1</A> and <A HREF="chapter05.html#table3">Table 5-3</A> for initial values. </P>
+<a name = table5>
+<H4>Table B-5 : (continued) Lighting State Variables</h4>
+<P ALIGN="center">
+<TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=666>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIGHTING</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>True if lighting is enabled</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting/e nable</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_COLOR_MATERIAL</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>True if color tracking is enabled</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_COLOR_MATERIAL_PARAMETER</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Material properties tracking current color</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_AMBIENT_<BR>
+AND_DIFFUSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_COLOR_MATERIAL_FACE</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Face(s) affected by color tracking</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_FRONT_<BR>
+AND_BACK</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_AMBIENT</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Ambient material color</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.2, 0.2, 0.2, 1.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetMaterialfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_DIFFUSE</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Diffuse material color</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.8, 0.8, 0.8, 1.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetMaterialfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SPECULAR</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Specular material color</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.0, 0.0, 0.0, 1.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetMaterialfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_EMISSION</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Emissive material color</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.0, 0.0, 0.0, 1.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetMaterialfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SHININESS</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Specular exponent of material</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>0.0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetMaterialfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIGHT_MODEL_AMBIENT</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Ambient scene color</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.2, 0.2, 0.2, 1.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIGHT_MODEL_LOCAL_VIEWER</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Viewer is local</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIGHT_MODEL_TWO_SIDE</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Use two-sided lighting</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_AMBIENT</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Ambient intensity of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.0,0.0,0.0,1.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_DIFFUSE</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Diffuse intensity of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SPECULAR</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Specular intensity of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_POSITION</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Position of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.0, 0.0, 1.0, 0.0)</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_CONSTANT_ATTENUATION</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Constant attenuation factor</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LINEAR_ATTENUATION</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Linear attenuation factor</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>0.0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_QUADRATIC_ATTENUATION</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Quadratic attenuation factor</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>0.0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SPOT_DIRECTION</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Spotlight direction of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>(0.0, 0.0, -1.0) </P>
+<P><BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SPOT_EXPONENT</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Spotlight exponent of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>0.0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SPOT_CUTOFF</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Spotlight angle of light <VAR>i</VAR></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>180.0</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetLightfv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIGHT<VAR>i</VAR></TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>True if light <VAR>i</VAR> enabled</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting/e nable</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_COLOR_INDEXES</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>ca, cd, and cs for color-index lighting</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>lighting/e nable</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>0, 1, 1</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetMaterialfv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Rasterization</H3>
+<a name = table6>
+<H4>Table B-6 : (continued) Rasterization State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=657>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POINT_SIZE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Point size</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>point</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POINT_SMOOTH</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Point antialiasing on</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>point/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_LINE_WIDTH</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Line width</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>line</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_LINE_SMOOTH</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Line antialiasing on</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>line/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_LINE_STIPPLE_PATTERN</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Line stipple</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>line</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1's</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_LINE_STIPPLE_REPEAT</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Line stipple repeat</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>line</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_LINE_STIPPLE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Line stipple enable</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>line/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_CULL_FACE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon culling enabled</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_CULL_FACE_MODE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Cull front-/back-facing polygons</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_BACK</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_FRONT_FACE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon front-face CW/CCW <BR>
+indicator</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_CCW</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_SMOOTH</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon antialiasing on</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_MODE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon rasterization mode (front and back)</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FILL</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_OFFSET_FACTOR</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon offset factor</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_OFFSET_BIAS</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon offset bias</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_OFFSET_POINT</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon offset enable for GL_POINT mode rasterization</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_OFFSET_LINE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon offset enable for GL_LINE mode rasterization</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_OFFSET_FILL</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon offset enable for GL_FILL mode rasterization</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>GL_POLYGON_STIPPLE</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon stipple enable</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon/enable</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>Polygon stipple pattern</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>polygon-stipple</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>1's</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetPolygon-<BR>
+Stipple()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Texturing</H3>
+<a name = table7>
+<H4>Table B-7 : (continued) Texturing State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=666>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_<VAR>x</VAR></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>True if <VAR>x</VAR>-D texturing enabled (<VAR>x</VAR> is 1D or 2D)</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture/e nable</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_BINDING_<VAR>x</VAR></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture object bound to GL_TEXTURE_<VAR>x</VAR> (<VAR>x</VAR> is 1D or 2D)</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image at level of detail <VAR>i</VAR></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexImage()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_WIDTH</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s width</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_HEIGHT</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s height</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_BORDER</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s border width</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_INTERNAL<BR>
+_FORMAT</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s internal image format</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_RED_SIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s red resolution</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_GREEN_SIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s green resolution</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_BLUE_SIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s blue resolution</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_ALPHA_SIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s alpha resolution</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_LUMINANCE_SIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s luminance resolution</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_INTENSITY_SIZE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<VAR><P>x</VAR>-D texture image <VAR>i</VAR>'s intensity resolution</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexLevelParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_BORDER_COLOR</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture border color</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0, 0, 0, 0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_MIN_FILTER</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture minification function</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_<BR>
+NEAREST_<BR>
+MIPMAP_<BR>
+LINEAR</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_MAG_FILTER</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture magnification function</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_LINEAR</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_WRAP_<VAR>x</VAR></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture wrap mode (<VAR>x</VAR> is S or T)</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_REPEAT</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_PRIORITY</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture object priority</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexParameter*()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_RESIDENCY</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture residency</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexParameteriv()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_ENV_MODE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture application function</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_<BR>
+MODULATE</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexEnviv()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_ENV_COLOR</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texture environment color</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0, 0, 0, 0</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexEnvfv()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_GEN_<VAR>x</VAR></TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texgen enabled (<VAR>x</VAR> is S, T, R, or Q)</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture/e nable</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_EYE_PLANE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texgen plane equation coefficients</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexGenfv()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_OBJECT_PLANE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Texgen object linear coefficients</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexGenfv()</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>GL_TEXTURE_GEN_MODE</TD>
+<TD WIDTH="23%" VALIGN="TOP">
+<P>Function used for texgen</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>texture</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_EYE_<BR>
+LINEAR</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>glGetTexGeniv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Pixel Operations</H3>
+<a name = table8>
+<H4>Table B-8 : (continued) Pixel Operations</H4>
+
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=628>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_SCISSOR_TEST</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Scissoring enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>scissor/enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_SCISSOR_BOX</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Scissor box</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>scissor</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_ALPHA_TEST</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Alpha test enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer/<BR>
+enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_ALPHA_TEST_FUNC</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Alpha test function</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_ALWAYS</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_ALPHA_TEST_REF</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Alpha test reference value</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_TEST</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stenciling enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer/enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_FUNC</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stencil function</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_ALWAYS</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_VALUE_MASK</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stencil mask</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>1's</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_REF</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stencil reference value</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_FAIL</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stencil fail action</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_KEEP</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_PASS_DEPTH_FAIL</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stencil depth buffer fail action</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_KEEP</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_STENCIL_PASS_DEPTH_PASS</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Stencil depth buffer pass action</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_KEEP</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_DEPTH_TEST</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Depth buffer enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>depth-buffer/ena ble</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_DEPTH_FUNC</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Depth buffer test function</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>depth-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_LESS</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_BLEND</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Blending enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer/<BR>
+enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_BLEND_SRC</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Blending source function</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_ONE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_BLEND_DST</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Blending destination function</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_ZERO</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_DITHER</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Dithering enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer/<BR>
+enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_TRUE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_INDEX_LOGIC_OP</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Color index logical operation enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer/<BR>
+enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_COLOR_LOGIC_OP</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>RGBA color logical operation enabled</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer/<BR>
+enable</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>GL_LOGIC_OP_MODE</TD>
+<TD WIDTH="21%" VALIGN="TOP">
+<P>Logical operation function</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_COPY</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Framebuffer Control</H3>
+<a name = table9>
+<H4>Table B-9 : Framebuffer Control State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=638>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_DRAW_BUFFER</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Buffers selected for drawing</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_INDEX_WRITEMASK</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Color-index writemask</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1's</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_COLOR_WRITEMASK</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Color write enables; R, G, B, or A</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_TRUE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_DEPTH_WRITEMASK</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Depth buffer enabled for writing</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>depth-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_TRUE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_STENCIL_WRITEMASK</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Stencil-buffer writemask</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1's</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_COLOR_CLEAR_VALUE</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Color-buffer clear value (RGBA mode)</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0, 0, 0, 0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_INDEX_CLEAR_VALUE</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Color-buffer clear value (color-index mode)</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>color-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_DEPTH_CLEAR_VALUE</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Depth-buffer clear value</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>depth-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_STENCIL_CLEAR_VALUE</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Stencil-buffer clear value</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>stencil-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_ACCUM_CLEAR_VALUE</TD>
+<TD WIDTH="30%" VALIGN="TOP">
+<P>Accumulation-buffer clear value</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>accum-buffer</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Pixels</H3>
+<a name = table10>
+<H4>Table B-10 : (continued) Pixel State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=676>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_UNPACK_SWAP_BYTES</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_UNPACK_SWAP_BYTES</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_UNPACK_LSB_FIRST</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_UNPACK_LSB_FIRST</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_UNPACK_ROW_LENGTH</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_UNPACK_ROW_LENGTH</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_UNPACK_SKIP_ROWS</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_UNPACK_SKIP_ROWS</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_UNPACK_SKIP_PIXELS</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_UNPACK_SKIP_PIXELS</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_UNPACK_ALIGNMENT</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_UNPACK_ALIGNMENT</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>4</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_PACK_SWAP_BYTES</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_PACK_SWAP_BYTES</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_PACK_LSB_FIRST</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_PACK_LSB_FIRST</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_PACK_ROW_LENGTH</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_PACK_ROW_LENGTH</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_PACK_SKIP_ROWS</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_PACK_SKIP_ROWS</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_PACK_SKIP_PIXELS</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_PACK_SKIP_PIXELS</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_PACK_ALIGNMENT</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_PACK_ALIGNMENT</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel-store</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>4</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_MAP_COLOR</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>True if colors are mapped</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_MAP_STENCIL</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>True if stencil values are mapped</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_INDEX_SHIFT</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_INDEX_SHIFT</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_INDEX_OFFSET</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_INDEX_OFFSET</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_<VAR>x</VAR>_SCALE</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_<VAR>x</VAR>_SCALE; <VAR>x</VAR> is GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA, or GL_DEPTH</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_<VAR>x</VAR>_BIAS</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Value of GL_<VAR>x</VAR>_BIAS; <VAR>x</VAR> is one of GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA, or GL_DEPTH</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_ZOOM_X</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<VAR><P>x</VAR> zoom factor</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_ZOOM_Y</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<VAR><P>y</VAR> zoom factor</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1.0</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_x</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>glPixelMap() translation tables; <VAR>x</VAR> is a map name from <A HREF="chapter08.html#table1">Table 8-1</A></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>0's</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetPixelMap*()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_<VAR>x</VAR>_SIZE</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Size of table <VAR>x</VAR></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>GL_READ_BUFFER</TD>
+<TD WIDTH="35%" VALIGN="TOP">
+<P>Read source buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>pixel</TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="17%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Evaluators</H3>
+<a name = table11>
+<H4>Table B-11 : Evaluator State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=610>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_ORDER</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>1D map order</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetMapiv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_ORDER</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>2D map orders</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>1, 1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetMapiv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_COEFF</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>1D control points</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetMapfv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_COEFF</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>2D control points</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetMapfv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_DOMAIN</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>1D domain endpoints</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetMapfv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_DOMAIN</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>2D domain endpoints</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetMapfv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_MAP1_<VAR>x</VAR></TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>1D map enables: <VAR>x</VAR> is map type</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval/enable</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_MAP2_<VAR>x</VAR></TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>2D map enables: <VAR>x</VAR> is map type</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval/enable</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_MAP1_GRID_DOMAIN</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>1D grid endpoints</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>0, 1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_MAP2_GRID_DOMAIN</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>2D grid endpoints</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>0, 1; 0, 1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_MAP1_GRID_SEGMENTS</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>1D grid divisions</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_MAP2_GRID_SEGMENTS</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>2D grid divisions</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>1,1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>GL_AUTO_NORMAL</TD>
+<TD WIDTH="26%" VALIGN="TOP">
+<P>True if automatic normal generation enabled</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>eval</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>GL_FALSE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glIsEnabled()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Hints</H3>
+<a name = table12>
+<H4>Table B-12 : Hint State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=628>
+<TR><TD WIDTH="40%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="40%" VALIGN="TOP">
+<P>GL_PERSPECTIVE_CORRECTION_HINT</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<P>Perspective correction hint</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>hint</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_DONT_CARE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="40%" VALIGN="TOP">
+<P>GL_POINT_SMOOTH_HINT</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<P>Point smooth hint</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>hint</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_DONT_CARE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="40%" VALIGN="TOP">
+<P>GL_LINE_SMOOTH_HINT</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<P>Line smooth hint</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>hint</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_DONT_CARE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="40%" VALIGN="TOP">
+<P>GL_POLYGON_SMOOTH_HINT</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<P>Polygon smooth hint</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>hint</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_DONT_CARE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="40%" VALIGN="TOP">
+<P>GL_FOG_HINT</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<P>Fog hint</TD>
+<TD WIDTH="14%" VALIGN="TOP">
+<P>hint</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>GL_DONT_CARE</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Implementation-Dependent Values</H3>
+<a name = table13>
+<H4>Table B-13 : (continued) Implementation-Dependent State Variables</H4>
+<P ALIGN="center">
+<TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=647>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Minimum Value</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_LIGHTS</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum number of lights</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>8</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_CLIP_PLANES</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum number of user clipping planes</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>6</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_MODELVIEW_STACK_DEPTH</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum modelview-matrix stack depth</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>32</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_PROJECTION_STACK_DEPTH</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum projection-matrix stack depth</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>2</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_TEXTURE_STACK_DEPTH</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum depth of texture matrix stack</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>2</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_SUBPIXEL_BITS</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Number of bits of subpixel precision in x and y</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>4</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_TEXTURE_SIZE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>See discussion in <A HREF="chapter09.html#name9">"Texture Proxy" in Chapter 9</A></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>64</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_PIXEL_MAP_TABLE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum size of a glPixelMap() translation table</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>32</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_NAME_STACK_DEPTH</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum selection-name stack depth</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>64</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_LIST_NESTING</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum display-list call nesting</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>64</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_EVAL_ORDER</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum evaluator polynomial order</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>8</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_VIEWPORT_DIMS</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum viewport dimensions</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_ATTRIB_STACK_DEPTH</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum depth of the attribute stack</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>16</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_MAX_CLIENT_ATTRIB_STACK_DEPTH</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Maximum depth of the client attribute stack</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>16</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_AUX_BUFFERS</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Number of auxiliary buffers</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_RGBA_MODE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>True if color buffers store RGBA</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_INDEX_MODE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>True if color buffers store indices</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_DOUBLEBUFFER</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>True if front and back buffers exist</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_STEREO</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>True if left and right buffers exist</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetBooleanv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_POINT_SIZE_RANGE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Range (low to high) of antialiased point sizes</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>1, 1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_POINT_SIZE_GRANULARITY</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Antialiased point-size granularity</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_LINE_WIDTH_RANGE</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Range (low to high) of antialiased line widths</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>1, 1</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+<TR><TD WIDTH="43%" VALIGN="TOP">
+<P>GL_LINE_WIDTH_GRANULARITY</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Antialiased line-width granularity</TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetFloatv()</TD>
+</TR>
+</TABLE>
+</P>
+
+<br>
+<H3>Implementation-Dependent Pixel Depths</H3>
+<a name = table14>
+<H4>Table B-14 : Implementation-Dependent Pixel-Depth State Variables (continued) </H4>
+<P ALIGN="center">
+<TABLE BORDER CELLSPACING=1 CELLPADDING=8 WIDTH=642>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Minimum Value</B></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_RED_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per red component in color buffers</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_GREEN_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per green component in color buffers</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_BLUE_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per blue component in color buffers</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_ALPHA_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per alpha component in color buffers</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_INDEX_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per index in color buffers</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_DEPTH_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of depth-buffer bitplanes</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_STENCIL_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of stencil bitplanes</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_ACCUM_RED_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per red component in the accumulation buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_ACCUM_GREEN_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per green component in the accumulation buffer </TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_ACCUM_BLUE_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per blue component in the accumulation buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="28%" VALIGN="TOP">
+<P>GL_ACCUM_ALPHA_BITS</TD>
+<TD WIDTH="34%" VALIGN="TOP">
+<P>Number of bits per alpha component in the accumulation buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+</TABLE>
+</p>
+
+<br>
+<H3>Miscellaneous</H3>
+<a name = table15>
+<H4>Table B-15 : Miscellaneous State Variables</H4>
+<P ALIGN="center"><TABLE BORDER CELLSPACING=1 CELLPADDING=3 WIDTH=638>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P ALIGN="CENTER"><B>State Variable</B></TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Description</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Attribute Group</B></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Initial Value</B></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<B><P ALIGN="CENTER">Get Command</B></TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIST_BASE</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Setting of glListBase()</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>list</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIST_INDEX</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Number of display list under construction; 0 if none</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_LIST_MODE</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Mode of display list under construction; undefined if none</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv() </TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_ATTRIB_STACK_DEPTH</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Attribute stack pointer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_CLIENT_ATTRIB_STACK_DEPTH</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Client attribute stack pointer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_NAME_STACK_DEPTH</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Name stack depth</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_RENDER_MODE</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>glRenderMode() setting</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_RENDER</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SELECTION_BUFFER_POINTER</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Pointer to selection buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>select</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_SELECTION_BUFFER_SIZE</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Size of selection buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>select</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_FEEDBACK_BUFFER_POINTER</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Pointer to feedback buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>feedback</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetPointerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_FEEDBACK_BUFFER_SIZE</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Size of feedback buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>feedback</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>GL_FEEDBACK_BUFFER_TYPE</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Type of feedback buffer</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>feedback</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>GL_2D</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetIntegerv()</TD>
+</TR>
+<TR><TD WIDTH="38%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="27%" VALIGN="TOP">
+<P>Current error code(s)</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>- <BR>
+</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>0</TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<P>glGetError()</TD>
+</TR>
+</TABLE>
+</P>
+
+<hr size="1" noshade style="color:#226666;">
+<center>
+<A HREF="appendixa.html"><img src="images/ArrowLeft.gif" border=0></A>
+<a href="index.html"><img src="images/ArrowHome.gif" border=0></a>
+<A HREF="appendixc.html"><img src="images/ArrowRight.gif" border=0></A>
+</center>
+
+</td></tr>
+</table>
+</div>
+
+</BODY>
+</HTML>
+
