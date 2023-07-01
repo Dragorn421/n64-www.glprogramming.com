@@ -341,10 +341,10 @@ glLightfv(GL_LIGHT0, GL_POSITION, light_position);</PRE>
 <P>For real-world lights, the intensity of light decreases as distance from the light increases. Since a directional light is infinitely far away, it doesn't make sense to attenuate its intensity over distance, so attenuation is disabled for a directional light. However, you might want to attenuate the light from a positional light. OpenGL attenuates a light source by multiplying the contribution of that source by an attenuation factor: </P>
 <P><IMG SRC="images/Image78.gif" ALT="eq602.gif"></P>
 <P>where </P>
-<VAR><P>d</VAR> = distance between the light's position and the vertex </P>
-<VAR><P>k</VAR>c = GL_CONSTANT_ATTENUATION </P>
-<VAR><P>k</VAR>l = GL_LINEAR_ATTENUATION </P>
-<VAR><P>k</VAR>q = GL_QUADRATIC_ATTENUATION </P>
+<P><VAR>d</VAR> = distance between the light's position and the vertex </P>
+<P><VAR>k</VAR>c = GL_CONSTANT_ATTENUATION </P>
+<P><VAR>k</VAR>l = GL_LINEAR_ATTENUATION </P>
+<P><VAR>k</VAR>q = GL_QUADRATIC_ATTENUATION </P>
 <P>By default,<VAR> k</VAR>c is 1.0 and both <VAR>k</VAR>l and <VAR>k</VAR>q are zero, but you can give these parameters different values:</P>
 <PRE>glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
 glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
@@ -451,7 +451,7 @@ void display(void)
     glFlush();
 }
 </PRE>
-<VAR><P>spin</VAR> is a global variable and is probably controlled by an input device. <B>display()</B> causes the scene to be redrawn with the light rotated <VAR>spin</VAR> degrees around a stationary torus. Note the two pairs of <B>glPushMatrix()</B> and <B>glPopMatrix()</B> calls, which are used to isolate the viewing and modeling transformations, all of which occur on the modelview stack. Since in Example 5-5 the viewpoint remains constant, the current matrix is pushed down the stack and then the desired viewing transformation is loaded with <B>gluLookAt()</B>. The matrix stack is pushed again before the modeling transformation <B>glRotated()</B> is specified. Then the light position is set in the new, rotated coordinate system so that the light itself appears to be rotated from its previous position. (Remember that the light position is stored in eye coordinates, which are obtained after transformation by the modelview matrix.) After the rotated matrix is popped off the stack, the torus is drawn. </P>
+<P><VAR>spin</VAR> is a global variable and is probably controlled by an input device. <B>display()</B> causes the scene to be redrawn with the light rotated <VAR>spin</VAR> degrees around a stationary torus. Note the two pairs of <B>glPushMatrix()</B> and <B>glPopMatrix()</B> calls, which are used to isolate the viewing and modeling transformations, all of which occur on the modelview stack. Since in Example 5-5 the viewpoint remains constant, the current matrix is pushed down the stack and then the desired viewing transformation is loaded with <B>gluLookAt()</B>. The matrix stack is pushed again before the modeling transformation <B>glRotated()</B> is specified. Then the light position is set in the new, rotated coordinate system so that the light itself appears to be rotated from its previous position. (Remember that the light position is stored in eye coordinates, which are obtained after transformation by the modelview matrix.) After the rotated matrix is popped off the stack, the torus is drawn. </P>
 <P>Example 5-6 is a program that rotates a light source around an object. When the left mouse button is pressed, the light position rotates an additional 30 degrees. A small, unlit, wireframe cube is drawn to represent the position of the light in the scene. </P>
 
 <B><P>Example 5-6 : </B>Moving a Light with Modeling Transformations: movelight.c</P>
@@ -972,10 +972,10 @@ int main(int argc, char** argv)
 <P>The <I>attenuation factor</I> was described in <A HREF="#name13">"Position and Attenuation"</A>: </P>
 <P><IMG SRC="images/Image80.gif"></P>
 <P>where </P>
-<VAR><P>d</VAR> = distance between the light's position and the vertex </P>
-<VAR><P>k</VAR>c = GL_CONSTANT_ATTENUATION </P>
-<VAR><P>k</VAR>l = GL_LINEAR_ATTENUATION </P>
-<VAR><P>k</VAR>q = GL_QUADRATIC_ATTENUATION </P>
+<P><VAR>d</VAR> = distance between the light's position and the vertex </P>
+<P><VAR>k</VAR>c = GL_CONSTANT_ATTENUATION </P>
+<P><VAR>k</VAR>l = GL_LINEAR_ATTENUATION </P>
+<P><VAR>k</VAR>q = GL_QUADRATIC_ATTENUATION </P>
 <P>If the light is a directional one, the attenuation factor is 1. </P>
 <H4>Spotlight Effect</H4>
 <P>The <I>spotlight effect</I> evaluates to one of three possible values, depending on whether the light is actually a spotlight and whether the vertex lies inside or outside the cone of illumination produced by the spotlight: </P>
