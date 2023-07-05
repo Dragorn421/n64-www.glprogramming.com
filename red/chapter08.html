@@ -74,7 +74,7 @@ Drawing Pixels, Bitmaps, Fonts, and Images</H2>
 
 <br>
 <a name = name1>
-<H2>Bitmaps and Fonts</H2>
+<H2>Bitmaps and Fonts <span style="color: red;">[N64: unsupported]</span></H2>
 <P>A bitmap is a rectangular array of 0s and 1s that serves as a drawing mask for a corresponding rectangular portion of the window. Suppose you're drawing a bitmap and that the current raster color is red. Wherever there's a 1 in the bitmap, the corresponding pixel is replaced by a red pixel (or combined with a red pixel, depending on which per-fragment operations are in effect. (See <A HREF="chapter10.html#name2">"Testing and Operating on Fragments" in Chapter 10</A>.) If there's a 0 in the bitmap, the contents of the pixel are unaffected. The most common use of bitmaps is for drawing characters on the screen. </P>
 <P>OpenGL provides only the lowest level of support for drawing strings of characters and manipulating fonts. The commands <B>glRasterPos*()</B> and <B>glBitmap()</B> position and draw a single bitmap on the screen. In addition, through the display-list mechanism, you can use a sequence of character codes to index into a corresponding series of bitmaps representing those characters. (See <A HREF="chapter07.html">Chapter 7</A> for more information about display lists.) You'll have to write your own routines to provide any other support you need for manipulating bitmaps, fonts, and strings of characters. </P>
 <P>Consider Example 8-1, which draws the character F three times on the screen. Figure 8-1 shows the F as a bitmap and its corresponding bitmap data. </P>
@@ -329,7 +329,7 @@ int main(int argc, char** argv)
 
 <br>
 <a name = name2>
-<H2>Images</H2>
+<H2>Images <span style="color: red;">[N64: unsupported]</span></H2>
 <P>An image is similar to a bitmap, but instead of containing only a single bit for each pixel in a rectangular region of the screen, an image can contain much more information. For example, an image can contain a complete (R, G, B, A) color stored at each pixel. Images can come from several sources, such as </P>
 
 <UL>
@@ -549,7 +549,7 @@ GLenum </I><VAR>buffer</VAR><I>);</I> </DT>
 <br>
 <a name = name3>
 <H2>Imaging Pipeline</H2>
-<P>This section discusses the complete Imaging Pipeline: the pixel-storage modes and pixel-transfer operations, which include how to set up an arbitrary mapping to convert pixel data. You can also magnify or reduce a pixel rectangle before it's drawn by calling <B>glPixelZoom()</B>. The order of these operations is shown in Figure 8-4. </P>
+<P>This section discusses the complete Imaging Pipeline: the pixel-storage modes and pixel-transfer operations, which include how to set up an arbitrary mapping to convert pixel data. You can also magnify or reduce a pixel rectangle before it's drawn by calling <B>glPixelZoom()</B> <span style="color: red;">[N64: unsupported]</span>. The order of these operations is shown in Figure 8-4. </P>
 <P><IMG SRC="images/Image103.gif" ALT="chap8-11.gif"></P>
 <B><P>Figure 8-4 : </B>Imaging Pipeline </P>
 
@@ -939,6 +939,7 @@ const </I><VAR>TYPE *values</VAR><I>);</I> </DT>
 <P>After the pixel-storage modes and pixel-transfer operations are applied, images and bitmaps are rasterized. Normally, each pixel in an image is written to a single pixel on the screen. However, you can arbitrarily magnify, reduce, or even flip (reflect) an image by using <B>glPixelZoom()</B>. </P>
 <I><DL>
 <DT>void <B>glPixelZoom</B>(GLfloat </I><VAR>zoom</VAR><I>x, GLfloat </I><VAR>zoom</VAR><I>y);</I> </DT>
+<span style="color: red;">[N64: unsupported]</span>
 <I><DD>Sets the magnification or reduction factors for pixel-write operations (<B>glDrawPixels()</B> or <B>glCopyPixels()</B>), in the </I><VAR>x-</VAR><I> and </I><VAR>y-</VAR><I>dimensions. By default, </I><VAR>zoom</VAR><I>x and </I><VAR>zoom</VAR><I>y are 1.0. If they're both 2.0, each image pixel is drawn to 4 screen pixels. Note that fractional magnification or reduction factors are allowed, as are negative factors. Negative zoom factors reflect the resulting image about the current raster position.</DD>
 </DL>
 </I><P>During rasterization, each image pixel is treated as a <VAR>zoom</VAR>x <FONT FACE="Symbol">&#180;</FONT>
@@ -1064,7 +1065,7 @@ int main(int argc, char** argv)
 
 <br>
 <a name = name4>
-<H2>Reading and Drawing Pixel Rectangles</H2>
+<H2>Reading and Drawing Pixel Rectangles <span style="color: red;">[N64: unsupported]</span></H2>
 <P>This section describes the reading and drawing processes in detail. The pixel conversions performed when going from framebuffer to memory (reading) are similar but not identical to the conversions performed when going in the opposite direction (drawing), as explained in the following sections. You may wish to skip this section the first time through, especially if you do not plan to use the pixel-transfer operations right away. </P>
 <H3>The Pixel Rectangle Drawing Process</H3>
 <P>Figure 8-10 and the following list describe the operation of drawing pixels into the framebuffer. </P>

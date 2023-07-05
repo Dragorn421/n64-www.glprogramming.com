@@ -111,7 +111,7 @@ glEnd ();</PRE>
 
 <P>With about 8 bits each of R, G, and B, you can get a fairly high-quality image without dithering. Just because your machine has 24 color bitplanes, however, doesn't mean that dithering won't be desirable. For example, if you are running in double-buffer mode, the bitplanes might be divided into two sets of twelve, so there are really only 4 bits each per R, G, and B component. Without dithering, 4-bit-per-component color can give less than satisfactory results in many situations. </P>
 <P>You enable or disable dithering by passing GL_DITHER to <B>glEnable()</B> or <B>glDisable()</B>. Note that dithering, unlike many other features, is enabled by default. </P>
-<H3>Color-Index Display Mode</H3>
+<H3>Color-Index Display Mode <span style="color: red;">[N64: unsupported]</span></H3>
 <P>With color-index mode, OpenGL uses a color map (or <I>lookup table</I>), which is similar to using a palette to mix paints to prepare for a paint-by-number scene. A painter's palette provides spaces to mix paints together; similarly, a computer's color map provides indices where the primary red, green, and blue values can be mixed, as shown in Figure 4-4. </P>
 <P><IMG SRC="images/Image90.gif" ALT="color.map.gif"></P>
 <B><P>Figure 4-4 : </B>A Color Map </P>
@@ -268,7 +268,7 @@ void <B>glColor4</B>{b s i f d ub us ui}<B>v</B> (const </I><VAR>TYPE</VAR><I>*v
 </TABLE>
 
 <P>&nbsp;</P>
-<H3>Specifying a Color in Color-Index Mode</H3>
+<H3>Specifying a Color in Color-Index Mode <span style="color: red;">[N64: unsupported]</span></H3>
 <P>In color-index mode, use the <B>glIndex*()</B> command to select a single-valued color index as the current color index. </P>
 <I><DL>
 <DT>void <B>glIndex</B>{sifd ub}(TYPE </I><VAR>c</VAR><I>); <BR>

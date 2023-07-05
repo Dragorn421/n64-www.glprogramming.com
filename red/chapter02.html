@@ -476,7 +476,7 @@ glEnd();</PRE>
 <P><A HREF="chapter09.html">Chapter 9</A></TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>glEdgeFlag*()</TD>
+<P>glEdgeFlag*() <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="39%" VALIGN="TOP">
 <P>control drawing of edges</TD>
 <TD WIDTH="23%" VALIGN="TOP">
@@ -598,7 +598,7 @@ void <B>glGetPointerv</B>(GLenum </I><VAR>pname</VAR><I>, GLvoid **</I><VAR>para
 <PRE>glLineStipple(1, 0x3F07);
 glEnable(GL_LINE_STIPPLE);</PRE>
 <I><DL>
-<DT>void <B>glLineStipple</B>(GLint </I><VAR>factor</VAR><I>, GLushort </I><VAR>pattern</VAR><I>); </DT>
+<DT>void <B>glLineStipple</B>(GLint </I><VAR>factor</VAR><I>, GLushort </I><VAR>pattern</VAR><I>); </DT> <span style="color: red;">[N64: unsupported]</span>
 <DD>Sets the current stippling pattern for lines. The </I><VAR>pattern</VAR><I> argument is a 16-bit series of 0s and 1s, and it's repeated as necessary to stipple a given line. A 1 indicates that drawing occurs, and 0 that it does not, on a pixel-by-pixel basis, beginning with the low-order bit of the pattern. The pattern can be stretched out by using </I><VAR>factor</VAR><I>, which multiplies each subseries of consecutive 1s and 0s. Thus, if three consecutive 1s appear in the pattern, they're stretched to six if </I><VAR>factor</VAR><I> is 2. </I><VAR>factor</VAR><I> is clamped to lie between 1 and 255. Line stippling must be enabled by passing GL_LINE_STIPPLE to <B>glEnable()</B>; it's disabled by passing the same argument to <B>glDisable()</B>.</DD>
 </DL>
 </I><P>With the preceding example and the pattern 0x3F07 (which translates to 0011111100000111 in binary), a line would be drawn with 3 pixels on, then 5 off, 6 on, and 2 off. (If this seems backward, remember that the low-order bit is used first.) If <VAR>factor</VAR> had been 2, the pattern would have been elongated: 6 pixels on, 10 off, 12 on, and 4 off. Figure 2-8 shows lines drawn with different patterns and repeat factors. If you don't enable line stippling, drawing proceeds as if <VAR>pattern</VAR> were 0xFFFF and <VAR>factor</VAR> 1. (Use <B>glDisable()</B> with GL_LINE_STIPPLE to disable stippling.) Note that stippling can be used in combination with wide lines to produce wide stippled lines. </P>
@@ -704,7 +704,7 @@ int main(int argc, char** argv)
 <P>A polygon has two sides - front and back - and might be rendered differently depending on which side is facing the viewer. This allows you to have cutaway views of solid objects in which there is an obvious distinction between the parts that are inside and those that are outside. By default, both front and back faces are drawn in the same way. To change this, or to draw only outlines or vertices, use <B>glPolygonMode()</B>. </P>
 <I><DL>
 <DT>void <B>glPolygonMode</B>(GLenum </I><VAR>face</VAR><I>, GLenum </I><VAR>mode</VAR><I>); </DT>
-<DD>Controls the drawing mode for a polygon's front and back faces. The parameter </I><VAR>face</VAR><I> can be GL_FRONT_AND_BACK, GL_FRONT, or GL_BACK; </I><VAR>mode</VAR><I> can be GL_POINT, GL_LINE, or GL_FILL to indicate whether the polygon should be drawn as points, outlined, or filled. By default, both the front and back faces are drawn filled.</DD>
+<DD>Controls the drawing mode for a polygon's front and back faces. The parameter </I><VAR>face</VAR><I> can be GL_FRONT_AND_BACK, GL_FRONT, or GL_BACK <span style="color: red;">[N64: GL_FRONT and GL_BACK unsupported]</span>; </I><VAR>mode</VAR><I> can be GL_POINT, GL_LINE, or GL_FILL to indicate whether the polygon should be drawn as points, outlined, or filled. By default, both the front and back faces are drawn filled.</DD>
 </DL>
 </I><P>For example, you can have the front faces filled and the back faces outlined with two calls to this routine:</P>
 <PRE>glPolygonMode(GL_FRONT, GL_FILL);
@@ -735,6 +735,7 @@ glPolygonMode(GL_BACK, GL_LINE);</PRE>
 <P>By default, filled polygons are drawn with a solid pattern. They can also be filled with a 32-bit by 32-bit window-aligned stipple pattern, which you specify with <B>glPolygonStipple()</B>. </P>
 <I><DL>
 <DT>void <B>glPolygonStipple</B>(const GLubyte *</I><VAR>mask</VAR><I>); </DT>
+<span style="color: red;">[N64: unsupported]</span>
 <DD>Defines the current stipple pattern for filled polygons. The argument </I><VAR>mask</VAR><I> is a pointer to a 32 <FONT FACE="Symbol">&#180;</font>
  32 bitmap that's interpreted as a mask of 0s and 1s. Where a 1 appears, the corresponding pixel in the polygon is drawn, and where a 0 appears, nothing is drawn. </I><I>Figure 2-10</I><I> shows how a stipple pattern is constructed from the characters in </I><VAR>mask</VAR><I>. Polygon stippling is enabled and disabled by using <B>glEnable()</B> and <B>glDisable()</B> with GL_POLYGON_STIPPLE as the argument. The interpretation of the mask data is affected by the <B>glPixelStore*()</B> GL_UNPACK* modes. (See </I><A HREF="chapter08.html#name7"><I>"Controlling Pixel-Storage Modes" in Chapter 8</I></A><I>.)</DD>
 </DL>
@@ -847,6 +848,7 @@ int main(int argc, char** argv)
 <I><DL>
 <DT>void <B>glEdgeFlag</B>(GLboolean </I><VAR>flag</VAR><I>);<BR>
 void <B>glEdgeFlagv</B>(const GLboolean *</I><VAR>flag</VAR><I>);</I> </DT>
+<span style="color: red;">[N64: unsupported]</span>
 <I><DD>Indicates whether a vertex should be considered as initializing a boundary edge of a polygon. If </I><VAR>flag</VAR><I> is GL_TRUE, the edge flag is set to TRUE (the default), and any vertices created are considered to precede boundary edges until this function is called again with </I><VAR>flag</VAR><I> being GL_FALSE. </DD>
 </DL>
 </I><P>As an example, Example 2-7 draws the outline shown in Figure 2-13. </P>
@@ -1008,7 +1010,7 @@ void <B>glEdgeFlagPointer</B>(GLsizei </I><VAR>stride</VAR><I>, const GLvoid *</
 <P>GL_SHORT, GL_INT, GL_FLOAT, GL_DOUBLE</TD>
 </TR>
 <TR><TD WIDTH="19%" VALIGN="TOP">
-<P>glEdgeFlagPointer</TD>
+<P>glEdgeFlagPointer <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="10%" VALIGN="TOP">
 <P>1</TD>
 <TD WIDTH="70%" VALIGN="TOP">
@@ -1557,7 +1559,7 @@ glVertexPointer(sv, GL_FLOAT, str, pointer+pv);
 
 <br>
 <a name = name7>
-<H2>Attribute Groups</H2>
+<H2>Attribute Groups <span style="color: red;">[N64: unsupported]</span></H2>
 <P>In <A HREF="#name3">"Basic State Management,"</A> you saw how to set or query an individual state or state variable. Well, you can also save and restore the values of a collection of related state variables with a single command. </P>
 <P>OpenGL groups related state variables into an attribute group. For example, the GL_LINE_BIT attribute consists of five state variables: the line width, the GL_LINE_STIPPLE enable status, the line stipple pattern, the line stipple repeat counter, and the GL_LINE_SMOOTH enable status. (See <A HREF="chapter06.html#name2">"Antialiasing" in Chapter 6</A>.) With the commands <B>glPushAttrib()</B> and <B>glPopAttrib()</B>, you can save and restore all five state variables, all at once. </P>
 <P>Some state variables are in more than one attribute group. For example, the state variable, GL_CULL_FACE, is part of both the polygon and the enable attribute groups. </P>

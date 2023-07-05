@@ -648,7 +648,7 @@ glPopMatrix();</PRE>
 
 <br>
 <a name = name7>
-<H2>Additional Clipping Planes</H2>
+<H2>Additional Clipping Planes <span style="color: red;">[N64: unsupported]</span></H2>
 <P>In addition to the six clipping planes of the viewing volume (left, right, bottom, top, near, and far), you can define up to six additional clipping planes to further restrict the viewing volume, as shown in Figure 3-22. This is useful for removing extraneous objects in a scene - for example, if you want to display a cutaway view of an object. </P>
 <P>Each plane is specified by the coefficients of its equation: A<VAR>x</VAR>+B<VAR>y</VAR>+C<VAR>z</VAR>+D = 0. The clipping planes are automatically transformed appropriately by modeling and viewing transformations. The clipping volume becomes the intersection of the viewing volume and all half-spaces defined by the additional clipping planes. Remember that polygons that get clipped automatically have their edges reconstructed appropriately by OpenGL. </P>
 <P></P>

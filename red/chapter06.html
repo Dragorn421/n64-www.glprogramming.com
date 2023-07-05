@@ -114,28 +114,28 @@ Blending, Antialiasing, Fog, and Polygon Offset</H2>
 <P>(1, 1, 1, 1)</TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>GL_DST_COLOR</TD>
+<P>GL_DST_COLOR <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="28%" VALIGN="TOP">
 <P>source</TD>
 <TD WIDTH="34%" VALIGN="TOP">
 <P>(Rd, Gd, Bd, Ad)</TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>GL_SRC_COLOR</TD>
+<P>GL_SRC_COLOR <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="28%" VALIGN="TOP">
 <P>destination</TD>
 <TD WIDTH="34%" VALIGN="TOP">
 <P>(Rs, Gs, Bs, As)</TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>GL_ONE_MINUS_DST_COLOR</TD>
+<P>GL_ONE_MINUS_DST_COLOR <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="28%" VALIGN="TOP">
 <P>source</TD>
 <TD WIDTH="34%" VALIGN="TOP">
 <P>(1, 1, 1, 1)-(Rd, Gd, Bd, Ad)</TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>GL_ONE_MINUS_SRC_COLOR</TD>
+<P>GL_ONE_MINUS_SRC_COLOR <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="28%" VALIGN="TOP">
 <P>destination</TD>
 <TD WIDTH="34%" VALIGN="TOP">
@@ -163,14 +163,14 @@ Blending, Antialiasing, Fog, and Polygon Offset</H2>
 <P>(Ad, Ad, Ad, Ad)</TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>GL_ONE_MINUS_DST_ALPHA</TD>
+<P>GL_ONE_MINUS_DST_ALPHA <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="28%" VALIGN="TOP">
 <P>source or destination</TD>
 <TD WIDTH="34%" VALIGN="TOP">
 <P>(1, 1, 1, 1)-(Ad, Ad, Ad, Ad)</TD>
 </TR>
 <TR><TD WIDTH="38%" VALIGN="TOP">
-<P>GL_SRC_ALPHA_SATURATE</TD>
+<P>GL_SRC_ALPHA_SATURATE <span style="color: red;">[N64: unsupported]</span></TD>
 <TD WIDTH="28%" VALIGN="TOP">
 <P>source</TD>
 <TD WIDTH="34%" VALIGN="TOP">
@@ -475,17 +475,17 @@ int main(int argc, char** argv)
 <B><P ALIGN="CENTER">Meaning</B></TD>
 </TR>
 <TR><TD WIDTH="44%" VALIGN="TOP">
-<P>GL_POINT_SMOOTH_HINT, GL_LINE_SMOOTH_HINT, GL_POLYGON_SMOOTH_HINT</TD>
+<P>GL_POINT_SMOOTH_HINT, GL_LINE_SMOOTH_HINT, GL_POLYGON_SMOOTH_HINT <span style="color: red;">[N64: ignored]</span></TD>
 <TD WIDTH="56%" VALIGN="TOP">
 <P>Specify the desired sampling quality of points, lines, or polygons during antialiasing operations</TD>
 </TR>
 <TR><TD WIDTH="44%" VALIGN="TOP">
-<P>GL_FOG_HINT</TD>
+<P>GL_FOG_HINT <span style="color: red;">[N64: ignored (TODO)]</span></TD>
 <TD WIDTH="56%" VALIGN="TOP">
 <P>Specifies whether fog calculations are done per pixel (GL_NICEST) or per vertex (GL_FASTEST)</TD>
 </TR>
 <TR><TD WIDTH="44%" VALIGN="TOP">
-<P>GL_PERSPECTIVE_CORRECTION_HINT</TD>
+<P>GL_PERSPECTIVE_CORRECTION_HINT <span style="color: red;">[N64: ignored (TODO?)]</span></TD>
 <TD WIDTH="56%" VALIGN="TOP">
 <P>Specifies the desired quality of color and texture-coordinate interpolation</TD>
 </TR>
@@ -493,7 +493,7 @@ int main(int argc, char** argv)
 
 <P>&nbsp;</P>
 <H3>Antialiasing Points or Lines</H3>
-<P>To antialias points or lines, you need to turn on antialiasing with <B>glEnable()</B>, passing in GL_POINT_SMOOTH or GL_LINE_SMOOTH, as appropriate. You might also want to provide a quality hint with <B>glHint()</B>. (Remember that you can set the size of a point or the width of a line. You can also stipple a line. See <A HREF="chapter02.html#name12">"Line Details" in Chapter 2</A>.) Next follow the procedures described in one of the following sections, depending on whether you're in RGBA or color-index mode. </P>
+<P>To antialias points or lines, you need to turn on antialiasing with <B>glEnable()</B>, passing in GL_POINT_SMOOTH or GL_LINE_SMOOTH, as appropriate <span style="color: red;">[N64: unsupported]</span>. You might also want to provide a quality hint with <B>glHint()</B>. (Remember that you can set the size of a point or the width of a line. You can also stipple a line. See <A HREF="chapter02.html#name12">"Line Details" in Chapter 2</A>.) Next follow the procedures described in one of the following sections, depending on whether you're in RGBA or color-index mode. </P>
 <H4>Antialiasing in RGBA Mode</H4>
 <P>In RGBA mode, you need to enable blending. The blending factors you most likely want to use are GL_SRC_ALPHA (source) and GL_ONE_MINUS_SRC_ALPHA (destination). Alternatively, you can use GL_ONE for the destination factor to make lines a little brighter where they intersect. Now you're ready to draw whatever points or lines you want antialiased. The antialiased effect is most noticeable if you use a fairly high alpha value. Remember that since you're performing blending, you might need to consider the rendering order as described in <A HREF="#name6">"Three-Dimensional Blending with the Depth Buffer."</A> However, in most cases, the ordering can be ignored without significant adverse effects. Example 6-3 initializes the necessary modes for antialiasing and then draws two intersecting diagonal lines. When you run this program, press the `r' key to rotate the lines so that you can see the effect of antialiasing on lines of different slopes. Note that the depth buffer isn't enabled in this example. </P>
 <B>
@@ -716,7 +716,7 @@ int main(int argc, char** argv)
 <P>Antialiasing the edges of filled polygons is similar to antialiasing points and lines. When different polygons have overlapping edges, you need to blend the color values appropriately. You can either use the method described in this section, or you can use the accumulation buffer to perform antialiasing for your entire scene. Using the accumulation buffer, which is described in <A HREF="chapter10.html">Chapter 10</A>, is easier from your point of view, but it's much more computation-intensive and therefore slower. However, as you'll see, the method described here is rather cumbersome. </P>
 <B><P>Note: </B>If you draw your polygons as points at the vertices or as outlines - that is, by passing GL_POINT or GL_LINE to <B>glPolygonMode()</B> - point or line antialiasing is applied, if enabled as described earlier. The rest of this section addresses polygon antialiasing when you're using GL_FILL as the polygon mode. </P>
 <P>In theory, you can antialias polygons in either RGBA or color-index mode. However, object intersections affect polygon antialiasing more than they affect point or line antialiasing, so rendering order and blending accuracy become more critical. In fact, they're so critical that if you're antialiasing more than one polygon, you need to order the polygons from front to back and then use <B>glBlendFunc()</B> with GL_SRC_ALPHA_SATURATE for the source factor and GL_ONE for the destination factor. Thus, antialiasing polygons in color-index mode normally isn't practical. </P>
-<P>To antialias polygons in RGBA mode, you use the alpha value to represent coverage values of polygon edges. You need to enable polygon antialiasing by passing GL_POLYGON_SMOOTH to <B>glEnable()</B>. This causes pixels on the edges of the polygon to be assigned fractional alpha values based on their coverage, as though they were lines being antialiased. Also, if you desire, you can supply a value for GL_POLYGON_SMOOTH_HINT. </P>
+<P>To antialias polygons in RGBA mode, you use the alpha value to represent coverage values of polygon edges. You need to enable polygon antialiasing by passing GL_POLYGON_SMOOTH to <B>glEnable()</B> <span style="color: red;">[N64: unsupported]</span>. This causes pixels on the edges of the polygon to be assigned fractional alpha values based on their coverage, as though they were lines being antialiased. Also, if you desire, you can supply a value for GL_POLYGON_SMOOTH_HINT. </P>
 <P>Now you need to blend overlapping edges appropriately. First, turn off the depth buffer so that you have control over how overlapping pixels are drawn. Then set the blending factors to GL_SRC_ALPHA_SATURATE (source) and GL_ONE (destination). With this specialized blending function, the final color is the sum of the destination color and the scaled source color; the scale factor is the smaller of either the incoming source alpha value or one minus the destination alpha value. This means that for a pixel with a large alpha value, successive incoming pixels have little effect on the final color because one minus the destination alpha is almost zero. With this method, a pixel on the edge of a polygon might be blended eventually with the colors from another polygon that's drawn later. Finally, you need to sort all the polygons in your scene so that they're ordered from front to back before drawing them. </P>
 <P>Example 6-5 shows how to antialias filled polygons; clicking the left mouse button toggles the antialiasing on and off. Note that backward-facing polygons are culled and that the alpha values in the color buffer are cleared to zero before any drawing. Pressing the `t' key toggles the antialiasing on and off. </P>
 <B><P>Note: </B>Your color buffer must store alpha values for this technique to work correctly. Make sure you request GLUT_ALPHA and receive a legitimate window. </P>
@@ -983,7 +983,7 @@ int main(int argc, char** argv)
 <I><DL>
 <DT>void <B>glFog</B>{if}(GLenum </I><VAR>pname</VAR><I>, </I><VAR>TYPE param</VAR><I>); <BR>
 void <B>glFog</B>{if}<B>v</B>(GLenum </I><VAR>pname</VAR><I>, </I><VAR>TYPE *params</VAR><I>);</I> </DT>
-<I><DD>Sets the parameters and function for calculating fog. If </I><VAR>pname</VAR><I> is GL_FOG_MODE, then </I><VAR>param</VAR><I> is either GL_EXP (the default), GL_EXP2, or GL_LINEAR to select one of the three fog factors. If </I><VAR>pname</VAR><I> is GL_FOG_DENSITY, GL_FOG_START, or GL_FOG_END, then </I><VAR>param</VAR><I> is (or points to, with the vector version of the command) a value for </I><VAR>density</VAR><I>, </I><VAR>start</VAR><I>, or </I><VAR>end</VAR><I> in the equations. (The default values are 1, 0, and 1, respectively.) In RGBA mode, </I><VAR>pname</VAR><I> can be GL_FOG_COLOR, in which case </I><VAR>params</VAR><I> points to four values that specify the fog's RGBA color values. The corresponding value for </I><VAR>pname</VAR><I> in color-index mode is GL_FOG_INDEX, for which </I><VAR>param</VAR><I> is a single value specifying the fog's color index. </DD>
+<I><DD>Sets the parameters and function for calculating fog. If </I><VAR>pname</VAR><I> is GL_FOG_MODE, then </I><VAR>param</VAR><I> is either GL_EXP (the default), GL_EXP2, or GL_LINEAR <span style="color: red;">[N64: only GL_LINEAR is supported]</span> to select one of the three fog factors. If </I><VAR>pname</VAR><I> is GL_FOG_DENSITY, GL_FOG_START, or GL_FOG_END, then </I><VAR>param</VAR><I> is (or points to, with the vector version of the command) a value for </I><VAR>density</VAR><I>, </I><VAR>start</VAR><I>, or </I><VAR>end</VAR><I> in the equations. (The default values are 1, 0, and 1, respectively.) In RGBA mode, </I><VAR>pname</VAR><I> can be GL_FOG_COLOR, in which case </I><VAR>params</VAR><I> points to four values that specify the fog's RGBA color values. The corresponding value for </I><VAR>pname</VAR><I> in color-index mode is GL_FOG_INDEX, for which </I><VAR>param</VAR><I> is a single value specifying the fog's color index. </DD>
 </DL>
 </I><P>Figure 6-4 plots the fog-density equations for various values of the parameters. </P>
 <P><IMG SRC="images/Image96.gif" ALT="chap6-8.gif"></P>
@@ -1098,7 +1098,7 @@ int main(int argc, char** argv)
 
 <br>
 <a name = name4>
-<H2>Polygon Offset</H2>
+<H2>Polygon Offset <span style="color: red;">[N64: unsupported]</span></H2>
 <P>If you want to highlight the edges of a solid object, you might try to draw the object with polygon mode GL_FILL and then draw it again, but in a different color with polygon mode GL_LINE. However, because lines and filled polygons are not rasterized in exactly the same way, the depth values generated for pixels on a line are usually not the same as the depth values for a polygon edge, even between the same two vertices. The highlighting lines may fade in and out of the coincident polygons, which is sometimes called "stitching" and is visually unpleasant. </P>
 <P>The visual unpleasantness can be eliminated by using polygon offset, which adds an appropriate offset to force coincident <I>z</I> values apart to cleanly separate a polygon edge from its highlighting line. (The stencil buffer, described in <A HREF="chapter10.html#name6">"Stencil Test" in Chapter 10</A>, can also be used to eliminate stitching. However, polygon offset is almost always faster than stenciling.) Polygon offset is also useful for applying decals to surfaces, rendering images with hidden-line removal. In addition to lines and filled polygons, this technique can also be used with points. </P>
 <P>There are three different ways to turn on polygon offset, one for each type of polygon rasterization mode: GL_FILL, GL_LINE, or GL_POINT. You enable the polygon offset by passing the appropriate parameter to <B>glEnable()</B>, either GL_POLYGON_OFFSET_FILL, GL_POLYGON_OFFSET_LINE, or GL_POLYGON_OFFSET_POINT. You must also call <B>glPolygonMode()</B> to set the current polygon rasterization method. </P>
