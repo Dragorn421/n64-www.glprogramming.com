@@ -1,0 +1,436 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title>Chapter 3. Summary of Commands and Routines</title><meta name="generator" content="DocBook XSL Stylesheets V1.49"><meta name="generator" content="SGI XSL DocBook Customization Stylesheets V1.0"><link rel="home" href="index.html" title="OpenGL Reference Manual (Addison-Wesley Publishing Company)"><link rel="up" href="bk02.html" title="OpenGL Reference Manual"><link rel="previous" href="ch02.html" title="Chapter 2. Overview of Commands and Routines"><link rel="next" href="ch04.html" title="Chapter 4. Defined Constants and Associated Commands"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 3. Summary of Commands and Routines</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02.html">Prev</a> </td><th width="60%" align="center">OpenGL Reference Manual</th><td width="20%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr></table><hr></div><!--CONTENT_BEGIN--><div class="chapter"><div class="titlepage"><div><h2 class="title"><a name="id5437194"></a>Chapter 3. <a name="id67537"></a>Summary of Commands and Routines</h2></div></div>
+<p>This chapter lists the prototypes for OpenGL, the OpenGL Utility Library, and the OpenGL extension to the X Window System. The prototypes are grouped functionally, as shown below: </p>
+<div class="itemizedlist"><ul type="disc"><li><p>
+
+
+
+<span class="bold"><b>OpenGL Commands</b></span>
+</p>
+<div class="itemizedlist"><ul type="round"><li><p><a href="ch03.html#id53415">&quot;Primitives&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id19874">&quot;Coordinate Transformation&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id34594">&quot;Coloring and Lighting&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id90517">&quot;Clipping&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id85566">&quot;Rasterization&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id96454">&quot;Pixel Operations&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id16542">&quot;Texture Mapping&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id66317">&quot;Fog&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id10484">&quot;Frame Buffer Operations&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id70439">&quot;Evaluators&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id71428">&quot;Selection and Feedback&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id99736">&quot;Display Lists&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id46859">&quot;Modes and Execution&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id20865">&quot;State Queries&quot;</a>
+</p>
+</li>
+</ul></div></li>
+<li><p>
+
+
+
+<span class="bold"><b>GLU Routines</b></span>
+</p>
+<div class="itemizedlist"><ul type="round"><li><p><a href="ch03.html#id33017">&quot;Texture Images&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id67932">&quot;Coordinate Transformation&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id91060">&quot;Polygon Tessellation&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id73321">&quot;Quadric Objects&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id70985">&quot;NURBS Curves and Surfaces&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id12587">&quot;Error Handling&quot;</a>
+</p>
+</li>
+</ul></div></li>
+<li><p>
+
+
+
+<span class="bold"><b>GLX Routines</b></span>
+</p>
+<div class="itemizedlist"><ul type="round"><li><p><a href="ch03.html#id85590">&quot;Initialization&quot;</a>
+</p>
+</li>
+<li><p><a href="ch03.html#id45964">&quot;Controlling Rendering&quot;</a>
+</p>
+</li>
+</ul></div></li>
+</ul></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5437695"></a>Notation</h2></div></div>
+<p>Since some of the OpenGL commands differ from each other only by the data type of the arguments they accept, certain conventions have been used to refer to these commands in a compact way:</p>
+<p>void <tt>glVertex2{sifd}{v}</tt> (TYPE <i>x</i>, TYPE <i>y</i>);</p>
+<p>In this example, the first set of braces encloses characters identifying the possible data types for the arguments listed as having data type TYPE. (The digit preceding the braces indicates how many arguments the command takes.) In this case, all the arguments have the placeholder TYPE, but in other situations some arguments may have an explicitly defined data type. The table shown below lists the set of possible data types, their corresponding characters, and the type definition OpenGL uses for referring to that data type. </p>
+<div class="informaltable"><table border="1"><colgroup><col><col><col><col></colgroup><thead><tr valign="top"><th valign="top"><p>character</p>
+</th><th valign="top"><p>data type</p>
+</th><th valign="top"><p>C-language type</p>
+</th><th valign="top"><p>OpenGL type definition</p>
+</th></tr></thead><tbody><tr valign="top"><td valign="top"><p>b</p>
+</td><td valign="top"><p>8-bit integer</p>
+</td><td valign="top"><p>signed char</p>
+</td><td valign="top"><p>GLbyte</p>
+</td></tr><tr valign="top"><td valign="top"><p>s</p>
+</td><td valign="top"><p>16-bit integer</p>
+</td><td valign="top"><p>short</p>
+</td><td valign="top"><p>GLshort</p>
+</td></tr><tr valign="top"><td valign="top"><p>i</p>
+</td><td valign="top"><p>32-bit integer</p>
+</td><td valign="top"><p>int</p>
+</td><td valign="top"><p>GLint, GLsizei</p>
+</td></tr><tr valign="top"><td valign="top"><p>f</p>
+</td><td valign="top"><p>32-bit floating-point</p>
+</td><td valign="top"><p>float</p>
+</td><td valign="top"><p>GLfloat, GLclampf</p>
+</td></tr><tr valign="top"><td valign="top"><p>d</p>
+</td><td valign="top"><p>64-bit floating-point</p>
+</td><td valign="top"><p>double</p>
+</td><td valign="top"><p>GLdouble, GLclampd</p>
+</td></tr><tr valign="top"><td valign="top"><p>ub</p>
+</td><td valign="top"><p>8-bit unsigned integer</p>
+</td><td valign="top"><p>unsigned char</p>
+</td><td valign="top"><p>GLubyte, GLboolean</p>
+</td></tr><tr valign="top"><td valign="top"><p>us</p>
+</td><td valign="top"><p>16-bit unsigned integer</p>
+</td><td valign="top"><p>unsigned short</p>
+</td><td valign="top"><p>GLushort</p>
+</td></tr><tr valign="top"><td valign="top"><p>ui</p>
+</td><td valign="top"><p>32-bit unsigned integer</p>
+</td><td valign="top"><p>unsigned int</p>
+</td><td valign="top"><p>GLuint, GLenum, GLbitfield</p>
+</td></tr><tr valign="top"><td valign="top"><p> </p>
+</td><td valign="top"><p> </p>
+</td><td valign="top"><p>void</p>
+</td><td valign="top"><p>GLvoid</p>
+</td></tr></tbody></table></div><p>The second set of braces, if present, contains a <tt>v</tt> for the vector form of the command. If you choose to use the vector form, all the TYPE arguments are collapsed into a single array. For example, here are the nonvector and vector forms of a command, using a 32-bit floating-point data type:</p>
+<p>void <tt>glVertex2f</tt>(GLfloat <i>x</i>, GLfloat <i>y</i>);<br>
+void <tt>glVertex2fv</tt>(GLfloat <i>v</i>[2]);</p>
+<p>Where the use of the vector form is ambiguous, both the vector and nonvector forms are listed. Note that not all commands with multiple arguments have a vector form and that some commands have only a vector form, in which case the <tt>v</tt> isn't enclosed in braces.</p>
+</div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5438190"></a><a name="id96701"></a>OpenGL Commands</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5438197"></a><a name="id53415"></a>Primitives</h3></div></div>
+<p>Specify vertices or rectangles:</p>
+<p>void <tt>glBegin</tt> (GLenum <i>mode</i>);<br>
+void <tt>glEnd</tt> (void);<br>
+void <tt>glVertex2{sifd}{v}</tt> (TYPE <i>x</i>, TYPE <i>y</i>);<br>
+void <tt>glVertex3{sifd}{v}</tt> (TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>);<br>
+void <tt>glVertex4{sifd}{v}</tt> (TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>, TYPE <i>w</i>);<br>
+void <tt>glRect{sifd}</tt> (TYPE <i>x</i><i>1</i>, TYPE <i>y</i><i>1</i>, TYPE <i>x</i><i>2</i>, TYPE <i>y</i><i>2</i>);<br>
+void <tt>glRect{sifd}v</tt> (const TYPE <i>*v</i><i>1</i>, const TYPE <i>*v</i><i>2</i>);</p>
+<p>Specify polygon edge treatment:</p>
+<p>void <tt>glEdgeFlag</tt> (GLboolean <i>flag</i>);<br>
+void <tt>glEdgeFlagv</tt> (const GLboolean *<i>flag</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5438413"></a><a name="id19874"></a>Coordinate Transformation</h3></div></div>
+<p>Transform the current matrix:</p>
+<p>void <tt>glRotate{fd}</tt> (TYPE <i>angle</i>, TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>);<br>
+void <tt>glTranslate{fd}</tt> (TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>);<br>
+void <tt>glScale{fd}</tt> (TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>);<br>
+void <tt>glMultMatrix{fd}</tt> (const TYPE *<i>m</i>);<br>
+void <tt>glFrustum</tt> (GLdouble <i>left</i>, GLdouble <i>right</i>, GLdouble <i>bottom</i>, GLdouble <i>top</i>, GLdouble <i>near</i>, GLdouble <i>far</i>);<br>
+void <tt>glOrtho</tt> (GLdouble <i>left</i>, GLdouble <i>right</i>, GLdouble <i>bottom</i>, GLdouble <i>top</i>, GLdouble <i>near</i>, GLdouble <i>far</i>);</p>
+<p>Replace the current matrix:</p>
+<p>void <tt>glLoadMatrix{fd}</tt> (const TYPE *<i>m</i>);<br>
+void <tt>glLoadIdentity</tt> (void);</p>
+<p>Manipulate the matrix stack:</p>
+<p>void <tt>glMatrixMode</tt> (GLenum <i>mode</i>);<br>
+void <tt>glPushMatrix</tt> (void);<br>
+void <tt>glPopMatrix</tt> (void);</p>
+<p>Specify the viewport:</p>
+<p>void <tt>glDepthRange</tt> (GLclampd <i>near</i>, GLclampd <i>far</i>);<br>
+void <tt>glViewport</tt> (GLint <i>x</i>, GLint <i>y</i>, GLsizei <i>width</i>, GLsizei <i>height</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5438721"></a><a name="id34594"></a>Coloring and Lighting</h3></div></div>
+<p>Set the current color, color index, or normal vector:</p>
+<p>void <tt>glColor3{bsifd ubusui}{v}</tt> (TYPE <i>red</i>, TYPE <i>green</i>, TYPE <i>blue</i>);<br>
+void <tt>glColor4{bsifd ubusui}{v}</tt> (TYPE <i>red</i>, TYPE <i>green</i>, TYPE <i>blue</i>, TYPE <i>alpha</i>);<br>
+void <tt>glIndex{sifd}{v}</tt> (TYPE <i>index</i>);<br>
+void <tt>glNormal3{bsifd}{v}</tt> (TYPE <i>nx</i>, TYPE <i>ny</i>, TYPE <i>nz</i>);</p>
+<p>Specify light source, material, or lighting model parameter values:</p>
+<p>void <tt>glLight{if}{v}</tt> (GLenum <i>light</i>, GLenum <i>pname</i>, TYPE <i>param</i>);<br>
+void <tt>glMaterial{if}{v}</tt> (GLenum <i>face</i>, GLenum <i>pname</i>, TYPE <i>param</i>);<br>
+void <tt>glLightModel{if}{v}</tt> (GLenum <i>pname</i>, TYPE <i>param</i>);</p>
+<p>Choose a shading model: </p>
+<p>void <tt>glShadeModel</tt> (GLenum <i>mode</i>);</p>
+<p>Specify which polygon orientation is front-facing:</p>
+<p>void <tt>glFrontFace</tt> (GLenum <i>dir</i>);</p>
+<p>Cause a material color to track the current color:</p>
+<p>void <tt>glColorMaterial</tt> (GLenum <i>face</i>, GLenum <i>mode</i>);</p>
+<p>Obtain light source or material parameter values:</p>
+<p>void <tt>glGetLight{if}v</tt> (GLenum <i>light</i>, GLenum <i>pname</i>, TYPE *<i>params</i>);<br>
+void <tt>glGetMaterial{if}v</tt> (GLenum <i>face</i>, GLenum <i>pname</i>, TYPE *<i>params</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5439060"></a><a name="id90517"></a>Clipping</h3></div></div>
+<p>Specify a clipping plane:</p>
+<p>void <tt>glClipPlane</tt> (GLenum <i>plane</i>, const GLdouble *<i>equation</i>);</p>
+<p>Return clipping plane coefficients:</p>
+<p>void <tt>glGetClipPlane</tt> (GLenum <i>plane</i>, GLdouble *<i>equation</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5439108"></a><a name="id85566"></a>Rasterization </h3></div></div>
+<p>Set the current raster position:</p>
+<p>void <tt>glRasterPos2{sifd}{v}</tt>(TYPE <i>x</i>, TYPE <i>y</i>);<br>
+void <tt>glRasterPos3{sifd}{v}</tt>(TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>);</p>
+<p>void <tt>glRasterPos4{sifd}{v}</tt>(TYPE <i>x</i>, TYPE <i>y</i>, TYPE <i>z</i>, TYPE <i>w</i>);</p>
+<p>Specify a bitmap:</p>
+<p>void <tt>glBitmap</tt> (GLsizei <i>width</i>, GLsizei <i>height</i>, GLfloat <i>xorig</i>, GLfloat <i>yorig</i>, GLfloat <i>xmove</i>, GLfloat <i>ymove</i>, const GLubyte *<i>bitmap</i>);</p>
+<p>Specify the dimensions of points or lines:</p>
+<p>void <tt>glPointSize</tt> (GLfloat <i>size</i>);<br>
+void <tt>glLineWidth</tt> (GLfloat <i>width</i>);</p>
+<p>Specify or return a stipple pattern for lines or polygons:</p>
+<p>void <tt>glLineStipple</tt> (GLint <i>factor</i>, GLushort <i>pattern</i>);<br>
+void <tt>glPolygonStipple</tt> (const GLubyte *<i>mask</i>);<br>
+void <tt>glGetPolygonStipple</tt> (GLubyte *<i>mask</i>);</p>
+<p>Choose how polygons are rasterized:</p>
+<p>void <tt>glCullFace</tt> (GLenum <i>mode</i>);<br>
+void <tt>glPolygonMode</tt> (GLenum <i>face</i>, GLenum <i>mode</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5439386"></a><a name="id96454"></a>Pixel Operations</h3></div></div>
+<p>Select the source for pixel reads or copies:</p>
+<p>void <tt>glReadBuffer</tt> (GLenum <i>mode</i>);</p>
+<p>Read, write, and copy pixels:</p>
+<p>void <tt>glReadPixels</tt> (GLint <i>x</i>, GLint <i>y</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLenum <i>format</i>, GLenum <i>type</i>, GLvoid *<i>pixels</i>);<br>
+void <tt>glDrawPixels</tt> (GLsizei <i>width</i>, GLsizei <i>height</i>, GLenum <i>format</i>, GLenum <i>type</i>, const GLvoid *<i>pixels</i>);<br>
+void <tt>glCopyPixels</tt> (GLint <i>x</i>, GLint <i>y</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLenum <i>type</i>);</p>
+<p>Specify or query how pixels are encoded or processed:</p>
+<p>void <tt>glPixelStore{if}</tt> (GLenum <i>pname</i>, TYPE <i>param</i>);<br>
+void <tt>glPixelTransfer{if}</tt> (GLenum <i>pname</i>, TYPE <i>param</i>);<br>
+void <tt>glPixelMap{f usui}v</tt> (GLenum <i>map</i>, GLint <i>mapsize</i>, const TYPE *<i>values</i>);<br>
+void <tt>glGetPixelMap{f usui}v</tt> (GLenum <i>map</i>, TYPE *<i>values</i>);</p>
+<p>Control pixel rasterization:</p>
+<p>void <tt>glPixelZoom</tt> (GLfloat <i>xfactor</i>, GLfloat <i>yfactor</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5439639"></a><a name="id16542"></a>Texture Mapping</h3></div></div>
+<p>Control how a texture is applied to a fragment:</p>
+<p>void <tt>glTexParameter{if}{v}</tt> (GLenum <i>target</i>, GLenum <i>pname</i>, TYPE <i>param</i>);<br>
+void <tt>glTexEnv{if}{v}</tt> (GLenum <i>target</i>, GLenum <i>pname</i>, TYPE <i>param</i>);</p>
+<p>Set the current texture coordinates:</p>
+<p>void <tt>glTexCoord1{sifd}{v}</tt> (TYPE <i>s</i>); <br>
+void <tt>glTexCoord2{sifd}{v}</tt> (TYPE <i>s</i>, TYPE <i>t</i>);<br>
+void <tt>glTexCoord3{sifd}{v}</tt> (TYPE <i>s</i>, TYPE <i>t</i>, TYPE <i>r</i>);<br>
+void <tt>glTexCoord4{sifd}{v}</tt> (TYPE <i>s</i>, TYPE <i>t</i>, TYPE <i>r</i>, TYPE <i>q</i>);</p>
+<p>Control the generation of texture coordinates:</p>
+<p>void <tt>glTexGen{ifd}{v}</tt> (GLenum <i>coord</i>, GLenum <i>pname</i>, TYPE <i>param</i>);</p>
+<p>Specify a one- or two-dimensional texture image:</p>
+<p>void <tt>glTexImage1D</tt> (GLenum <i>target</i>, GLint <i>level</i>, GLint <i>components</i>, GLsizei <i>width</i>, GLint <i>border</i>, GLenum <i>format</i>, GLenum <i>type</i>, const GLvoid *<i>pixels</i>);<br>
+void <tt>glTexImage2D</tt> (GLenum <i>target</i>, GLint <i>level</i>, GLint <i>components</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLint <i>border</i>, GLenum <i>format</i>, GLenum <i>type</i>, const GLvoid *<i>pixels</i>);</p>
+<p>Obtain texture-related parameter values:</p>
+<p>void <tt>glGetTexEnv{if}v</tt> (GLenum <i>target</i>, GLenum <i>pname</i>, TYPE *<i>params</i>);<br>
+void <tt>glGetTexGen{ifd}v</tt> (GLenum <i>coord</i>, GLenum <i>pname</i>, TYPE *<i>params</i>);<br>
+void <tt>glGetTexImage</tt> (GLenum <i>target</i>, GLint <i>level</i>, GLenum <i>format</i>, GLenum <i>type</i>, GLvoid *<i>pixels</i>);<br>
+void <tt>glGetTexLevelParameter{if}v</tt> (GLenum <i>target</i>, GLint <i>level</i>, GLenum <i>pname</i>, TYPE *<i>params</i>);<br>
+void <tt>glGetTexParameter{if}v</tt> (GLenum <i>target</i>, GLenum <i>pname</i>, TYPE *<i>params</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5440144"></a><a name="id66317"></a>Fog</h3></div></div>
+<p>Set fog parameters:</p>
+<p>void <tt>glFog{if}{v}</tt> (GLenum <i>pname</i>, TYPE <i>param</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5440172"></a><a name="id10484"></a>Frame Buffer Operations</h3></div></div>
+<p>Control per-fragment testing:</p>
+<p>void <tt>glScissor</tt> (GLint <i>x</i>, GLint <i>y</i>, GLsizei <i>width</i>, GLsizei <i>height</i>);<br>
+void <tt>glAlphaFunc</tt> (GLenum <i>func</i>, GLclampf <i>ref</i>);<br>
+void <tt>glStencilFunc</tt> (GLenum <i>func</i>, GLint <i>ref</i>, GLuint <i>mask</i>);<br>
+void <tt>glStencilOp</tt> (GLenum <i>fail</i>, GLenum <i>pass</i>, GLenum <i>zpass</i>);<br>
+void <tt>glDepthFunc</tt> (GLenum <i>func</i>);</p>
+<p>Combine fragment and frame buffer values:</p>
+<p>void <tt>glBlendFunc</tt> (GLenum <i>sfactor</i>, GLenum <i>dfactor</i>);<br>
+void <tt>glLogicOp</tt> (GLenum <i>opcode</i>);</p>
+<p>Clear some or all buffers:</p>
+<p>void <tt>glClear</tt> (GLbitfield <i>mask</i>);</p>
+<p>Specify color, depth, and stencil values for clears:</p>
+<p>void <tt>glClearAccum</tt> (GLfloat <i>red</i>, GLfloat <i>green</i>, GLfloat <i>blue</i>, GLfloat <i>alpha</i>);<br>
+void <tt>glClearColor</tt> (GLclampf <i>red</i>, GLclampf <i>green</i>, GLclampf <i>blue</i>, GLclampf <i>alpha</i>);<br>
+void <tt>glClearDepth</tt> (GLclampd <i>depth</i>);<br>
+void <tt>glClearIndex</tt> (GLfloat<i> c</i>);<br>
+void <tt>glClearStencil</tt> (GLint<i> s</i>);</p>
+<p>Control buffers enabled for writing:</p>
+<p>void <tt>glDrawBuffer</tt> (GLenum <i>mode</i>);<br>
+void <tt>glIndexMask</tt> (GLuint <i>mask</i>);<br>
+void <tt>glColorMask</tt> (GLboolean <i>red</i>, GLboolean <i>green</i>, GLboolean <i>blue</i>, GLboolean <i>alpha</i>);<br>
+void <tt>glDepthMask</tt> (GLboolean <i>flag</i>);<br>
+void <tt>glStencilMask</tt> (GLuint <i>mask</i>);</p>
+<p>Operate on the accumulation buffer:</p>
+<p>void <tt>glAccum</tt> (GLenum <i>op</i>, GLfloat <i>value</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5440591"></a><a name="id70439"></a>Evaluators</h3></div></div>
+<p>Define a one- or two-dimensional evaluator:</p>
+<p>void <tt>glMap1{fd}</tt> (GLenum <i>target</i>, TYPE <i>u1</i>, TYPE <i>u2</i>, GLint <i>stride</i>, GLint <i>order</i>, const TYPE *<i>points</i>);<br>
+void <tt>glMap2{fd}</tt> (GLenum <i>target</i>, TYPE <i>u1</i>, TYPE <i>u2</i>, GLint <i>ustride</i>, GLint <i>uorder</i>, TYPE <i>v1</i>, TYPE <i>v2</i>, GLint <i>vstride</i>, </p>
+<p>GLint <i>vorder</i>, const TYPE *<i>points</i>);</p>
+<p>Generate and evaluate a series of map domain values:</p>
+<p>void <tt>glMapGrid1{fd}</tt> (GLint <i>n</i>, TYPE <i>u1</i>, TYPE <i>u2</i>);<br>
+void <tt>glMapGrid2{fd}</tt> (GLint <i>un</i>, TYPE <i>u1</i>, TYPE <i>u2</i>, GLint <i>vn</i>, TYPE <i>v1</i>, TYPE <i>v2</i>);<br>
+void <tt>glEvalMesh1</tt> (GLenum <i>mode</i>, GLint <i>i1</i>, GLint <i>i2</i>);<br>
+void <tt>glEvalMesh2</tt> (GLenum <i>mode</i>, GLint <i>i1</i>, GLint <i>i2</i>, GLint <i>j1</i>, GLint <i>j2</i>);<br>
+void <tt>glEvalPoint1</tt> (GLint <i>i</i>);<br>
+void <tt>glEvalPoint2</tt> (GLint <i>i</i>, GLint<i> j</i>);</p>
+<p>Evaluate one- and two-dimensional maps at a specified domain coordinate:</p>
+<p>void <tt>glEvalCoord1{fd}{v}</tt> (TYPE <i>u</i>);<br>
+void <tt>glEvalCoord2{fd}{v}</tt> (TYPE <i>u</i>, TYPE <i>v</i>);</p>
+<p>Obtain evaluator parameter values:</p>
+<p>void <tt>glGetMap{idf}v</tt> (GLenum <i>target</i>, GLenum <i>query</i>, TYPE *<i>v</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5440961"></a><a name="id71428"></a>Selection and Feedback</h3></div></div>
+<p>Control the mode and corresponding buffer:</p>
+<p>GLint <tt>glRenderMode</tt> (GLenum <i>mode</i>);</p>
+<p>void <tt>glSelectBuffer</tt> (GLsizei <i>size</i>, GLuint *<i>buffer</i>);<br>
+void <tt>glFeedbackBuffer</tt> (GLsizei <i>size</i>, GLenum <i>type</i>, GLfloat *<i>buffer</i>);</p>
+<p>Supply a token for feedback mode:</p>
+<p>void <tt>glPassThrough</tt> (GLfloat <i>token</i>);</p>
+<p>Control the name stack for selection:</p>
+<p>void <tt>glInitNames</tt> (void);<br>
+void <tt>glLoadName</tt> (GLuint <i>name</i>);<br>
+void <tt>glPushName</tt> (GLuint <i>name</i>);<br>
+void <tt>glPopName</tt> (void);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5441097"></a><a name="id99736"></a>Display Lists</h3></div></div>
+<p>Create or delete display lists:</p>
+<p>void <tt>glNewList</tt> (GLuint <i>list</i>, GLenum <i>mode</i>);<br>
+void <tt>glEndList</tt> (void);<br>
+void <tt>glDeleteLists</tt> (GLuint <i>list</i>, GLsizei <i>range</i>);</p>
+<p>Execute a display list or set of lists:</p>
+<p>void <tt>glCallList</tt> (GLuint <i>list</i>);<br>
+void <tt>glCallLists</tt> (GLsizei <i>n</i>, GLenum <i>type</i>, const GLvoid *<i>lists</i>);</p>
+<p>Manage display-list indices:</p>
+<p>GLuint <tt>glGenLists</tt> (GLsizei <i>range</i>);<br>
+GLboolean <tt>glIsList</tt> (GLuint <i>list</i>);<br>
+void <tt>glListBase</tt> (GLuint <i>base</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5441270"></a><a name="id46859"></a>Modes and Execution</h3></div></div>
+<p>Enable, disable, and query modes:</p>
+<p>void <tt>glEnable</tt> (GLenum <i>cap</i>);<br>
+void <tt>glDisable</tt> (GLenum <i>cap</i>);<br>
+GLboolean <tt>glIsEnabled</tt> (GLenum <i>cap</i>);</p>
+<p>Wait until all OpenGL commands have executed completely:</p>
+<p>void <tt>glFinish</tt> (void);</p>
+<p>Force all issued OpenGL commands to be executed:</p>
+<p>void <tt>glFlush</tt> (void);</p>
+<p>Specify hints for OpenGL operation:</p>
+<p>void <tt>glHint</tt> (GLenum <i>target</i>, GLenum <i>mode</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5441413"></a><a name="id20865"></a>State Queries</h3></div></div>
+<p>Obtain information about an error or the current OpenGL connection:</p>
+<p>GLenum <tt>glGetError</tt> (void);<br>
+const GLubyte * <tt>glGetString</tt> (GLenum <i>name</i>);</p>
+<p>Query state variables:</p>
+<p>void <tt>glGetBooleanv</tt> (GLenum <i>pname</i>, GLboolean *<i>params</i>);<br>
+void <tt>glGetDoublev</tt> (GLenum <i>pname</i>, GLdouble *<i>params</i>);<br>
+void <tt>glGetFloatv</tt> (GLenum <i>pname</i>, GLfloat *<i>params</i>);</p>
+<p>void <tt>glGetIntegerv</tt> (GLenum <i>pname</i>, GLint *<i>params</i>);</p>
+<p>Save and restore sets of state variables:</p>
+<p>void <tt>glPushAttrib</tt> (GLbitfield <i>mask</i>);<br>
+void <tt>glPopAttrib</tt> (void);</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5441536"></a><a name="id21527"></a>GLU Routines</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5441563"></a><a name="id33017"></a>Texture Images</h3></div></div>
+<p>Magnify or shrink an image:</p>
+<p>int <tt>gluScaleImage</tt> (GLenum <i>format</i>, GLint <i>widthin</i>, GLint <i>heightin</i>,GLenum <i>typein</i>, const void *<i>datain</i>, GLint <i>widthout</i>, GLint <i>heightout</i>, GLenum <i>typeout</i>, void *<i>dataout</i>);</p>
+<p>Generate mipmaps for an image:</p>
+<p>int <tt>gluBuild1DMipmaps</tt> (GLenum <i>target</i>, GLint <i>components</i>, GLint <i>width</i>, GLenum <i>format</i>, GLenum <i>type</i>, void *<i>data</i>);<br>
+int <tt>gluBuild2DMipmaps</tt> (GLenum <i>target</i>, GLint <i>components</i>, GLint <i>width</i>, GLint <i>height</i>, GLenum <i>format</i>, GLenum <i>type</i>, void *<i>data</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5441714"></a><a name="id67932"></a>Coordinate Transformation</h3></div></div>
+<p>Create projection or viewing matrices:</p>
+<p>void <tt>gluOrtho2D</tt> (GLdouble <i>left</i>, GLdouble <i>right</i>, GLdouble <i>bottom</i>,GLdouble <i>top</i>);<br>
+void <tt>gluPerspective</tt> (GLdouble <i>fovy</i>, GLdouble <i>aspect</i>, GLdouble <i>zNear</i>, GLdouble <i>zFar</i>);<br>
+void <tt>gluPickMatrix</tt> (GLdouble<i> x</i>, GLdouble <i>y</i>, GLdouble <i>width</i>, GLdouble <i>height</i>, GLint <i>viewport</i>[4]);<br>
+void <tt>gluLookAt</tt> (GLdouble <i>eyex</i>, GLdouble <i>eyey</i>, GLdouble <i>eyez</i>, GLdouble <i>centerx</i>, GLdouble <i>centery</i>, GLdouble <i>centerz</i>, GLdouble <i>upx</i>, GLdouble <i>upy</i>, GLdouble <i>upz</i>);</p>
+<p>Convert object coordinates to screen coordinates:</p>
+<p>int <tt>gluProject</tt> (GLdouble <i>objx</i>, GLdouble <i>objy</i>, GLdouble <i>objz</i>, const GLdouble <i>modelMatrix</i>[16], const GLdouble <i>projMatrix</i>[16], const GLint <i>viewport</i>[4], GLdouble *<i>winx</i>, GLdouble *<i>winy</i>, GLdouble *<i>winz</i>);</p>
+<p>int <tt>gluUnProject</tt> (GLdouble <i>winx</i>, GLdouble <i>winy</i>, GLdouble <i>winz</i>, const GLdouble <i>modelMatrix</i>[16], const GLdouble <i>projMatrix</i>[16], const GLint <i>viewport</i>[4], GLdouble *<i>objx</i>, GLdouble *<i>objy</i>, GLdouble *<i>objz</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5442006"></a><a name="id91060"></a>Polygon Tessellation</h3></div></div>
+<p>Manage tessellation objects:</p>
+<p>GLUtriangulatorObj* <tt>gluNewTess</tt> (void);</p>
+<p>void <tt>gluTessCallback</tt> (GLUtriangulatorObj *<i>tobj</i>, GLenum <i>which</i>, void (*<i>fn</i>)());<br>
+void <tt>gluDeleteTess</tt> (GLUtriangulatorObj *<i>tobj</i>);</p>
+<p>Describe the input polygon:</p>
+<p>void <tt>gluBeginPolygon</tt> (GLUtriangulatorObj *<i>tobj</i>);<br>
+void <tt>gluEndPolygon</tt> (GLUtriangulatorObj *<i>tobj</i>);<br>
+void <tt>gluNextContour</tt> (GLUtriangulatorObj *<i>tobj</i>, GLenum <i>type</i>);<br>
+void <tt>gluTessVertex</tt> (GLUtriangulatorObj *<i>tobj</i>, GLdouble <i>v</i>[3], void *<i>data</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5442167"></a><a name="id73321"></a>Quadric Objects</h3></div></div>
+<p>Manage quadric objects:</p>
+<p>GLUquadricObj* <tt>gluNewQuadric</tt> (void);<br>
+void <tt>gluDeleteQuadric</tt> (GLUquadricObj *<i>state</i>);<br>
+void <tt>gluQuadricCallback</tt> (GLUquadricObj *<i>qobj</i>, GLenum <i>which</i>, void (*<i>fn</i>)());</p>
+<p>Control the rendering:</p>
+<p>void <tt>gluQuadricNormals</tt> (GLUquadricObj *<i>quadObject</i>, GLenum <i>normals</i>);<br>
+void <tt>gluQuadricTexture</tt> (GLUquadricObj *<i>quadObject</i>, GLboolean <i>textureCoords</i>);<br>
+void <tt>gluQuadricOrientation</tt> (GLUquadricObj *<i>quadObject</i>, GLenum <i>orientation</i>);<br>
+void <tt>gluQuadricDrawStyle</tt> (GLUquadricObj *<i>quadObject</i>, GLenum <i>drawStyle</i>);</p>
+<p>Specify a quadric primitive:</p>
+<p>void <tt>gluCylinder</tt> (GLUquadricObj *<i>qobj</i>, GLdouble <i>baseRadius</i>,<br>
+GLdouble <i>topRadius</i>, GLdouble <i>height</i>, GLint <i>slices</i>, GLint <i>stacks</i>);<br>
+void <tt>gluDisk</tt> (GLUquadricObj *<i>qobj</i>, GLdouble <i>innerRadius</i>, <br>
+GLdouble <i>outerRadius</i>, GLint <i>slices</i>, GLint <i>loops</i>);<br>
+void <tt>gluPartialDisk</tt> (GLUquadricObj *<i>qobj</i>, GLdouble <i>innerRadius</i>,<br>
+GLdouble <i>outerRadius</i>, GLint <i>slices</i>, GLint <i>loops</i>, <br>
+GLdouble <i>startAngle</i>, GLdouble <i>sweepAngle</i>);<br>
+void <tt>gluSphere</tt> (GLUquadricObj *<i>qobj</i>, GLdouble <i>radius</i>, GLint <i>slices</i>,<br>
+GLint <i>stacks</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5442459"></a><a name="id70985"></a>NURBS Curves and Surfaces</h3></div></div>
+<p>Manage a NURBS object:</p>
+<p>GLUnurbsObj* <tt>gluNewNurbsRenderer</tt> (void);<br>
+void <tt>gluDeleteNurbsRenderer</tt> (GLUnurbsObj *<i>nobj</i>);<br>
+void <tt>gluNurbsCallback</tt> (GLUnurbsObj *<i>nobj</i>, GLenum <i>which</i>, void (*<i>fn</i>)());</p>
+<p>Create a NURBS curve:</p>
+<p>void <tt>gluBeginCurve</tt> (GLUnurbsObj *<i>nobj</i>);<br>
+void <tt>gluEndCurve</tt> (GLUnurbsObj *<i>nobj</i>);<br>
+void <tt>gluNurbsCurve</tt> (GLUnurbsObj *<i>nobj</i>, GLint <i>nknots</i>, GLfloat *<i>knot</i>, GLint <i>stride</i>, GLfloat *<i>ctlarray</i>, GLint <i>order</i>, GLenum <i>type</i>);</p>
+<p>Create a NURBS surface:</p>
+<p>void <tt>gluBeginSurface</tt> (GLUnurbsObj *<i>nobj</i>);void <tt>gluEndSurface</tt> (GLUnurbsObj *<i>nobj</i>);<br>
+void <tt>gluNurbsSurface</tt> (GLUnurbsObj *<i>nobj</i>, GLint <i>uknot_count</i>, GLfloat *<i>uknot</i>, GLint <i>vknot_count</i>, GLfloat *<i>vknot</i>, GLint <i>u_stride</i>, GLint <i>v_stride</i>, GLfloat *<i>ctlarray</i>, GLint <i>sorder</i>, GLint <i>torder</i>, GLenum <i>type</i>);</p>
+<p>Define a trimming region:</p>
+<p>void <tt>gluBeginTrim</tt> (GLUnurbsObj *<i>nobj</i>);<br>
+void <tt>gluEndTrim</tt> (GLUnurbsObj *<i>nobj</i>);<br>
+void <tt>gluPwlCurve</tt> (GLUnurbsObj *<i>nobj</i>, GLint <i>count</i>, GLfloat *<i>array</i>, GLint <i>stride</i>, GLenum <i>type</i>);</p>
+<p>Control NURBS rendering:</p>
+<p>void <tt>gluLoadSamplingMatrices</tt> (GLUnurbsObj *<i>nobj</i>, const GLfloat <i>modelMatrix</i>[16], const GLfloat <i>projMatrix</i>[16], const GLint <i>viewport</i>[4]);<br>
+void <tt>gluNurbsProperty</tt> (GLUnurbsObj *<i>nobj</i>, GLenum <i>property</i>, GLfloat <i>value</i>);<br>
+void <tt>gluGetNurbsProperty</tt> (GLUnurbsObj *<i>nobj</i>, GLenum <i>property</i>, <br>
+GLfloat *<i>value</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5442930"></a><a name="id12587"></a>Error Handling</h3></div></div>
+<p>Produce an error string from an OpenGL error code:</p>
+<p>const GLubyte* <tt>gluErrorString</tt> (GLenum <i>errorCode</i>);</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5442957"></a><a name="id47684"></a>GLX Routines</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5442964"></a><a name="id85590"></a>Initialization</h3></div></div>
+<p>Determine whether the GLX extension is defined on the X server:</p>
+<p>Bool <tt>glXQueryExtension</tt> (Display *<i>dpy</i>, int *<i>errorBase</i>, int *<i>eventBase</i>);<br>
+Bool <tt>glXQueryVersion</tt> (Display *<i>dpy</i>, int *<i>major</i>, int *<i>minor</i>);</p>
+<p>Obtain the desired visual:</p>
+<p>XVisualInfo* <tt>glXChooseVisual</tt> (Display *<i>dpy</i>, int <i>screen</i>, int *<i>attribList</i>);<br>
+int <tt>glXGetConfig</tt> (Display *<i>dpy</i>, XVisualInfo *<i>vis</i>, int <i>attrib</i>, int *<i>value</i>);</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5443111"></a><a name="id45964"></a>Controlling Rendering</h3></div></div>
+<p>Manage or query an OpenGL rendering context:</p>
+<p>GLXContext <tt>glXCreateContext</tt> (Display <i>*dpy</i>, XVisualInfo <i>*vis</i>, GLXContext <i>shareList</i>, Bool <i>direct</i>);<br>
+void <tt>glXDestroyContext</tt> (Display <i>*dpy</i>, GLXContext <i>ctx</i>);<br>
+void <tt>glXCopyContext</tt> (Display *<i>dpy</i>, GLXContext <i>src</i>, GLXContext <i>dst</i>, GLuint <i>mask</i>);<br>
+Bool <tt>glXIsDirect</tt> (Display *<i>dpy</i>, GLXContext <i>ctx</i>);<br>
+Bool <tt>glXMakeCurrent</tt> (Display *<i>dpy</i>, GLXDrawable <i>draw</i>, GLXContext <i>ctx</i>);<br>
+GLXContext <tt>glXGetCurrentContext</tt> (void);<br>
+GLXDrawable <tt>glXGetCurrentDrawable</tt> (void);</p>
+<p>Perform off-screen rendering:</p>
+<p>GLXPixmap <tt>glXCreateGLXPixmap</tt> (Display *<i>dpy</i>, XVisualInfo *<i>vis</i>, </p>
+<p>Pixmap <i>pixmap</i>);</p>
+<p>void <tt>glXDestroyGLXPixmap</tt> (Display *<i>dpy</i>, GLXPixmap <i>pix</i>);</p>
+<p>Synchronize execution:</p>
+<p>void <tt>glXWaitGL</tt> (void);<br>
+void <tt>glXWaitX</tt> (void);</p>
+<p>Exchange front and back buffers:</p>
+<p>void <tt>glXSwapBuffers</tt> (Display *<i>dpy</i>, Window <i>window</i>);</p>
+<p>Use an X font:</p>
+<p>void <tt>glXUseXFont</tt> (Font <i>font</i>, int <i>first</i>, int <i>count</i>, int <i>listBase</i>);</p>
+</div></div></div><!--CONTENT_END--><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Table of Contents</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr><tr><td width="40%" align="left">Chapter 2. Overview of Commands and Routines </td><td width="20%" align="center"> </td><td width="40%" align="right">Chapter 4. Defined Constants and Associated Commands </td></tr></table></div></body></html>

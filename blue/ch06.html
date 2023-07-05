@@ -1,0 +1,1050 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title>Chapter 6. GLU Reference Pages</title><meta name="generator" content="DocBook XSL Stylesheets V1.49"><meta name="generator" content="SGI XSL DocBook Customization Stylesheets V1.0"><link rel="home" href="index.html" title="OpenGL Reference Manual (Addison-Wesley Publishing Company)"><link rel="up" href="bk02.html" title="OpenGL Reference Manual"><link rel="previous" href="ch05.html" title="Chapter 5. OpenGL Reference Pages"><link rel="next" href="ch07.html" title="Chapter 7. GLX Reference Pages"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 6. GLU Reference Pages</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05.html">Prev</a> </td><th width="60%" align="center">OpenGL Reference Manual</th><td width="20%" align="right"> <a accesskey="n" href="ch07.html">Next</a></td></tr></table><hr></div><!--CONTENT_BEGIN--><div class="chapter"><div class="titlepage"><div><h2 class="title"><a name="id5546891"></a>Chapter 6. <a name="id10211"></a>GLU Reference Pages</h2></div></div>
+<p>This chapter contains the reference pages, in alphabetical order, for all the routines comprising the OpenGL Utility Library (GLU). </p>
+<div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5546906"></a><a name="id31679"></a>gluBeginCurve</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5546914"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluBeginCurve, gluEndCurve </b></span>- delimit a NURBS curve definition  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5546948"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluBeginCurve</b></span>( GLUnurbsObj <i>*nobj</i> ) <br>
+void <span class="bold"><b>gluEndCurve</b></span>( GLUnurbsObj <i>*nobj</i> )</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5546980"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547009"></a>DESCRIPTION</h3></div></div>
+<p>Use <span class="bold"><b>gluBeginCurve</b></span> to mark the beginning of a NURBS curve definition.  After calling <span class="bold"><b>gluBeginCurve</b></span>, make one or more calls to <span class="bold"><b>gluNurbsCurve</b></span> to define the attributes of the curve.  Exactly one of the calls to <span class="bold"><b>gluNurbsCurve</b></span> must have a curve type of <span class="bold"><b>GL_MAP1_VERTEX_3</b></span> or <span class="bold"><b>GL_MAP1_VERTEX_4</b></span>.  To mark the end of the NURBS curve definition, call <span class="bold"><b>gluEndCurve</b></span>.  </p>
+<p>OpenGL evaluators are used to render the NURBS curve as a series of line segments.  Evaluator state is preserved during rendering with <span class="bold"><b>glPushAttrib</b></span>(<span class="bold"><b>GL_EVAL_BIT</b></span>) and <span class="bold"><b>glPopAttrib</b></span>().  See the <a href="ch05.html#id12225">&quot;glPushAttrib&quot;</a>
+ reference page for details on exactly what state these calls preserve.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547159"></a>EXAMPLE</h3></div></div>
+<p>The following commands render a textured NURBS curve with normals; texture coordinates and normals are also specified as NURBS curves:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginCurve(nobj);
+   gluNurbsCurve(nobj, ..., GL_MAP1_TEXTURE_COORD_2);
+   gluNurbsCurve(nobj, ..., GL_MAP1_NORMAL);
+   gluNurbsCurve(nobj, ..., GL_MAP1_VERTEX_4);
+gluEndCurve(nobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547184"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id23137">&quot;gluBeginSurface&quot;</a>
+, <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id21275">&quot;gluNurbsCurve&quot;</a>
+, <span class="bold"><b>glPopAttrib</b></span>, <a href="ch05.html#id12225">&quot;glPushAttrib&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5547245"></a><a name="id27257"></a>gluBeginPolygon</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547273"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluBeginPolygon, gluEndPolygon </b></span>- delimit a polygon description  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547288"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluBeginPolygon</b></span>( GLUtriangulatorObj <i>*tobj</i> ) </p>
+<p>void <span class="bold"><b>gluEndPolygon</b></span>( GLUtriangulatorObj <i>*tobj</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547321"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>tobj</i></span></td><td width="10"> </td><td><p>Specifies the tessellation object (created with <span class="bold"><b>gluNewTess</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547350"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluBeginPolygon</b></span> and <span class="bold"><b>gluEndPolygon</b></span> delimit the definition of a nonconvex polygon.  To define such a polygon, first call <span class="bold"><b>gluBeginPolygon</b></span>.  Then define the contours of the polygon by calling <span class="bold"><b>gluTessVertex</b></span> for each vertex and <span class="bold"><b>gluNextContour</b></span> to start each new contour.  Finally, call <span class="bold"><b>gluEndPolygon</b></span> to signal the end of the definition.  See the <a href="ch06.html#id19130">&quot;gluTessVertex&quot;</a>
+ and <a href="ch06.html#id28369">&quot;gluNextContour&quot;</a>
+ reference pages for more details.  </p>
+<p>Once <span class="bold"><b>gluEndPolygon</b></span> is called, the polygon is tessellated, and the resulting triangles are described through callbacks.  See <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+ for descriptions of the callback functions.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547495"></a>EXAMPLE</h3></div></div>
+<p>A quadrilateral with a triangular hole in it can be described like this:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginPolygon(tobj);
+   gluTessVertex(tobj, v1, v1);
+   gluTessVertex(tobj, v2, v2);
+   gluTessVertex(tobj, v3, v3);
+   gluTessVertex(tobj, v4, v4);
+gluNextContour(tobj, GLU_INTERIOR);
+   gluTessVertex(tobj, v5, v5);
+   gluTessVertex(tobj, v6, v6);
+   gluTessVertex(tobj, v7, v7);
+gluEndPolygon(tobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547521"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id15905">&quot;gluNewTess&quot;</a>
+, <a href="ch06.html#id28369">&quot;gluNextContour&quot;</a>
+, <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+, <a href="ch06.html#id19130">&quot;gluTessVertex&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5547634"></a><a name="id23137"></a>gluBeginSurface</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547642"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluBeginSurface, gluEndSurface </b></span>- delimit a NURBS surface definition  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547657"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluBeginSurface</b></span>( GLUnurbsObj <i>*nobj</i> ) <br>
+void <span class="bold"><b>gluEndSurface</b></span>( GLUnurbsObj <i>*nobj</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547689"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547718"></a>DESCRIPTION</h3></div></div>
+<p>Use <span class="bold"><b>gluBeginSurface</b></span> to mark the beginning of a NURBS surface definition.  After calling <span class="bold"><b>gluBeginSurface</b></span>, make one or more calls to <span class="bold"><b>gluNurbsSurface</b></span> to define the attributes of the surface.  Exactly one of these calls to <span class="bold"><b>gluNurbsSurface</b></span> must have a surface type of <span class="bold"><b>GL_MAP2_VERTEX_3</b></span> or <span class="bold"><b>GL_MAP2_VERTEX_4</b></span>.  To mark the end of the NURBS surface definition, call <span class="bold"><b>gluEndSurface</b></span>.  </p>
+<p>Trimming of NURBS surfaces is supported with <span class="bold"><b>gluBeginTrim</b></span>, <span class="bold"><b>gluPwlCurve</b></span>, <span class="bold"><b>gluNurbsCurve</b></span>, and <span class="bold"><b>gluEndTrim</b></span>.  Refer to the <span class="bold"><b>gluBeginTrim</b></span> reference page for details.  </p>
+<p>OpenGL evaluators are used to render the NURBS surface as a set of polygons.  Evaluator state is preserved during rendering with <span class="bold"><b>glPushAttrib</b></span>(<span class="bold"><b>GL_EVAL_BIT</b></span>) and <span class="bold"><b>glPopAttrib</b></span>().  See the <a href="ch05.html#id12225">&quot;glPushAttrib&quot;</a>
+ reference page for details on exactly what state these calls preserve.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547906"></a>EXAMPLE</h3></div></div>
+<p>The following commands render a textured NURBS surface with normals; the texture coordinates and normals are also described as NURBS surfaces:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginSurface(nobj);
+   gluNurbsSurface(nobj, ..., GL_MAP2_TEXTURE_COORD_2);
+   gluNurbsSurface(nobj, ..., GL_MAP2_NORMAL);
+   gluNurbsSurface(nobj, ..., GL_MAP2_VERTEX_4);
+gluEndSurface(nobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5547931"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id31679">&quot;gluBeginCurve&quot;</a>
+, <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id21275">&quot;gluNurbsCurve&quot;</a>
+, <a href="ch06.html#id13247">&quot;gluNurbsSurface&quot;</a>
+, <a href="ch06.html#id15842">&quot;gluPwlCurve&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5548054"></a><a name="id36073"></a>gluBeginTrim</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5544946"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluBeginTrim, gluEndTrim </b></span>- delimit a NURBS trimming loop definition  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5544961"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluBeginTrim</b></span>( GLUnurbsObj <i>*nobj</i> ) <br>
+void <span class="bold"><b>gluEndTrim</b></span>( GLUnurbsObj <i>*nobj</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5545014"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5545072"></a>DESCRIPTION</h3></div></div>
+<p>Use <span class="bold"><b>gluBeginTrim</b></span> to mark the beginning of a trimming loop, and <span class="bold"><b>gluEndTrim</b></span> to mark the end of a trimming loop.  A trimming loop is a set of oriented curve segments (forming a closed curve) that define boundaries of a NURBS surface.  You include these trimming loops in the definition of a NURBS surface, between calls to <span class="bold"><b>gluBeginSurface</b></span> and <span class="bold"><b>gluEndSurface</b></span>.  </p>
+<p>The definition for a NURBS surface can contain many trimming loops.  For example, if you wrote a definition for a NURBS surface that resembled a rectangle with a hole punched out, the definition would contain two trimming loops.  One loop would define the outer edge of the rectangle;  the other would define the hole punched out of the rectangle.  The definitions of each of these trimming loops would be bracketed by a <span class="bold"><b>gluBeginTrim</b></span>/<span class="bold"><b>gluEndTrim</b></span> pair.  </p>
+<p>The definition of a single closed trimming loop can consist of multiple curve segments, each described as a piecewise linear curve (see <a href="ch06.html#id15842">&quot;gluPwlCurve&quot;</a>
+) or as a single NURBS curve (see <a href="ch06.html#id21275">&quot;gluNurbsCurve&quot;</a>
+), or as a combination of both in any order.  The only library calls that can appear in a trimming loop definition (between the calls to <span class="bold"><b>gluBeginTrim</b></span> and <span class="bold"><b>gluEndTrim</b></span>) are <span class="bold"><b>gluPwlCurve</b></span> and <span class="bold"><b>gluNurbsCurve</b></span>.  </p>
+<p>The area of the NURBS surface that is displayed is the region in the domain to the left of the trimming curve as the curve parameter increases.  Thus, the retained region of the NURBS surface is inside a counterclockwise trimming loop and outside a clockwise trimming loop.  For the rectangle mentioned earlier, the trimming loop for the outer edge of the rectangle runs counterclockwise, while the trimming loop for the punched-out hole runs clockwise.  </p>
+<p>If you use more than one curve to define a single trimming loop, the curve segments must form a closed loop (that is, the endpoint of each curve must be the starting point of the next curve, and the endpoint of the final curve must be the starting point of the first curve).  If the endpoints of the curve are sufficiently close together but not exactly coincident, they will be coerced to match.  If the endpoints are not sufficiently close, an error results (see <a href="ch06.html#id15103">&quot;gluNurbsCallback&quot;</a>
+).  </p>
+<p>If a trimming loop definition contains multiple curves, the direction of the curves must be consistent (that is, the inside must be to the left of all of the curves).  Nested trimming loops are legal as long as the curve orientations alternate correctly.  Trimming curves cannot be self-intersecting, nor can they intersect one another (or an error results).  </p>
+<p>If no trimming information is given for a NURBS surface, the entire surface is drawn.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5549485"></a>EXAMPLE</h3></div></div>
+<p>This code fragment defines a trimming loop that consists of one piecewise linear curve, and two NURBS curves:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginTrim(nobj);
+   gluPwlCurve(..., GLU_MAP1_TRIM_2);
+   gluNurbsCurve(..., GLU_MAP1_TRIM_2);
+   gluNurbsCurve(..., GLU_MAP1_TRIM_3);
+gluEndTrim(nobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5549508"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id23137">&quot;gluBeginSurface&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id15103">&quot;gluNurbsCallback&quot;</a>
+, <a href="ch06.html#id21275">&quot;gluNurbsCurve&quot;</a>
+, <a href="ch06.html#id15842">&quot;gluPwlCurve&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5549582"></a><a name="id40858"></a>gluBuild1DMipmaps</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5549591"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluBuild1DMipmaps </b></span>- create 1-D mipmaps  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5549605"></a>C SPECIFICATION</h3></div></div>
+<p>int <span class="bold"><b>gluBuild1DMipmaps</b></span>( GLenum <i>target</i>, GLint <i>components</i>, GLint <i>width</i>, GLenum <i>format</i>, GLenum <i>type</i>, void <i>*data</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5549643"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>target</i></span></td><td width="10"> </td><td><p>Specifies the target texture. Must be <span class="bold"><b>GL_TEXTURE_1D</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>components</i></span></td><td width="10"> </td><td><p>Specifies the number of color components in the texture.  Must be 1, 2, 3, or 4.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>width</i></span></td><td width="10"> </td><td><p>Specifies the width of the texture image.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>format</i></span></td><td width="10"> </td><td><p>Specifies the format of the pixel data.  Must be one of <span class="bold"><b>GL_COLOR_INDEX</b></span>, <span class="bold"><b>GL_RED</b></span>, <span class="bold"><b>GL_GREEN</b></span>, <span class="bold"><b>GL_BLUE</b></span>, <span class="bold"><b>GL_ALPHA</b></span>, <span class="bold"><b>GL_RGB</b></span>, <span class="bold"><b>GL_RGBA</b></span>, <span class="bold"><b>GL_LUMINANCE</b></span>, and <span class="bold"><b>GL_LUMINANCE_ALPHA</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>type</i></span></td><td width="10"> </td><td><p>Specifies the data type for <i>data</i>.  Must be one of <span class="bold"><b>GL_UNSIGNED_BYTE</b></span>, <span class="bold"><b>GL_BYTE</b></span>, <span class="bold"><b>GL_BITMAP</b></span>, <span class="bold"><b>GL_UNSIGNED_SHORT</b></span>, <span class="bold"><b>GL_SHORT</b></span>, <span class="bold"><b>GL_UNSIGNED_INT</b></span>, <span class="bold"><b>GL_INT</b></span>, or <span class="bold"><b>GL_FLOAT</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>data</i></span></td><td width="10"> </td><td><p>Specifies a pointer to the image data in memory.    </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5549934"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluBuild1DMipmaps</b></span> obtains the input image and generates all mipmap images (using <span class="bold"><b>gluScaleImage</b></span>) so that the input image can be used as a mipmapped texture image.  <span class="bold"><b>glTexImage1D</b></span> is then called to load each of the images.  If the width of the input image is not a power of two, then the image is scaled to the nearest power of two before the mipmaps are generated.  </p>
+<p>A return value of zero indicates success.  Otherwise, a GLU error code is returned (see <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+).  </p>
+<p>Please refer to the <span class="bold"><b>glTexImage1D</b></span> reference page for a description of the acceptable values for the <i>format</i> parameter. See the <a href="ch05.html#id41928">&quot;glDrawPixels&quot;</a>
+ reference page for a description of the acceptable values for the <i>type</i> parameter.  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550014"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id40965">&quot;glTexImage1D&quot;</a>
+, <a href="ch06.html#id13556">&quot;gluBuild2DMipmaps&quot;</a>
+, <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+, <a href="ch06.html#id13316">&quot;gluScaleImage&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5550108"></a><a name="id13556"></a>gluBuild2DMipmaps</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550116"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluBuild2DMipmaps </b></span>- create 2-D mipmaps  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550130"></a>C SPECIFICATION</h3></div></div>
+<p>int <span class="bold"><b>gluBuild2DMipmaps</b></span>( GLenum <i>target</i>, GLint <i>components</i>, GLint <i>width</i>, GLint <i>height</i>, GLenum <i>format</i>, GLenum <i>type</i>, void <i>*data</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550172"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>target</i></span></td><td width="10"> </td><td><p>Specifies the target texture.  Must be <span class="bold"><b>GL_TEXTURE_2D</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>components</i></span></td><td width="10"> </td><td><p>Specifies the number of color components in the texture.  Must be 1, 2, 3, or 4.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>width</i>, <i>height</i></span></td><td width="10"> </td><td><p><br>
+Specifies the width and height, respectively, of the texture image.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>format</i></span></td><td width="10"> </td><td><p>Specifies the format of the pixel data.  Must be one of: <span class="bold"><b>GL_COLOR_INDEX</b></span>, <span class="bold"><b>GL_RED</b></span>, <span class="bold"><b>GL_GREEN</b></span>, <span class="bold"><b>GL_BLUE</b></span>, <span class="bold"><b>GL_ALPHA</b></span>, <span class="bold"><b>GL_RGB</b></span>, <span class="bold"><b>GL_RGBA</b></span>, <span class="bold"><b>GL_LUMINANCE</b></span>, and <span class="bold"><b>GL_LUMINANCE_ALPHA</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>type</i></span></td><td width="10"> </td><td><p>Specifies the data type for <i>data</i>.  Must be one of: <span class="bold"><b>GL_UNSIGNED_BYTE</b></span>, <span class="bold"><b>GL_BYTE</b></span>, <span class="bold"><b>GL_BITMAP</b></span>, <span class="bold"><b>GL_UNSIGNED_SHORT</b></span>, <span class="bold"><b>GL_SHORT</b></span>, <span class="bold"><b>GL_UNSIGNED_INT</b></span>, <span class="bold"><b>GL_INT</b></span>, or <span class="bold"><b>GL_FLOAT</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>data</i></span></td><td width="10"> </td><td><p>Specifies a pointer to the image data in memory.    </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550469"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluBuild2DMipmaps</b></span> obtains the input image and generates all mipmap images (using <span class="bold"><b>gluScaleImage</b></span>) so that the input image can be used as a mipmapped texture image.  <span class="bold"><b>glTexImage2D</b></span> is then called to load each of the images.  If the dimensions of the input image are not powers of two, then the image is scaled so that both the width and height are powers of two before the mipmaps are generated.  </p>
+<p>A return value of 0 indicates success. Otherwise, a GLU error code is returned (see <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+).  </p>
+<p>Please refer to the <span class="bold"><b>glTexImage1D</b></span> reference page for a description of the acceptable values for the <i>format</i> parameter. See the <a href="ch05.html#id41928">&quot;glDrawPixels&quot;</a>
+ reference page for a description of the acceptable values for the <i>type</i> parameter.  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550549"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id41928">&quot;glDrawPixels&quot;</a>
+, <a href="ch05.html#id40965">&quot;glTexImage1D&quot;</a>
+, <a href="ch05.html#id38642">&quot;glTexImage2D&quot;</a>
+, <a href="ch06.html#id40858">&quot;gluBuild1DMipmaps&quot;</a>
+, <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+, <a href="ch06.html#id13316">&quot;gluScaleImage&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5550631"></a><a name="id38149"></a>gluCylinder</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550639"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluCylinder </b></span>- draw a cylinder  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550653"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluCylinder</b></span>( GLUquadricObj <i>*qobj</i>, GLdouble <i>baseRadius</i>, GLdouble <i>topRadius</i>, GLdouble <i>height</i>, GLint <i>slices</i>, GLint <i>stacks</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550740"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>qobj</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>baseRadius</i></span></td><td width="10"> </td><td><p>Specifies the radius of the cylinder at <i>z</i> = 0.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>topRadius</i></span></td><td width="10"> </td><td><p>Specifies the radius of the cylinder at <i>z</i> = <i>height</i>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>height</i></span></td><td width="10"> </td><td><p>Specifies the height of the cylinder.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>slices</i></span></td><td width="10"> </td><td><p>Specifies the number of subdivisions around the <i>z</i> axis.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>stacks</i></span></td><td width="10"> </td><td><p>Specifies the number of subdivisions along the <i>z</i> axis.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5550860"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluCylinder</b></span> draws a cylinder oriented along the <i>z</i> axis.  The base of the cylinder is placed at  <i>z</i> = 0, and the top at <i> z = height </i>.  Like a sphere, a cylinder is subdivided around the <i>z</i> axis into slices, and along the <i>z</i> axis into stacks.  </p>
+<p>Note that if <i>topRadius</i> is set to zero, then this routine will generate a cone.  </p>
+<p>If the orientation is set to <span class="bold"><b>GLU_OUTSIDE</b></span> (with <span class="bold"><b>gluQuadricOrientation</b></span>), then any generated normals point away from the <i>z</i> axis.  Otherwise, they point toward the <i>z</i> axis.  </p>
+<p>If texturing is turned on (with <span class="bold"><b>gluQuadricTexture</b></span>), then texture coordinates are generated so that <i>t</i> ranges linearly from 0.0 at <i>z</i> = 0 to 1.0 at <i>z</i> = <i>height</i>, and <i>s</i> ranges from 0.0 at the +<i>y</i> axis, to 0.25 at the +<i>x</i> axis, to 0.5 at the -<i>y</i> axis, to 0.75 at the -<i>x</i> axis, and back to 1.0 at the +<i>y</i> axis.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551000"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id31674">&quot;gluDisk&quot;</a>
+, <a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id36923">&quot;gluPartialDisk&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+, <a href="ch06.html#id37189">&quot;gluSphere&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5551102"></a><a name="id26595"></a>gluDeleteNurbsRenderer</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551110"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluDeleteNurbsRenderer </b></span>- destroy a NURBS object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551125"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluDeleteNurbsRenderer</b></span>( GLUnurbsObj <i>*nobj</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551144"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object to be destroyed (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551173"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluDeleteNurbsRenderer</b></span> destroys the NURBS object and frees any memory used by it.  Once <span class="bold"><b>gluDeleteNurbsRenderer</b></span> has been called, <i>nobj</i> cannot be used again.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551220"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5551238"></a><a name="id23875"></a>gluDeleteQuadric</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551246"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluDeleteQuadric </b></span>- destroy a quadrics object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551261"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluDeleteQuadric</b></span>( GLUquadricObj <i>*state</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551280"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>state</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object to be destroyed (created with <span class="bold"><b>gluNewQuadric</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551309"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluDeleteQuadric</b></span> destroys the quadrics object and frees any memory used by it.  Once <span class="bold"><b>gluDeleteQuadric</b></span> has been called, <i>state</i> cannot be used again.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551395"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5551413"></a><a name="id21923"></a>gluDeleteTess</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551421"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluDeleteTess </b></span>- destroy a tessellation object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551435"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluDeleteTess</b></span>( GLUtriangulatorObj <i>*tobj</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551484"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>tobj</i></span></td><td width="10"> </td><td><p>Specifies the tessellation object to destroy (created with <span class="bold"><b>gluNewTess</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551513"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluDeleteTess</b></span> destroys the indicated tessellation object and frees any memory that it used.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551529"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id27257">&quot;gluBeginPolygon&quot;</a>
+, <a href="ch06.html#id15905">&quot;gluNewTess&quot;</a>
+, <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5551585"></a><a name="id31674"></a>gluDisk</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551593"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluDisk </b></span>- draw a disk  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551607"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluDisk</b></span>( GLUquadricObj <i>*qobj</i>, GLdouble <i>innerRadius</i>, GLdouble <i>outerRadius</i>, GLint <i>slices</i>, GLint <i>loops</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551641"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>qobj</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>innerRadius</i></span></td><td width="10"> </td><td><p>Specifies the inner radius of the disk (may be 0).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>outerRadius</i></span></td><td width="10"> </td><td><p>Specifies the outer radius of the disk.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>slices</i></span></td><td width="10"> </td><td><p>Specifies the number of subdivisions around the <i>z</i> axis.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>loops</i></span></td><td width="10"> </td><td><p>Specifies the number of concentric rings about the origin into which the disk is subdivided.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551753"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluDisk</b></span> renders a disk on the <i>z</i> = 0  plane.  The disk has a radius of <i>outerRadius</i>, and contains a concentric circular hole with a radius of <i>innerRadius</i>.  If <i>innerRadius</i> is 0, then no hole is generated.  The disk is subdivided around the <i>z</i> axis into slices (like pizza slices), and also about the <i>z</i> axis into rings (as specified by <i>slices</i> and <i>loops</i>, respectively).  </p>
+<p>With respect to orientation, the +<i>z</i> side of the disk is considered to be &quot;outside&quot; (see <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+).  This means that if the orientation is set to <span class="bold"><b>GLU_OUTSIDE</b></span>, then any normals generated point along the +<i>z</i> axis.  Otherwise, they point along the -<i>z</i> axis.  </p>
+<p>If texturing is turned on (with <span class="bold"><b>gluQuadricTexture</b></span>), texture coordinates are generated linearly such that where <i> r = outerRadius </i>, the value at (<i>r</i>, 0, 0) is (1, 0.5), at (0, <i>r</i>, 0) it is (0.5, 1), at (-<i>r</i>, 0, 0) it is (0, 0.5), and at (0, -<i>r</i>, 0) it is (0.5, 0).   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551918"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id38149">&quot;gluCylinder&quot;</a>
+, <a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id36923">&quot;gluPartialDisk&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+, <a href="ch06.html#id37189">&quot;gluSphere&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5551982"></a><a name="id39754"></a>gluErrorString</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5551990"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluErrorString </b></span>- produce an error string from an OpenGL or GLU error code  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552025"></a>C SPECIFICATION</h3></div></div>
+<p>const GLubyte* <span class="bold"><b>gluErrorString</b></span>( GLenum <i>errorCode</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552045"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>errorCode</i></span></td><td width="10"> </td><td><p>Specifies an OpenGL or GLU error code.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552067"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluErrorString</b></span> produces an error string from an OpenGL or GLU error code.  The string is in an ISO Latin 1 format.  For example, <span class="bold"><b>gluErrorString</b></span>(<span class="bold"><b>GL_OUT_OF_MEMORY</b></span>) returns the string <i>out of memory</i>.  </p>
+<p>The standard GLU error codes are <span class="bold"><b>GLU_INVALID_ENUM</b></span>, <span class="bold"><b>GLU_INVALID_VALUE</b></span>, and <span class="bold"><b>GLU_OUT_OF_MEMORY</b></span>.  Certain other GLU functions can return specialized error codes through callbacks.  Refer to the <span class="bold"><b>glGetError</b></span> reference page for the list of OpenGL error codes.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552165"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id19875">&quot;glGetError&quot;</a>
+, <a href="ch06.html#id15103">&quot;gluNurbsCallback&quot;</a>
+, <a href="ch06.html#id22928">&quot;gluQuadricCallback&quot;</a>
+, <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5552230"></a><a name="id25268"></a>gluGetNurbsProperty</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552238"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluGetNurbsProperty </b></span>- get a NURBS property  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552252"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluGetNurbsProperty</b></span>( GLUnurbsObj <i>*nobj</i>, GLenum <i>property</i>, GLfloat <i>*value</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552279"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>property</i></span></td><td width="10"> </td><td><p>Specifies the property whose value is to be fetched.  Valid values are <span class="bold"><b>GLU_CULLING</b></span>, <span class="bold"><b>GLU_SAMPLING_TOLERANCE</b></span>, <span class="bold"><b>GLU_DISPLAY_MODE</b></span>, and <span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>value</i></span></td><td width="10"> </td><td><p>Specifies a pointer to the location into which the value of the named property is written.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552386"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluGetNurbsProperty</b></span> is used to retrieve properties stored in a NURBS object.  These properties affect the way that NURBS curves and surfaces are rendered.  Please refer to the <span class="bold"><b>gluNurbsProperty</b></span> reference page for information about what the properties are and what they do.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552412"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id13274">&quot;gluNurbsProperty&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5552440"></a><a name="id34501"></a>gluLoadSamplingMatrices</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552448"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluLoadSamplingMatrices </b></span>- load NURBS sampling and culling matrices  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552463"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluLoadSamplingMatrices</b></span>( GLUnurbsObj <i>*nobj</i>, const GLfloat <i>modelMatrix[16]</i>, const GLfloat <i>projMatrix[16]</i>, const GLint <i>viewport[4]);</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552543"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>modelMatrix</i></span></td><td width="10"> </td><td><p>Specifies a modelview matrix (as from a <span class="bold"><b>glGetFloatv</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>projMatrix</i></span></td><td width="10"> </td><td><p>Specifies a projection matrix (as from a <span class="bold"><b>glGetFloatv</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>viewport;</i></span></td><td width="10"> </td><td><p>Specifies a viewport (as from a <span class="bold"><b>glGetIntegerv</b></span> call).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552636"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluLoadSamplingMatrices</b></span> uses <i>modelMatrix</i>, <i>projMatrix</i>, and <i>viewport;</i> to recompute the sampling and culling matrices stored in <i>nobj</i>.  The sampling matrix determines how finely a NURBS curve or surface must be tessellated to satisfy the sampling tolerance (as determined by the <span class="bold"><b>GLU_SAMPLING_TOLERANCE</b></span> property).  The culling matrix is used in deciding if a NURBS curve or surface should be culled before rendering (when the <span class="bold"><b>GLU_CULLING</b></span> property is turned on).  </p>
+<p><span class="bold"><b>gluLoadSamplingMatrices</b></span> is necessary only if the <span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span> property is turned off (see <a href="ch06.html#id13274">&quot;gluNurbsProperty&quot;</a>
+).  Although it can be convenient to leave the <span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span> property turned on, there can be a performance penalty for doing so.  (A round trip to the OpenGL server is needed to fetch the current values of the modelview matrix, projection matrix, and viewport.)  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552743"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id25268">&quot;gluGetNurbsProperty&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id13274">&quot;gluNurbsProperty&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5552781"></a>gluLookAt</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552785"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluLookAt </b></span>- define a viewing transformation  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552799"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluLookAt</b></span>( GLdouble <i>eyex</i>, GLdouble <i>eyey</i>, GLdouble <i>eyez</i>, GLdouble <i>centerx</i>, GLdouble <i>centery</i>, GLdouble <i>centerz</i>, GLdouble <i>upx</i>, GLdouble <i>upy</i>, GLdouble <i>upz</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552898"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>eyex</i>, <i>eyey</i>, <i>eyez</i></span></td><td width="10"> </td><td><p><br>
+Specifies the position of the eye point.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>centerx</i>, <i>centery</i>, <i>centerz</i></span></td><td width="10"> </td><td><p><br>
+Specifies the position of the reference point.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>upx</i>, <i>upy</i>, <i>upz</i></span></td><td width="10"> </td><td><p>Specifies the direction of the up vector.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5552974"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluLookAt</b></span> creates a viewing matrix derived from an eye point, a reference point indicating the center of the scene, and an up vector.  The matrix maps the reference point to the negative <i>z</i> axis and the eye point to the origin, so that, when a typical projection matrix is used, the center of the scene maps to the center of the viewport.  Similarly, the direction described by the up vector projected onto the viewing plane is mapped to the positive <i>y</i> axis so that it points upward in the viewport.  The up vector must not be parallel to the line of sight from the eye to the reference point.  </p>
+<p>The matrix generated by <span class="bold"><b>gluLookAt</b></span> postmultiplies the current matrix.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553018"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id13747">&quot;glFrustum&quot;</a>
+, <a href="ch06.html#id25199">&quot;gluPerspective&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5553064"></a><a name="id19636"></a>gluNewNurbsRenderer</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553072"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNewNurbsRenderer </b></span>- create a NURBS object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553086"></a>C SPECIFICATION</h3></div></div>
+<p>GLUnurbsObj* <span class="bold"><b>gluNewNurbsRenderer</b></span>( void )</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553102"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluNewNurbsRenderer</b></span> creates and returns a pointer to a new NURBS object.  This object must be referred to when calling NURBS rendering and control functions.  A return value of zero means that there is not enough memory to allocate the object.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553121"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id31679">&quot;gluBeginCurve&quot;</a>
+, <a href="ch06.html#id23137">&quot;gluBeginSurface&quot;</a>
+, <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+, <a href="ch06.html#id26595">&quot;gluDeleteNurbsRenderer&quot;</a>
+, <a href="ch06.html#id15103">&quot;gluNurbsCallback&quot;</a>
+, <a href="ch06.html#id13274">&quot;gluNurbsProperty&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5553234"></a><a name="id16164"></a>gluNewQuadric</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553242"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNewQuadric </b></span>- create a quadrics object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553256"></a>C SPECIFICATION</h3></div></div>
+<p>GLUquadricObj* <span class="bold"><b>gluNewQuadric</b></span>( void )</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553272"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluNewQuadric</b></span> creates and returns a pointer to a new quadrics object.  This object must be referred to when calling quadrics rendering and control functions.  A return value of zero means that there is not enough memory to allocate the object.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553291"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id38149">&quot;gluCylinder&quot;</a>
+, <a href="ch06.html#id23875">&quot;gluDeleteQuadric&quot;</a>
+, <a href="ch06.html#id31674">&quot;gluDisk&quot;</a>
+, <a href="ch06.html#id36923">&quot;gluPartialDisk&quot;</a>
+, <a href="ch06.html#id22928">&quot;gluQuadricCallback&quot;</a>
+, <a href="ch06.html#id19545">&quot;gluQuadricDrawStyle&quot;</a>
+, <a href="ch06.html#id12320">&quot;gluQuadricNormals&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+, <a href="ch06.html#id37189">&quot;gluSphere&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5553431"></a><a name="id15905"></a>gluNewTess</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553439"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNewTess </b></span>- create a tessellation object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553454"></a>C SPECIFICATION</h3></div></div>
+<p>GLUtriangulatorObj* <span class="bold"><b>gluNewTess</b></span>( void ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553469"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluNewTess</b></span> creates and returns a pointer to a new tessellation object.  This object must be referred to when calling tessellation functions.  A return value of zero means that there is not enough memory to allocate the object.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553488"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id27257">&quot;gluBeginPolygon&quot;</a>
+, <a href="ch06.html#id21923">&quot;gluDeleteTess&quot;</a>
+, <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5553592"></a><a name="id28369"></a>gluNextContour</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553620"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNextContour </b></span>- mark the beginning of another contour  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553636"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluNextContour</b></span>( GLUtriangulatorObj <i>*tobj</i>, GLenum <i>type</i> )</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553659"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>tobj</i></span></td><td width="10"> </td><td><p>Specifies the tessellation object (created with <span class="bold"><b>gluNewTess</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>type</i></span></td><td width="10"> </td><td><p>Specifies the type of the contour being defined.  Valid values are <span class="bold"><b>GLU_EXTERIOR</b></span>, <span class="bold"><b>GLU_INTERIOR</b></span>, <span class="bold"><b>GLU_UNKNOWN</b></span>, <span class="bold"><b>GLU_CCW</b></span>, and <span class="bold"><b>GLU_CW</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5553738"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluNextContour</b></span> is used in describing polygons with multiple contours.  After the first contour has been described through a series of <span class="bold"><b>gluTessVertex</b></span> calls, a <span class="bold"><b>gluNextContour</b></span> call indicates that the previous contour is complete and that the next contour is about to begin.  Another series of <span class="bold"><b>gluTessVertex</b></span> calls is then used to describe the new contour.  This process can be repeated until all contours have been described.  </p>
+<p><i>type</i> defines what type of contour follows.  The legal contour types are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_EXTERIOR</b></span></span></td><td width="10"> </td><td><p><br>
+An exterior contour defines an exterior boundary of the polygon.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_INTERIOR</b></span></span></td><td width="10"> </td><td><p><br>
+An interior contour defines an interior boundary of the polygon (such as a hole).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_UNKNOWN</b></span></span></td><td width="10"> </td><td><p><br>
+An unknown contour is analyzed by the library to determine if it is interior or exterior.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_CCW</b></span>, <span class="bold"><b>GLU_CW</b></span></span></td><td width="10"> </td><td><p><br>
+The first <span class="bold"><b>GLU_CCW</b></span> or <span class="bold"><b>GLU_CW</b></span> contour defined is considered to be exterior.  All other contours are considered to be exterior if they are oriented in the same direction (clockwise or counterclockwise) as the first contour, and interior if they are not.   If one contour is of type <span class="bold"><b>GLU_CCW</b></span> or <span class="bold"><b>GLU_CW</b></span>, then all contours must be of the same type (if they are not, then all <span class="bold"><b>GLU_CCW</b></span> and <span class="bold"><b>GLU_CW</b></span> contours will be changed to <span class="bold"><b>GLU_UNKNOWN</b></span>).   Note that there is no real difference between the <span class="bold"><b>GLU_CCW</b></span> and <span class="bold"><b>GLU_CW</b></span> contour types.  </p>
+
+</td></tr></table></div><p><span class="bold"><b>gluNextContour</b></span> can be called before the first contour is described to define the type of the first contour.  If <span class="bold"><b>gluNextContour</b></span> is not called before the first contour, then the first contour is marked <span class="bold"><b>GLU_EXTERIOR</b></span>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554042"></a>EXAMPLE</h3></div></div>
+<p>A quadrilateral with a triangular hole in it can be described as follows:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginPolygon(tobj);
+   gluTessVertex(tobj, v1, v1);
+   gluTessVertex(tobj, v2, v2);
+   gluTessVertex(tobj, v3, v3);
+   gluTessVertex(tobj, v4, v4);
+gluNextContour(tobj, GLU_INTERIOR);
+   gluTessVertex(tobj, v5, v5);
+   gluTessVertex(tobj, v6, v6);
+   gluTessVertex(tobj, v7, v7);
+gluEndPolygon(tobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554068"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id27257">&quot;gluBeginPolygon&quot;</a>
+, <a href="ch06.html#id15905">&quot;gluNewTess&quot;</a>
+, <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+, <a href="ch06.html#id19130">&quot;gluTessVertex&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5554132"></a><a name="id15103"></a>gluNurbsCallback</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554140"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNurbsCallback </b></span>- define a callback for a NURBS object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554155"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluNurbsCallback</b></span>( GLUnurbsObj <i>*nobj</i>, GLenum <i>which</i>, void <i>(*fn)(</i> )</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554182"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>which</i></span></td><td width="10"> </td><td><p>Specifies the callback being defined.  The only valid value is <span class="bold"><b>GLU_ERROR</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>fn</i></span></td><td width="10"> </td><td><p>Specifies the function that the callback calls.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554267"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluNurbsCallback</b></span> is used to define a callback to be used by a NURBS object.  If the specified callback is already defined, then it is replaced.  If <i>fn</i> is NULL, then any existing callback is erased.  </p>
+<p>The one legal callback is <span class="bold"><b>GLU_ERROR</b></span>: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_ERROR</b></span></span></td><td width="10"> </td><td><p>The error function is called when an error is encountered.  Its single argument is of type GLenum, and it indicates the specific error that occurred.  There are 37 errors unique to NURBS named <span class="bold"><b>GLU_NURBS_ERROR1</b></span> through <span class="bold"><b>GLU_NURBS_ERROR37</b></span>.  Character strings describing these errors can be retrieved with <span class="bold"><b>gluErrorString</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554375"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5554403"></a><a name="id21275"></a>gluNurbsCurve</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554411"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNurbsCurve </b></span>- define the shape of a NURBS curve  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554445"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluNurbsCurve</b></span>( GLUnurbsObj <i>*nobj</i>, GLint <i>nknots</i>, GLfloat <i>*knot</i>, GLint <i>stride</i>, GLfloat <i>*ctlarray</i>, GLint <i>order</i>, GLenum <i>type</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554486"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>nknots</i></span></td><td width="10"> </td><td><p>Specifies the number of knots in <i>knot</i>.  <i>nknots</i> equals the number of control points plus the order.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>knot</i></span></td><td width="10"> </td><td><p>Specifies an array of <i>nknots</i> nondecreasing knot values.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>stride</i></span></td><td width="10"> </td><td><p>Specifies the offset (as a number of single-precision floating-point values) between successive curve control points.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>ctlarray</i></span></td><td width="10"> </td><td><p>Specifies a pointer to an array of control points.  The coordinates must agree with <i>type</i>, specified below.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>order</i></span></td><td width="10"> </td><td><p>Specifies the order of the NURBS curve.  <i>order</i> equals degree + 1, hence a cubic curve has an order of 4.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>type</i></span></td><td width="10"> </td><td><p>Specifies the type of the curve.  If this curve is defined within a <span class="bold"><b>gluBeginCurve</b></span>/<span class="bold"><b>gluEndCurve</b></span> pair, then the type can be any of the valid one-dimensional evaluator types (such as <span class="bold"><b>GL_MAP1_VERTEX_3</b></span> or <span class="bold"><b>GL_MAP1_COLOR_4</b></span>).  Between a <span class="bold"><b>gluBeginTrim</b></span>/<span class="bold"><b>gluEndTrim</b></span> pair, the only valid types are <span class="bold"><b>GLU_MAP1_TRIM_2</b></span> and <span class="bold"><b>GLU_MAP1_TRIM_3</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554732"></a>DESCRIPTION</h3></div></div>
+<p>Use <span class="bold"><b>gluNurbsCurve</b></span> to describe a NURBS curve.  </p>
+<p>When <span class="bold"><b>gluNurbsCurve</b></span> appears between a <span class="bold"><b>gluBeginCurve</b></span>/<span class="bold"><b>gluEndCurve</b></span> pair, it is used to describe a curve to be rendered.  Positional, texture, and color coordinates are associated by presenting each as a separate <span class="bold"><b>gluNurbsCurve</b></span> between a <span class="bold"><b>gluBeginCurve</b></span>/<span class="bold"><b>gluEndCurve</b></span> pair.  No more than one call to <span class="bold"><b>gluNurbsCurve</b></span> for each of color, position, and texture data can be made within a single <span class="bold"><b>gluBeginCurve</b></span>/<span class="bold"><b>gluEndCurve</b></span> pair.  Exactly one call must be made to describe the position of the curve (a <i>type</i> of <span class="bold"><b>GL_MAP1_VERTEX_3</b></span> or <span class="bold"><b>GL_MAP1_VERTEX_4</b></span>).  </p>
+<p>When <span class="bold"><b>gluNurbsCurve</b></span> appears between a <span class="bold"><b>gluBeginTrim</b></span>/<span class="bold"><b>gluEndTrim</b></span> pair, it is used to describe a trimming curve on a NURBS surface.  If <i>type</i> is <span class="bold"><b>GLU_MAP1_TRIM_2</b></span>, then it describes a curve in two-dimensional (<i>u</i> and <i>v</i>) parameter space.  If it is <span class="bold"><b>GLU_MAP1_TRIM_3</b></span>, then it describes a curve in two-dimensional homogeneous (<i>u</i>, <i>v</i>, and <i>w</i>) parameter space.  See the <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+ reference page for more discussion about trimming curves.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5554981"></a>EXAMPLE</h3></div></div>
+<p>The following commands render a textured NURBS curve with normals:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginCurve(nobj);
+   gluNurbsCurve(nobj, ..., GL_MAP1_TEXTURE_COORD_2);
+   gluNurbsCurve(nobj, ..., GL_MAP1_NORMAL);
+   gluNurbsCurve(nobj, ..., GL_MAP1_VERTEX_4);
+gluEndCurve(nobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555005"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id31679">&quot;gluBeginCurve&quot;</a>
+, <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id15842">&quot;gluPwlCurve&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5555100"></a><a name="id13274"></a>gluNurbsProperty</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555108"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNurbsProperty </b></span>- set a NURBS property  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555122"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluNurbsProperty</b></span>( GLUnurbsObj <i>*nobj</i>, GLenum <i>property</i>, GLfloat <i>value</i> )</p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555149"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>property</i></span></td><td width="10"> </td><td><p>Specifies the property to be set.  Valid values are <span class="bold"><b>GLU_SAMPLING_TOLERANCE</b></span>, <span class="bold"><b>GLU_DISPLAY_MODE</b></span>, <span class="bold"><b>GLU_CULLING</b></span>, and <span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>value</i></span></td><td width="10"> </td><td><p>Specifies the value to which to set the indicated property.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555255"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluNurbsProperty</b></span> is used to control properties stored in a NURBS object.  These properties affect the way that a NURBS curve is rendered.  The legal values for <i>property</i> are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_SAMPLING_TOLERANCE</b></span></span></td><td width="10"> </td><td><p><br>
+<i>value</i> specifies the maximum length, in pixels, of line segments or edges of polygons used to render NURBS curves or surfaces.  The NURBS code is conservative when rendering a curve or surface, so the actual length can be somewhat shorter.  The default value is 50.0 pixels.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_DISPLAY_MODE</b></span></span></td><td width="10"> </td><td><p><br>
+<i>value</i> defines how a NURBS surface should be rendered.  <i>value</i> can be set to <span class="bold"><b>GLU_FILL</b></span>, <span class="bold"><b>GLU_OUTLINE_POLYGON</b></span>, or <span class="bold"><b>GLU_OUTLINE_PATCH</b></span>.  When set to <span class="bold"><b>GLU_FILL</b></span>, the surface is rendered as a set of polygons.  <span class="bold"><b>GLU_OUTLINE_POLYGON</b></span> instructs the NURBS library to draw only the outlines of the polygons created by tessellation.  <span class="bold"><b>GLU_OUTLINE_PATCH</b></span> causes just the outlines of patches and trim curves defined by the user to be drawn.  The default value is <span class="bold"><b>GLU_FILL</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_CULLING</b></span></span></td><td width="10"> </td><td><p><br>
+<i>value</i> is a Boolean value that, when set to <span class="bold"><b>GL_TRUE</b></span>, indicates that a NURBS curve should be discarded prior to tessellation if its control points lie outside the current viewport.  The default is <span class="bold"><b>GL_FALSE</b></span> (because a NURBS curve cannot fall entirely within the convex hull of its control points).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span></span></td><td width="10"> </td><td><p><br>
+<i>value</i> is a Boolean value.  When set to <span class="bold"><b>GL_TRUE</b></span>, the NURBS code downloads the projection matrix, the modelview matrix, and the viewport from the OpenGL server to compute sampling and culling matrices for each NURBS curve that is rendered.  Sampling and culling matrices are required to determine the tesselation of a NURBS surface into line segments or polygons and to cull a NURBS surface if it lies outside of the viewport.  If this mode is set to <span class="bold"><b>GL_FALSE</b></span>, then the user needs to provide a projection matrix, a modelview matrix, and a viewport for the NURBS renderer to use to construct sampling and culling matrices.  This can be done with the <span class="bold"><b>gluLoadSamplingMatrices</b></span> function.  The default for this mode is <span class="bold"><b>GL_TRUE</b></span>.  Changing this mode from <span class="bold"><b>GL_TRUE</b></span> to <span class="bold"><b>GL_FALSE</b></span> does not affect the sampling and culling matrices until <span class="bold"><b>gluLoadSamplingMatrices</b></span> is called.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555561"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id25268">&quot;gluGetNurbsProperty&quot;</a>
+, <a href="ch06.html#id34501">&quot;gluLoadSamplingMatrices&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5555620"></a><a name="id13247"></a>gluNurbsSurface</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555628"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluNurbsSurface </b></span>- define the shape of a NURBS surface  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555642"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluNurbsSurface</b></span>( GLUnurbsObj <i>*nobj</i>, GLint <i>sknot_count</i>, GLfloat <i>*sknot</i>, GLint <i>tknot_count</i>, GLfloat <i>*tknot</i>, GLint <i>s_stride</i>, GLint <i>t_stride</i>, GLfloat <i>*ctlarray</i>, GLint <i>sorder</i>, GLint <i>torder</i>, GLenum <i>type</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5555698"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>sknot_count</i></span></td><td width="10"> </td><td><p>Specifies the number of knots in the parametric <i>u</i> direction.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>sknot</i></span></td><td width="10"> </td><td><p>Specifies an array of <i>sknot_count</i> nondecreasing knot values in the parametric <i>u</i> direction.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>tknot_count</i></span></td><td width="10"> </td><td><p>Specifies the number of knots in the parametric <i>v</i> direction.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>tknot</i></span></td><td width="10"> </td><td><p>Specifies an array of <i>tknot_count</i> nondecreasing knot values in the parametric <i>v</i> direction.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>s_stride</i></span></td><td width="10"> </td><td><p>Specifies the offset (as a number of  single-precision floating point values) between successive control points in the parametric u direction in <i>ctlarray</i>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>t_stride</i></span></td><td width="10"> </td><td><p>Specifies the offset (in single-precision floating-point values) between successive control points in the parametric <i>v</i> direction in <i>ctlarray</i>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>ctlarray</i></span></td><td width="10"> </td><td><p>Specifies an array containing control points for the NURBS surface.  The offsets between successive control points in the parametric <i>u</i>  and <i>v</i> directions are given by <i>s_stride</i> and <i>t_stride</i>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>sorder</i></span></td><td width="10"> </td><td><p>Specifies the order of the NURBS surface in the parametric <i>u</i> direction.  The order is one more than the degree, hence a surface that is cubic in <i>u</i> has a <i>u</i> order of 4.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>torder</i></span></td><td width="10"> </td><td><p>Specifies the order of the NURBS surface in the parametric <i>v</i> direction.  The order is one more than the degree, hence a surface that is cubic in <i>v</i> has a <i>v</i> order of 4.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>type</i></span></td><td width="10"> </td><td><p>Specifies type of the surface.  <i>type</i> can be any of the valid two-dimensional evaluator types (such as <span class="bold"><b>GL_MAP2_VERTEX_3</b></span> or <span class="bold"><b>GL_MAP2_COLOR_4</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556070"></a>DESCRIPTION</h3></div></div>
+<p>Use <span class="bold"><b>gluNurbsSurface</b></span> within a NURBS (Non-Uniform Rational B-Spline) surface definition to describe the shape of a NURBS surface (before any trimming).  To mark the beginning of a NURBS surface definition, use the <span class="bold"><b>gluBeginSurface</b></span> command.  To mark the end of a NURBS surface definition, use the <span class="bold"><b>gluEndSurface</b></span> command.  Call <span class="bold"><b>gluNurbsSurface</b></span> within a NURBS surface definition only.  </p>
+<p>Positional, texture, and color coordinates are associated with a surface by presenting each as a separate <span class="bold"><b>gluNurbsSurface</b></span> between a <span class="bold"><b>gluBeginSurface</b></span>/<span class="bold"><b>gluEndSurface</b></span> pair.  No more than one call to <span class="bold"><b>gluNurbsSurface</b></span> for each of color, position, and texture data can be made within a single <span class="bold"><b>gluBeginSurface</b></span>/<span class="bold"><b>gluEndSurface</b></span> pair.  Exactly one call must be made to describe the position of the surface (a <i>type</i> of <span class="bold"><b>GL_MAP2_VERTEX_3</b></span> or <span class="bold"><b>GL_MAP2_VERTEX_4</b></span>).  </p>
+<p>A NURBS surface can be trimmed by using the commands <span class="bold"><b>gluNurbsCurve</b></span> and <span class="bold"><b>gluPwlCurve</b></span> between calls to <span class="bold"><b>gluBeginTrim</b></span> and <span class="bold"><b>gluEndTrim</b></span>.  </p>
+<p>Note that a <span class="bold"><b>gluNurbsSurface</b></span> with <i>sknot_count</i> knots in the u direction and <i>tknot_count</i> knots in the <i>v</i> direction with orders <i>sorder</i> and <i>torder</i> must have (<i>sknot_count</i> - <i>sorder</i>) x (<i>tknot_count</i> - <i>torder</i>) control points.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556278"></a>EXAMPLE</h3></div></div>
+<p>The following commands render a textured NURBS surface with normals; the texture coordinates and normals are also NURBS surfaces:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginSurface(nobj);
+   gluNurbsSurface(nobj, ..., GL_MAP2_TEXTURE_COORD_2);
+   gluNurbsSurface(nobj, ..., GL_MAP2_NORMAL);
+   gluNurbsSurface(nobj, ..., GL_MAP2_VERTEX_4);
+gluEndSurface(nobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556333"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id23137">&quot;gluBeginSurface&quot;</a>
+, <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id21275">&quot;gluNurbsCurve&quot;</a>
+, <a href="ch06.html#id15842">&quot;gluPwlCurve&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5556407"></a><a name="id19207"></a>gluOrtho2D</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556415"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluOrtho2D </b></span>- define a 2-D orthographic projection matrix  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556430"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluOrtho2D</b></span>( GLdouble <i>left</i>, GLdouble <i>right</i>, GLdouble <i>bottom</i>, GLdouble <i>top</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556461"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>left</i>, <i>right</i></span></td><td width="10"> </td><td><p>Specify the coordinates for the left and right vertical clipping planes.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>bottom</i>, <i>top</i></span></td><td width="10"> </td><td><p>Specify the coordinates for the bottom and top horizontal clipping planes.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556506"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluOrtho2D</b></span> sets up a two-dimensional orthographic viewing region.  This is equivalent to calling <span class="bold"><b>glOrtho</b></span> with <i> near = -1 </i> and <i> far = 1 </i>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556556"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id30307">&quot;glOrtho&quot;</a>
+, <a href="ch06.html#id25199">&quot;gluPerspective&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5556583"></a><a name="id36923"></a>gluPartialDisk</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556591"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluPartialDisk </b></span>- draw an arc of a disk  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556605"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluPartialDisk</b></span>( GLUquadricObj <i>*qobj</i>, GLdouble <i>innerRadius</i>, GLdouble <i>outerRadius</i>, GLint <i>slices</i>, GLint <i>loops</i>, GLdouble <i>startAngle</i>, GLdouble <i>sweepAngle</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556676"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>qobj</i></span></td><td width="10"> </td><td><p>Specifies a quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>innerRadius</i></span></td><td width="10"> </td><td><p>Specifies the inner radius of the partial disk (can be zero).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>outerRadius</i></span></td><td width="10"> </td><td><p>Specifies the outer radius of the partial disk.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>slices</i></span></td><td width="10"> </td><td><p>Specfies the number of subdivisions around the <i>z</i> axis.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>loops</i></span></td><td width="10"> </td><td><p>Specifies the number of concentric rings about the origin into which the partial disk is subdivided.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>startAngle</i></span></td><td width="10"> </td><td><p>Specifies the starting angle, in degrees, of the disk portion.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>sweepAngle</i></span></td><td width="10"> </td><td><p>Specifies the sweep angle, in degrees, of the disk portion.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5556819"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluPartialDisk</b></span> renders a partial disk on the <i> z = 0 </i> plane.  A partial disk is similar to a full disk, except that only the subset of the disk from <i>startAngle</i> through <i>startAngle</i> + <i>sweepAngle</i> is included (where 0 degrees is along the +<i>yaxis, 90 degrees along the +x</i> axis, 180 along the -<i>y</i> axis, and 270 along the -<i>x</i> axis).  </p>
+<p>The partial disk has a radius of <i>outerRadius</i>, and contains a concentric circular hole with a radius of <i>innerRadius</i>.  If <i>innerRadius</i> is zero, then no hole is generated.  The partial disk is subdivided around the <i>z</i> axis into slices (like pizza slices), and also about the <i>z</i> axis into rings (as specified by <i>slices</i> and <i>loops</i>, respectively).  </p>
+<p>With respect to orientation, the +<i>z</i> side of the partial disk is considered to be outside (see <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+).  This means that if the orientation is set to <span class="bold"><b>GLU_OUTSIDE</b></span>, then any normals generated point along the +<i>z</i> axis.  Otherwise, they point along the -<i>z</i> axis.  </p>
+<p>If texturing is turned on (with <span class="bold"><b>gluQuadricTexture</b></span>), texture coordinates are generated linearly such that where <i> r = outerRadius </i>, the value at (<i>r</i>, 0, 0) is (1, 0.5), at (0, <i>r</i>, 0) it is (0.5, 1), at (-<i>r</i>, 0, 0) it is (0, 0.5), and at (0, -<i>r</i>, 0) it is (0.5, 0).   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557013"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id38149">&quot;gluCylinder&quot;</a>
+, <a href="ch06.html#id31674">&quot;gluDisk&quot;</a>
+, <a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+, <a href="ch06.html#id37189">&quot;gluSphere&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5557116"></a><a name="id25199"></a>gluPerspective</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557144"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluPerspective </b></span>- set up a perspective projection matrix  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557159"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluPerspective</b></span>( GLdouble <i>fovy</i>, GLdouble <i>aspect</i>, GLdouble <i>zNear</i>, GLdouble <i>zFar</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557190"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>fovy</i></span></td><td width="10"> </td><td><p>Specifies the field of view angle, in degrees, in the <i>y</i> direction.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>aspect</i></span></td><td width="10"> </td><td><p>Specifies the aspect ratio that determines the field of view in the <i>x</i> direction.  The aspect ratio is the ratio of <i>x</i> (width) to <i>y</i> (height).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>zNear</i></span></td><td width="10"> </td><td><p>Specifies the distance from the viewer to the near clipping plane (always positive).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>zFar</i></span></td><td width="10"> </td><td><p>Specifies the distance from the viewer to the far clipping plane (always positive).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557303"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluPerspective</b></span> specifies a viewing frustum into the world coordinate system.  In general, the aspect ratio in <span class="bold"><b>gluPerspective</b></span> should match the aspect ratio of the associated viewport.  For example, <i> aspect = 2.0 </i> means the viewer's angle of view is twice as wide in <i>x</i> as it is in <i>y</i>.  If the viewport is twice as wide as it is tall, it displays the image without distortion.  </p>
+<p>The matrix generated by <span class="bold"><b>gluPerspective</b></span> is multipled by the current matrix, just as if <span class="bold"><b>glMultMatrix</b></span> were called with the generated matrix.  To load the perspective matrix onto the current matrix stack instead, precede the call to <span class="bold"><b>gluPerspective</b></span> with a call to <span class="bold"><b>glLoadIdentity</b></span>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557398"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id13747">&quot;glFrustum&quot;</a>
+, <a href="ch05.html#id15281">&quot;glLoadIdentity&quot;</a>
+, <a href="ch05.html#id17230">&quot;glMultMatrix&quot;</a>
+, <a href="ch06.html#id19207">&quot;gluOrtho2D&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5557442"></a>gluPickMatrix</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557446"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluPickMatrix </b></span>- define a picking region  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557480"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluPickMatrix</b></span>( GLdouble <i>x</i>, GLdouble <i>y</i>, GLdouble <i>width</i>, GLdouble <i>height</i>, GLint <i>viewport[4]</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557514"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>x</i>, <i>y</i></span></td><td width="10"> </td><td><p>Specify the center of a picking region in window coordinates.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>width</i>, <i>height</i></span></td><td width="10"> </td><td><p>Specify the width and height, respectively, of the picking region in window coordinates.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>viewport</i></span></td><td width="10"> </td><td><p>Specifies the current viewport (as from a <span class="bold"><b>glGetIntegerv</b></span> call).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557610"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluPickMatrix</b></span> creates a projection matrix that can be used to restrict drawing to a small region of the viewport.  This is typically useful to determine what objects are being drawn near the cursor.  Use <span class="bold"><b>gluPickMatrix</b></span> to restrict drawing to a small region around the cursor.  Then, enter selection mode (with <span class="bold"><b>glRenderMode</b></span> and rerender the scene.  All primitives that would have been drawn near the cursor are identified and stored in the selection buffer.  </p>
+<p>The matrix created by <span class="bold"><b>gluPickMatrix</b></span> is multiplied by the current matrix just as if <span class="bold"><b>glMultMatrix</b></span> is called with the generated matrix.  To effectively use the generated pick matrix for picking, first call <span class="bold"><b>glLoadIdentity</b></span> to load an identity matrix onto the perspective matrix stack.  Then call <span class="bold"><b>gluPickMatrix</b></span>, and finally, call a command (such as <span class="bold"><b>gluPerspective</b></span>) to multiply the perspective matrix by the pick matrix.  </p>
+<p>When using <span class="bold"><b>gluPickMatrix</b></span> to pick NURBS, be careful to turn off the NURBS property <span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span>.  If <span class="bold"><b>GLU_AUTO_LOAD_MATRIX</b></span> is not turned off, then any NURBS surface rendered is subdivided differently with the pick matrix than the way it was subdivided without the pick matrix.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557742"></a>EXAMPLE</h3></div></div>
+<p>When rendering a scene as follows:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+gluPerspective(...);
+glMatrixMode(GL_MODELVIEW);
+/* Draw the scene */
+</pre></td></tr></table><p>a portion of the viewport can be selected as a pick region like this:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+gluPickMatrix(x, y, width, height, viewport);
+gluPerspective(...);
+glMatrixMode(GL_MODELVIEW);
+/* Draw the scene */
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557780"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id41087">&quot;glGet&quot;</a>
+, <a href="ch05.html#id15281">&quot;glLoadIdentity&quot;</a>
+, <a href="ch05.html#id17230">&quot;glMultMatrix&quot;</a>
+, <a href="ch05.html#id35248">&quot;glRenderMode&quot;</a>
+, <a href="ch06.html#id25199">&quot;gluPerspective&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5557853"></a><a name="id28992"></a>gluProject</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557861"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluProject </b></span>- map object coordinates to window coordinates  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557877"></a>C SPECIFICATION</h3></div></div>
+<p>int <span class="bold"><b>gluProject</b></span>( GLdouble <i>objx</i>, GLdouble <i>objy</i>, GLdouble <i>objz</i>, const GLdouble <i>modelMatrix[16]</i>, const GLdouble <i>projMatrix[16]</i>, const GLint <i>viewport[4]</i>, GLdouble <i>*winx</i>, GLdouble <i>*winy</i>, GLdouble <i>*winz</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5557955"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>objx</i>, <i>objy</i>, <i>objz</i></span></td><td width="10"> </td><td><p>Specify the object coordinates.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>modelMatrix</i></span></td><td width="10"> </td><td><p>Specifies the current modelview matrix (as from a <span class="bold"><b>glGetDoublev</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>projMatrix</i></span></td><td width="10"> </td><td><p>Specifies the current projection matrix (as from a <span class="bold"><b>glGetDoublev</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>viewport</i></span></td><td width="10"> </td><td><p>Specifies the current viewport (as from a <span class="bold"><b>glGetIntegerv</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>winx</i>, <i>winy</i>, <i>winz</i></span></td><td width="10"> </td><td><p><br>
+Return the computed window coordinates.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558092"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluProject</b></span> transforms the specified object coordinates into window coordinates using <i>modelMatrix</i>, <i>projMatrix</i>, and <i>viewport</i>.  The result is stored in <i>winx</i>, <i>winy</i>, and <i>winz</i>.  A return value of <span class="bold"><b>GL_TRUE</b></span> indicates success, and <span class="bold"><b>GL_FALSE</b></span> indicates failure.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558144"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id41087">&quot;glGet&quot;</a>
+, <a href="ch06.html#id12101">&quot;gluUnProject&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5558170"></a><a name="id15842"></a>gluPwlCurve</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558198"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluPwlCurve </b></span>- describe a piecewise linear NURBS trimming curve  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558243"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluPwlCurve</b></span>( GLUnurbsObj <i>*nobj</i>, GLint <i>count</i>, GLfloat <i>*array</i>, GLint <i>stride</i>, GLenum <i>type</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558278"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>nobj</i></span></td><td width="10"> </td><td><p>Specifies the NURBS object (created with <span class="bold"><b>gluNewNurbsRenderer</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>count</i></span></td><td width="10"> </td><td><p>Specifies the number of points on the curve.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>array</i></span></td><td width="10"> </td><td><p>Specifies an array containing the curve points.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>stride</i></span></td><td width="10"> </td><td><p>Specifies the offset (a number of single-precision floating-point values) between points on the curve.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>type</i></span></td><td width="10"> </td><td><p>Specifies the type of curve.  Must be either <span class="bold"><b>GLU_MAP1_TRIM_2</b></span> or <span class="bold"><b>GLU_MAP1_TRIM_3</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558400"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluPwlCurve</b></span> describes a piecewise linear trimming curve for a NURBS surface.  A piecewise linear curve consists of a list of coordinates of points in the parameter space for the NURBS surface to be trimmed.  These points are connected with line segments to form a curve.  If the curve is an approximation to a real curve, the points should be close enough that the resulting path appears curved at the resolution used in the application.  </p>
+<p>If <i>type</i> is <span class="bold"><b>GLU_MAP1_TRIM_2</b></span>, then it describes a curve in two-dimensional (<i>u</i> and <i>v</i>) parameter space.  If it is <span class="bold"><b>GLU_MAP1_TRIM_3</b></span>, then it describes a curve in two-dimensional homogeneous (<i>u</i>, <i>v</i>, and <i>w</i>) parameter space.  Please refer to the <span class="bold"><b>gluBeginTrim</b></span> reference page for more information about trimming curves.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558475"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id31679">&quot;gluBeginCurve&quot;</a>
+, <a href="ch06.html#id36073">&quot;gluBeginTrim&quot;</a>
+, <a href="ch06.html#id19636">&quot;gluNewNurbsRenderer&quot;</a>
+, <a href="ch06.html#id21275">&quot;gluNurbsCurve&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5558540"></a><a name="id22928"></a>gluQuadricCallback</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558548"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluQuadricCallback </b></span>- define a callback for a quadrics object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558564"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluQuadricCallback</b></span>( GLUquadricObj <i>*qobj</i>, GLenum <i>which</i>, void <i>(*fn)(</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558620"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>qobj</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>which</i></span></td><td width="10"> </td><td><p>Specifies the callback being defined.  The only valid value is <span class="bold"><b>GLU_ERROR</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>fn</i></span></td><td width="10"> </td><td><p>Specifies the function to be called.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558684"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluQuadricCallback</b></span> is used to define a new callback to be used by a quadrics object.  If the specified callback is already defined, then it is replaced.  If <i>fn</i> is NULL, then any existing callback is erased.  </p>
+<p>The one legal callback is <span class="bold"><b>GLU_ERROR</b></span>: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_ERROR</b></span></span></td><td width="10"> </td><td><p>The function is called when an error is encountered.  Its single argument is of type GLenum, and it indicates the specific error that occurred.  Character strings describing these errors can be retrieved with the <span class="bold"><b>gluErrorString</b></span> call.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558767"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+, <a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5558794"></a><a name="id19545"></a>gluQuadricDrawStyle</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558802"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluQuadricDrawStyle </b></span>- specify the draw style desired for quadrics  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558817"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluQuadricDrawStyle</b></span>( GLUquadricObj <i>*quadObject</i>, GLenum <i>drawStyle</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558860"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>quadObject</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>drawStyle</i></span></td><td width="10"> </td><td><p>Specifies the desired draw style.  Valid values are <span class="bold"><b>GLU_FILL</b></span>, <span class="bold"><b>GLU_LINE</b></span>, <span class="bold"><b>GLU_SILHOUETTE</b></span>, and <span class="bold"><b>GLU_POINT</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5558961"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluQuadricDrawStyle</b></span> specifies the draw style for quadrics rendered with <i>quadObject</i>.  The legal values are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_FILL</b></span></span></td><td width="10"> </td><td><p>Quadrics are rendered with polygon primitives.  The polygons are drawn in a counterclockwise fashion with respect to their normals (as defined with <span class="bold"><b>gluQuadricOrientation</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_LINE</b></span></span></td><td width="10"> </td><td><p>Quadrics are rendered as a set of lines.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_SILHOUETTE</b></span></span></td><td width="10"> </td><td><p><br>
+Quadrics are rendered as a set of lines, except that edges separating coplanar faces will not be drawn.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_POINT</b></span></span></td><td width="10"> </td><td><p>Quadrics are rendered as a set of points.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559085"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id12320">&quot;gluQuadricNormals&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5559131"></a><a name="id12320"></a>gluQuadricNormals</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559139"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluQuadricNormals </b></span>- specify what kind of normals are desired for quadrics  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559155"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluQuadricNormals</b></span>( GLUquadricObj <i>*quadObject</i>, GLenum <i>normals</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559198"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>quadObject</i></span></td><td width="10"> </td><td><p>Specifes the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>normals</i></span></td><td width="10"> </td><td><p>Specifies the desired type of normals.  Valid values are <span class="bold"><b>GLU_NONE</b></span>, <span class="bold"><b>GLU_FLAT</b></span>, and <span class="bold"><b>GLU_SMOOTH</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559262"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluQuadricNormals</b></span> specifies what kind of normals are desired for quadrics rendered with <i>quadObject</i>.  The legal values are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_NONE</b></span></span></td><td width="10"> </td><td><p>No normals are generated.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_FLAT</b></span></span></td><td width="10"> </td><td><p>One normal is generated for every facet of a quadric.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_SMOOTH</b></span></span></td><td width="10"> </td><td><p><br>
+One normal is generated for every vertex of a quadric.  This is the default.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559388"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id19545">&quot;gluQuadricDrawStyle&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5559435"></a><a name="id27542"></a>gluQuadricOrientation</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559443"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluQuadricOrientation </b></span>- specify inside/outside orientation for quadrics  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559459"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluQuadricOrientation</b></span>( GLUquadricObj <i>*quadObject</i>, GLenum <i>orientation</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559482"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>quadObject</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>orientation</i></span></td><td width="10"> </td><td><p>Specifies the desired orientation.  Valid values are <span class="bold"><b>GLU_OUTSIDE</b></span> and <span class="bold"><b>GLU_INSIDE</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559559"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluQuadricOrientation</b></span> specifies what kind of orientation is desired for quadrics rendered with <i>quadObject</i>.  The <i>orientation</i> values are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_OUTSIDE</b></span> </span></td><td width="10"> </td><td><p><br>
+Quadrics are drawn with normals pointing outward.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_INSIDE</b></span> </span></td><td width="10"> </td><td><p>Normals point inward.  The default is <span class="bold"><b>GLU_OUTSIDE</b></span>.  </p>
+
+</td></tr></table></div><p>Note that the interpretation of <i>outward</i> and <i>inward</i> depends on the quadric being drawn.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559671"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id19545">&quot;gluQuadricDrawStyle&quot;</a>
+, <a href="ch06.html#id12320">&quot;gluQuadricNormals&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5559737"></a><a name="id41701"></a>gluQuadricTexture</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559745"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluQuadricTexture </b></span>- specify if texturing is desired for quadrics  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559760"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluQuadricTexture</b></span>( GLUquadricObj <i>*quadObject</i>, GLboolean <i>textureCoords</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559783"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>quadObject</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>textureCoords</i></span></td><td width="10"> </td><td><p>Specifies a flag indicating if texture coordinates should be generated.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559847"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluQuadricTexture</b></span> specifies if texture coordinates should be generated for quadrics rendered with <i>quadObject</i>.  If the value of <i>textureCoords</i> is <span class="bold"><b>GL_TRUE</b></span>, then texture coordinates are generated, and if <i>textureCoords</i> is <span class="bold"><b>GL_FALSE</b></span>, they are not.  The default is <span class="bold"><b>GL_FALSE</b></span>.  </p>
+<p>The manner in which texture coordinates are generated depends upon the specific quadric rendered.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559902"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id19545">&quot;gluQuadricDrawStyle&quot;</a>
+, <a href="ch06.html#id12320">&quot;gluQuadricNormals&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5559949"></a><a name="id13316"></a>gluScaleImage</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559977"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluScaleImage </b></span>- scale an image to an arbitrary size  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5559991"></a>C SPECIFICATION</h3></div></div>
+<p>int <span class="bold"><b>gluScaleImage</b></span>( GLenum <i>format</i>, GLint <i>widthin</i>, GLint <i>heightin</i>, GLenum <i>typein</i>, const void <i>*datain</i>, GLint <i>widthout</i>, GLint <i>heightout</i>, GLenum <i>typeout</i>, void <i>*dataout</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560070"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>format</i></span></td><td width="10"> </td><td><p>Specifies the format of the pixel data.  The following symbolic values are valid: <span class="bold"><b>GL_COLOR_INDEX</b></span>, <span class="bold"><b>GL_STENCIL_INDEX</b></span>, <span class="bold"><b>GL_DEPTH_COMPONENT</b></span>, <span class="bold"><b>GL_RED</b></span>, <span class="bold"><b>GL_GREEN</b></span>, <span class="bold"><b>GL_BLUE</b></span>, <span class="bold"><b>GL_ALPHA</b></span>, <span class="bold"><b>GL_RGB</b></span>, <span class="bold"><b>GL_RGBA</b></span>, <span class="bold"><b>GL_LUMINANCE</b></span>, and <span class="bold"><b>GL_LUMINANCE_ALPHA</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>widthin</i>, <i>heightin</i></span></td><td width="10"> </td><td><p><br>
+Specify the width and height, respectively, of the source image that is scaled.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>typein</i></span></td><td width="10"> </td><td><p>Specifies the data type for <i>datain</i>. Must be one of <span class="bold"><b>GL_UNSIGNED_BYTE</b></span>, <span class="bold"><b>GL_BYTE</b></span>, <span class="bold"><b>GL_BITMAP</b></span>, <span class="bold"><b>GL_UNSIGNED_SHORT</b></span>, <span class="bold"><b>GL_SHORT</b></span>, <span class="bold"><b>GL_UNSIGNED_INT</b></span>, <span class="bold"><b>GL_INT</b></span>, or <span class="bold"><b>GL_FLOAT</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>datain</i></span></td><td width="10"> </td><td><p>Specifies a pointer to the source image.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>widthout</i>, <i>heightout</i></span></td><td width="10"> </td><td><p><br>
+Specify the width and height, respectively, of the destination image.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>typeout</i></span></td><td width="10"> </td><td><p>Specifies the data type for <i>dataout</i>. Must be one of <span class="bold"><b>GL_UNSIGNED_BYTE</b></span>, <span class="bold"><b>GL_BYTE</b></span>, <span class="bold"><b>GL_BITMAP</b></span>, <span class="bold"><b>GL_UNSIGNED_SHORT</b></span>, <span class="bold"><b>GL_SHORT</b></span>, <span class="bold"><b>GL_UNSIGNED_INT</b></span>, <span class="bold"><b>GL_INT</b></span>, or <span class="bold"><b>GL_FLOAT</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>dataout</i></span></td><td width="10"> </td><td><p>Specifies a pointer to the destination image.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560453"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluScaleImage</b></span> scales a pixel image using the appropriate pixel store modes to unpack data from the source image and pack data into the destination image.  </p>
+<p>When shrinking an image, <span class="bold"><b>gluScaleImage</b></span> uses a box filter to sample the source image and create pixels for the destination image.  When magnifying an image, the pixels from the source image are linearly interpolated to create the destination image.  </p>
+<p>A return value of zero indicates success, otherwise a GLU error code is returned indicating what the problem was (see <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+).  </p>
+<p>Please refer to the <span class="bold"><b>glReadPixels</b></span> reference page for a description of the acceptable values for the <i>format</i>, <i>typein</i>, and <i>typeout</i> parameters.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560544"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id41928">&quot;glDrawPixels&quot;</a>
+, <a href="ch05.html#id40261">&quot;glReadPixels&quot;</a>
+, <a href="ch06.html#id40858">&quot;gluBuild1DMipmaps&quot;</a>
+, <a href="ch06.html#id13556">&quot;gluBuild2DMipmaps&quot;</a>
+, <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5560597"></a><a name="id37189"></a>gluSphere</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560605"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluSphere </b></span>- draw a sphere  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560639"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluSphere</b></span>( GLUquadricObj <i>*qobj</i>, GLdouble <i>radius</i>, GLint <i>slices</i>, GLint <i>stacks</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560669"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>qobj</i></span></td><td width="10"> </td><td><p>Specifies the quadrics object (created with <span class="bold"><b>gluNewQuadric</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>radius</i></span></td><td width="10"> </td><td><p>Specifies the radius of the sphere.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>slices</i></span></td><td width="10"> </td><td><p>Specifies the number of subdivisions around the <i>z</i> axis (similar to lines of longitude).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>stacks</i></span></td><td width="10"> </td><td><p>Specifies the number of subdivisions along the <i>z</i> axis (similar to lines of latitude).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560780"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluSphere</b></span> draws a sphere of the given radius centered around the origin.  The sphere is subdivided around the <i>z</i> axis into slices and along the <i>z</i> axis into stacks (similar to lines of longitude and latitude).  </p>
+<p>If the orientation is set to <span class="bold"><b>GLU_OUTSIDE</b></span> (with <span class="bold"><b>gluQuadricOrientation</b></span>), then any normals generated point away from the center of the sphere.  Otherwise, they point toward the center of the sphere.  </p>
+<p>If texturing is turned on (with <span class="bold"><b>gluQuadricTexture</b></span>), then texture coordinates are generated so that <i>t</i> ranges from 0.0 at <i> z = -radius </i> to 1.0 at <i> z = radius </i> (<i>t</i> increases linearly along longitudinal lines), and <i>s</i> ranges from 0.0 at the +<i>y</i> axis, to 0.25 at the +<i>x</i> axis, to 0.5 at the -<i>y</i> axis, to 0.75 at the -<i>x</i> axis, and back to 1.0 at the +<i>y</i> axis.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5560936"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id38149">&quot;gluCylinder&quot;</a>
+, <a href="ch06.html#id31674">&quot;gluDisk&quot;</a>
+, <a href="ch06.html#id16164">&quot;gluNewQuadric&quot;</a>
+, <a href="ch06.html#id36923">&quot;gluPartialDisk&quot;</a>
+, <a href="ch06.html#id27542">&quot;gluQuadricOrientation&quot;</a>
+, <a href="ch06.html#id41701">&quot;gluQuadricTexture&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5561019"></a><a name="id40802"></a>gluTessCallback</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561027"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluTessCallback </b></span>- define a callback for a tessellation object  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561042"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluTessCallback</b></span>( GLUtriangulatorObj <i>*tobj</i>, GLenum <i>which</i>, void <i>(*fn)(</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561069"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>tobj</i></span></td><td width="10"> </td><td><p>Specifies the tessellation object (created with <span class="bold"><b>gluNewTess</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>which</i></span></td><td width="10"> </td><td><p>Specifies the callback being defined.  The following values are valid: <span class="bold"><b>GLU_BEGIN</b></span>, <span class="bold"><b>GLU_EDGE_FLAG</b></span>, <span class="bold"><b>GLU_VERTEX</b></span>, <span class="bold"><b>GLU_END</b></span>, and <span class="bold"><b>GLU_ERROR</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>fn</i></span></td><td width="10"> </td><td><p>Specifies the function to be called.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561211"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluTessCallback</b></span> is used to indicate a callback to be used by a tessellation object.  If the specified callback is already defined, then it is replaced.  If <i>fn</i> is NULL, then the existing callback is erased.  </p>
+<p>These callbacks are used by the tessellation object to describe how a polygon specified by the user is broken into triangles.  </p>
+<p>The legal callbacks are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_BEGIN</b></span></span></td><td width="10"> </td><td><p>The begin callback is invoked like <span class="bold"><b>glBegin</b></span> to indicate the start of a (triangle) primitive.  The function takes a single argument of type GLenum that is either <span class="bold"><b>GL_TRIANGLE_FAN</b></span>, <span class="bold"><b>GL_TRIANGLE_STRIP</b></span>, or <span class="bold"><b>GL_TRIANGLES</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_EDGE_FLAG</b></span></span></td><td width="10"> </td><td><p><br>
+The edge flag callback is similar to <span class="bold"><b>glEdgeFlag</b></span>.  The function takes a single Boolean flag that indicates which edges of the created triangles were part of the original polygon defined by the user, and which were created by the tessellation process.  If the flag is <span class="bold"><b>GL_TRUE</b></span>, then each vertex that follows begins an edge that was part of the original polygon.  If the flag is <span class="bold"><b>GL_FALSE</b></span>, then each vertex that follows begins an edge that was generated by the tessellator.  The edge flag callback (if defined) is invoked before the first vertex callback is made.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"></span></td><td width="10"> </td><td><p>Since triangle fans and triangle strips do not support edge flags, the begin callback is not called with <span class="bold"><b>GL_TRIANGLE_FAN</b></span> or <span class="bold"><b>GL_TRIANGLE_STRIP</b></span> if an edge flag callback is provided.  Instead, the fans and strips are converted to independent triangles.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_VERTEX</b></span></span></td><td width="10"> </td><td><p><br>
+The vertex callback is invoked between the begin and end callbacks.  It is similar to <span class="bold"><b>glVertex</b></span>, and it defines the vertices of the triangles created by the tessellation process.  The function takes a pointer as its only argument.  This pointer is identical to the opaque pointer provided by the user when the vertex was described (see <a href="ch06.html#id19130">&quot;gluTessVertex&quot;</a>
+).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_END</b></span></span></td><td width="10"> </td><td><p>The end callback serves the same purpose as <span class="bold"><b>glEnd</b></span>. It indicates the end of a primitive and it takes no arguments.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLU_ERROR</b></span></span></td><td width="10"> </td><td><p>The error callback is called when an error is encountered.  The one argument is of type GLenum, and it indicates the specific error that occurred.  There are eight errors unique to polygon tessellation, named <span class="bold"><b>GLU_TESS_ERROR1</b></span> through <span class="bold"><b>GLU_TESS_ERROR8</b></span>.  Character strings describing these errors can be retrieved with the <span class="bold"><b>gluErrorString</b></span> call.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561531"></a>EXAMPLE</h3></div></div>
+<p>Polygons tessellated can be rendered directly like this:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluTessCallback(tobj, GLU_BEGIN, glBegin);
+gluTessCallback(tobj, GLU_VERTEX, glVertex3dv);
+gluTessCallback(tobj, GLU_END, glEnd);
+gluBeginPolygon(tobj);
+   gluTessVertex(tobj, v, v);
+   ...
+gluEndPolygon(tobj);
+</pre></td></tr></table><p>Typically, the tessellated polygon should be stored in a display list so that it does not need to be retessellated every time it is rendered.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561561"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id11415">&quot;glBegin&quot;</a>
+, <a href="ch05.html#id40044">&quot;glEdgeFlag&quot;</a>
+, <a href="ch05.html#id32860">&quot;glVertex&quot;</a>
+, <a href="ch06.html#id21923">&quot;gluDeleteTess&quot;</a>
+, <a href="ch06.html#id39754">&quot;gluErrorString&quot;</a>
+, <a href="ch06.html#id15905">&quot;gluNewTess&quot;</a>
+, <a href="ch06.html#id19130">&quot;gluTessVertex&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5561652"></a><a name="id19130"></a>gluTessVertex</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561660"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluTessVertex </b></span>- specify a vertex on a polygon  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561674"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>gluTessVertex</b></span>( GLUtriangulatorObj <i>*tobj</i>, GLdouble <i>v[3]</i>, void <i>*data</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561721"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>tobj</i></span></td><td width="10"> </td><td><p>Specifies the tessellation object (created with <span class="bold"><b>gluNewTess</b></span>).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>v</i></span></td><td width="10"> </td><td><p>Specifies the location of the vertex.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>data</i></span></td><td width="10"> </td><td><p>Specifies an opaque pointer passed back to the user with the vertex callback (as specified by <span class="bold"><b>gluTessCallback</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561786"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluTessVertex</b></span> describes a vertex on a polygon that the user is defining.  Successive <span class="bold"><b>gluTessVertex</b></span> calls describe a closed contour.  For example, if the user wants to describe a quadrilateral, then <span class="bold"><b>gluTessVertex</b></span> should be called four times.  <span class="bold"><b>gluTessVertex</b></span> can only be called between <span class="bold"><b>gluBeginPolygon</b></span> and <span class="bold"><b>gluEndPolygon</b></span>.  </p>
+<p><i>data</i> normally points to a structure containing the vertex location, as well as other per-vertex attributes such as color and normal.  This pointer is passed back to the user through the <span class="bold"><b>GLU_VERTEX</b></span> callback after tessellation (see the <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+ reference page).    </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561963"></a>EXAMPLE</h3></div></div>
+<p>A quadrilateral with a triangular hole in it can be described as follows:  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+gluBeginPolygon(tobj);
+   gluTessVertex(tobj, v1, v1);
+   gluTessVertex(tobj, v2, v2);
+   gluTessVertex(tobj, v3, v3);
+   gluTessVertex(tobj, v4, v4);
+gluNextContour(tobj, GLU_INTERIOR);
+   gluTessVertex(tobj, v5, v5);
+   gluTessVertex(tobj, v6, v6);
+   gluTessVertex(tobj, v7, v7);
+gluEndPolygon(tobj);
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5561989"></a>SEE ALSO</h3></div></div>
+<p><a href="ch06.html#id27257">&quot;gluBeginPolygon&quot;</a>
+, <a href="ch06.html#id15905">&quot;gluNewTess&quot;</a>
+, <a href="ch06.html#id28369">&quot;gluNextContour&quot;</a>
+, <a href="ch06.html#id40802">&quot;gluTessCallback&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5562033"></a><a name="id12101"></a>gluUnProject</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562041"></a>NAME</h3></div></div>
+<p><span class="bold"><b>gluUnProject </b></span>- map window coordinates to object coordinates  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562077"></a>C SPECIFICATION</h3></div></div>
+<p>int <span class="bold"><b>gluUnProject</b></span>( GLdouble <i>winx</i>, GLdouble <i>winy</i>, GLdouble <i>winz</i>, const GLdouble <i>modelMatrix[16]</i>, const GLdouble <i>projMatrix[16]</i>, const GLint <i>viewport[4]</i>, GLdouble <i>*objx</i>, GLdouble <i>*objy</i>, GLdouble <i>*objz</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562125"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>winx</i>, <i>winy</i>, <i>winz</i></span></td><td width="10"> </td><td><p><br>
+Specify the window coordinates to be mapped.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>modelMatrix</i></span></td><td width="10"> </td><td><p>Specifies the modelview matrix (as from a <span class="bold"><b>glGetDoublev</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>projMatrix</i></span></td><td width="10"> </td><td><p>Specifies the projection matrix (as from a <span class="bold"><b>glGetDoublev</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>viewport</i></span></td><td width="10"> </td><td><p>Specifies the viewport (as from a <span class="bold"><b>glGetIntegerv</b></span> call).  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>objx</i>, <i>objy</i>, <i>objz</i></span></td><td width="10"> </td><td><p><br>
+Returns the computed object coordinates.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562292"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>gluUnProject</b></span> maps the specified window coordinates into object coordinates using <i>modelMatrix</i>, <i>projMatrix</i>, and <i>viewport</i>.  The result is stored in <i>objx</i>, <i>objy</i>, and <i>objz</i>.  A return value of <span class="bold"><b>GL_TRUE</b></span> indicates success, and <span class="bold"><b>GL_FALSE</b></span> indicates failure.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562344"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id41087">&quot;glGet&quot;</a>
+, <a href="ch06.html#id28992">&quot;gluProject&quot;</a>
+</p>
+</div></div></div><!--CONTENT_END--><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Table of Contents</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07.html">Next</a></td></tr><tr><td width="40%" align="left">Chapter 5. OpenGL Reference Pages </td><td width="20%" align="center"> </td><td width="40%" align="right">Chapter 7. GLX Reference Pages </td></tr></table></div></body></html>

@@ -1,0 +1,559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title>Chapter 7. GLX Reference Pages</title><meta name="generator" content="DocBook XSL Stylesheets V1.49"><meta name="generator" content="SGI XSL DocBook Customization Stylesheets V1.0"><link rel="home" href="index.html" title="OpenGL Reference Manual (Addison-Wesley Publishing Company)"><link rel="up" href="bk02.html" title="OpenGL Reference Manual"><link rel="previous" href="ch06.html" title="Chapter 6. GLU Reference Pages"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 7. GLX Reference Pages</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06.html">Prev</a> </td><th width="60%" align="center">OpenGL Reference Manual</th><td width="20%" align="right"> </td></tr></table><hr></div><!--CONTENT_BEGIN--><div class="chapter"><div class="titlepage"><div><h2 class="title"><a name="id5562372"></a>Chapter 7. <a name="id45928"></a>GLX Reference Pages</h2></div></div>
+<p>This chapter contains the reference pages, in alphabetical order, for all the routines comprising the OpenGL extension to X (GLX). Note that there is a <span class="bold"><b>glXIntro</b></span> page, which gives an overview of OpenGL in the X Window System; you might want to start with this page. </p>
+<div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5562396"></a><a name="id12682"></a>glXChooseVisual</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562424"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXChooseVisual </b></span>- return a visual that matches specified attributes  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562440"></a>C SPECIFICATION</h3></div></div>
+<p>XVisualInfo* <span class="bold"><b>glXChooseVisual</b></span>( Display <i>*dpy</i>, int <i>screen</i>, int <i>*attribList</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562466"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>screen</i></span></td><td width="10"> </td><td><p>Specifies the screen number.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>attribList</i></span></td><td width="10"> </td><td><p>Specifies a list of Boolean attributes and integer attribute/value pairs.  The last attribute must be <span class="bold"><b>None</b></span>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5562554"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXChooseVisual</b></span> returns a pointer to an XVisualInfo structure describing the visual that best meets a minimum specification.  The Boolean GLX attributes of the visual that is returned will match the specified values, and the integer GLX attributes will meet or exceed the specified minimum values.  If all other attributes are equivalent, then TrueColor and PseudoColor visuals have priority over DirectColor and StaticColor visuals, respectively.  If no conforming visual exists, <span class="bold"><b>NULL</b></span> is returned.  To free the data returned by this function, use <span class="bold"><b>XFree</b></span>.  </p>
+<p>All Boolean GLX attributes default to <span class="bold"><b>False</b></span> except <span class="bold"><b>GLX_USE_GL</b></span>, which defaults to <span class="bold"><b>True</b></span>.  All integer GLX attributes default to zero.  Default specifications are superseded by attributes included in <i>attribList</i>.  Boolean attributes included in <i>attribList</i> are understood to be <span class="bold"><b>True</b></span>.  Integer attributes are followed immediately by the corresponding desired or minimum value.  The list must be terminated with <span class="bold"><b>None</b></span>.  </p>
+<p>The interpretations of the various GLX visual attributes are as follows: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_USE_GL</b></span></span></td><td width="10"> </td><td><p>Ignored.  Only visuals that can be rendered with GLX are considered.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_BUFFER_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative integer that indicates the desired color index buffer size.  The smallest index buffer of at least the specified size is preferred.  Ignored if <span class="bold"><b>GLX_RGBA</b></span> is asserted.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_LEVEL</b></span></span></td><td width="10"> </td><td><p>Must be followed by an integer buffer-level specification.  This specification is honored exactly.  Buffer level zero corresponds to the default frame buffer of the display.  Buffer level one is the first overlay frame buffer, level two the second overlay frame buffer, and so on.  Negative buffer levels correspond to underlay frame buffers.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_RGBA</b></span></span></td><td width="10"> </td><td><p>If present, only TrueColor and DirectColor visuals are considered.  Otherwise, only PseudoColor and StaticColor visuals are considered.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_DOUBLEBUFFER</b></span></span></td><td width="10"> </td><td><p><br>
+If present, only double-buffered visuals are considered.  Otherwise, only single-buffered visuals are considered.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_STEREO</b></span></span></td><td width="10"> </td><td><p><br>
+If present, only stereo visuals are considered.  Otherwise, only monoscopic visuals are considered.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_AUX_BUFFERS</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative integer that indicates the desired number of auxiliary buffers.  Visuals with the smallest number of auxiliary buffers that meets or exceeds the specified number are preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_RED_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, the smallest available red buffer is preferred.  Otherwise, the largest available red buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_GREEN_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, the smallest available green buffer is preferred.  Otherwise, the largest available green buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_BLUE_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, the smallest available blue buffer is preferred.  Otherwise, the largest available blue buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ALPHA_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, the smallest available alpha buffer is preferred.  Otherwise, the largest available alpha buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_DEPTH_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, visuals with no depth buffer are preferred.  Otherwise, the largest available depth buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_STENCIL_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative integer that indicates the desired number of stencil bitplanes.  The smallest stencil buffer of at least the specified size is preferred.  If the desired value is zero, visuals with no stencil buffer are preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_RED_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, visuals with no red accumulation buffer are preferred.  Otherwise, the largest possible red accumulation buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_GREEN_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, visuals with no green accumulation buffer are preferred.  Otherwise, the largest possible green accumulation buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_BLUE_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, visuals with no blue accumulation buffer are preferred.  Otherwise, the largest possible blue accumulation buffer of at least the minimum size is preferred.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_ALPHA_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Must be followed by a nonnegative minimum size specification.  If this value is zero, visuals with no alpha accumulation buffer are preferred.  Otherwise, the largest possible alpha accumulation buffer of at least the minimum size is preferred.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563129"></a>EXAMPLES</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>attribList</i> =</span></td><td width="10"> </td><td><p>{<span class="bold"><b>GLX_RGBA</b></span>, <span class="bold"><b>GLX_RED_SIZE</b></span>, 4, <span class="bold"><b>GLX_GREEN_SIZE</b></span>, 4, <span class="bold"><b>GLX_BLUE_SIZE</b></span>, 4, <span class="bold"><b>None</b></span>}; </p>
+
+</td></tr></table></div><p>Specifies a single-buffered RGB visual in the normal frame buffer, not an overlay or underlay buffer.  The returned visual supports at least four bits each of red, green, and blue, and possibly no bits of alpha.  It does not support color index mode, double-buffering, or stereo display.  It may or may not have one or more auxiliary color buffers, a depth buffer, a stencil buffer, or an accumulation buffer.    </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563198"></a>NOTES</h3></div></div>
+<p><span class="bold"><b>XVisualInfo</b></span> is defined in <i>Xutil.h.</i> It is a structure that includes <i>visual</i>, <i>visualID</i>, <i>screen</i>, and <i>depth</i> elements.  </p>
+<p><span class="bold"><b>glXChooseVisual</b></span> is implemented as a client-side utility using only <span class="bold"><b>XGetVisualInfo</b></span> and <span class="bold"><b>glXGetConfig</b></span>.  Calls to these two routines can be used to implement selection algorithms other than the generic one implemented by <span class="bold"><b>glXChooseVisual</b></span>.  </p>
+<p>GLX implementers are strongly discouraged, but not proscribed, from changing the selection algorithm used by <span class="bold"><b>glXChooseVisual</b></span>.  Therefore, selections may change from release to release of the client-side library.  </p>
+<p>There is no direct filter for picking only visuals that support GLXPixmaps.  GLXPixmaps are supported for visuals whose <span class="bold"><b>GLX_BUFFER_SIZE</b></span>.  is one of the Pixmap depths supported by the X server.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563344"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>NULL</b></span> is returned if an undefined GLX attribute is encountered in <i>attribList</i>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563363"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id20394">&quot;glXGetConfig&quot;</a>
+ </p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5563389"></a><a name="id20649"></a>glXCopyContext</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563417"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXCopyContext </b></span>- copy state from one rendering context to another  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563433"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXCopyContext</b></span>( Display <i>*dpy</i>, GLXContext <i>src</i>, GLXContext <i>dst</i>, GLuint <i>mask</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563463"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>src</i></span></td><td width="10"> </td><td><p>Specifies the source context.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>dst</i></span></td><td width="10"> </td><td><p>Specifies the destination context.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>mask</i></span></td><td width="10"> </td><td><p>Specifies which portions of <i>src</i> state are to be copied to <i>dst</i>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563533"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXCopyContext</b></span> copies selected groups of state variables from <i>src</i> to <i>dst</i>.  <i>mask</i> indicates which groups of state variables are to be copied.  <i>mask</i> contains the bitwise OR of the same symbolic names that are passed to the OpenGL command <span class="bold"><b>glPushAttrib</b></span>.  The single symbolic constant <span class="bold"><b>GL_ALL_ATTRIB_BITS</b></span> can be used to copy the maximum possible portion of rendering state.  </p>
+<p>The copy can be done only if the renderers named by <i>src</i> and <i>dst</i> share an address space.  Two rendering contexts share an address space if both are nondirect using the same server, or if both are direct and owned by a single process.  Note that in the nondirect case it is not necessary for the calling threads to share an address space, only for their related rendering contexts to share an address space.  </p>
+<p>Not all values for OpenGL state can be copied.  For example, pixel pack and unpack state, render mode state, and select and feedback state are not copied.  The state that can be copied is exactly the state that is manipulated by OpenGL command <span class="bold"><b>glPushAttrib</b></span>.  </p>
+<p>An implicit <span class="bold"><b>glFlush</b></span> is done by <span class="bold"><b>glXCopyContext</b></span> if <i>src</i> is the current context for the calling thread.  </p>
+<p>If <i>src</i> is not the current context for the thread issuing the request, then the state of the <i>src</i> context is undefined.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563702"></a>NOTES</h3></div></div>
+<p>Two rendering contexts share an address space if both are nondirect using the same server, or if both are direct and owned by a single process.  </p>
+<p>A <i>process</i> is a single execution environment, implemented in a single address space, consisting of one or more threads.  </p>
+<p>A <i>thread</i> is one of a set of subprocesses that share a single address space, but maintain separate program counters, stack spaces, and other related global data.  A <i>thread</i> that is the only member of its subprocess group is equivalent to a <i>process</i>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563743"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>BadMatch</b></span> is generated if rendering contexts <i>src</i> and <i>dst</i> do not share an address space or were not created with respect to the same screen.  </p>
+<p><span class="bold"><b>BadAccess</b></span> is generated if <i>dst</i> is current to any thread (including the calling thread) at the time <span class="bold"><b>glXCopyContext</b></span> is called.  </p>
+<p><span class="bold"><b>GLXBadCurrentWindow</b></span> is generated if <i>src</i> is the current context and the current drawable is a window that is no longer valid.  </p>
+<p><span class="bold"><b>GLX_Bad_Context</b></span> is generated if either <i>src</i> or <i>dst</i> is not a valid GLX context.  </p>
+<p><span class="bold"><b>BadValue</b></span> is generated if undefined <i>mask</i> bits are specified.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563853"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id12225">&quot;glPushAttrib&quot;</a>
+, <a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id35153">&quot;glXIsDirect&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5563888"></a><a name="id28362"></a>glXCreateContext</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563896"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXCreateContext </b></span>- create a new GLX rendering context  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563930"></a>C SPECIFICATION</h3></div></div>
+<p>GLXContext <span class="bold"><b>glXCreateContext</b></span>( Display <i>*dpy</i>, XVisualInfo <i>*vis</i>, GLXContext <i>shareList</i>, Bool <i>direct</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5563961"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>vis</i></span></td><td width="10"> </td><td><p>Specifies the visual that defines the frame buffer resources available to the rendering context.  It is a pointer to an <span class="bold"><b>XVisualInfo</b></span> structure, not a visual ID or a pointer to a <span class="bold"><b>Visual</b></span>.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>shareList</i></span></td><td width="10"> </td><td><p>Specifies the context with which to share display lists.  <span class="bold"><b>NULL</b></span> indicates that no sharing is to take place.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>direct</i></span></td><td width="10"> </td><td><p>Specifies whether rendering is to be done with a direct connection to the graphics system if possible (<span class="bold"><b>True</b></span>) or through the X server (<span class="bold"><b>False</b></span>).   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564097"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXCreateContext</b></span> creates a GLX rendering context and returns its handle.  This context can be used to render into both windows and GLX pixmaps.  If <span class="bold"><b>glXCreateContext</b></span> fails to create a rendering context, <span class="bold"><b>NULL</b></span> is returned.  </p>
+<p>If <i>direct</i> is <span class="bold"><b>True</b></span>, then a direct rendering context is created if the implementation supports direct rendering and the connection is to an X server that is local.  If <i>direct</i> is <span class="bold"><b>False</b></span>, then a rendering context that renders through the X server is always created.  Direct rendering provides a performance advantage in some implementations.  However, direct rendering contexts cannot be shared outside a single process, and they cannot be used to render to GLX pixmaps.  </p>
+<p>If <i>shareList</i> is not <span class="bold"><b>NULL</b></span>, then all display-list indexes and definitions are shared by context <i>shareList</i> and by the newly created context.  An arbitrary number of contexts can share a single display-list space.  However, all rendering contexts that share a single display-list space must themselves exist in the same address space.  Two rendering contexts share an address space if both are nondirect using the same server, or if both are direct and owned by a single process.  Note that in the nondirect case, it is not necessary for the calling threads to share an address space, only for their related rendering contexts to share an address space.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564211"></a>NOTES</h3></div></div>
+<p><span class="bold"><b>XVisualInfo</b></span> is defined in <i>Xutil.h.</i> It is a structure that includes <i>visual</i>, <i>visualID</i>, <i>screen</i>, and <i>depth</i> elements.  </p>
+<p>A <i>process</i> is a single execution environment, implemented in a single address space, consisting of one or more threads.  </p>
+<p>A <i>thread</i> is one of a set of subprocesses that share a single address space, but maintain separate program counters, stack spaces, and other related global data.  A <i>thread</i> that is the only member of its subprocess group is equivalent to a <i>process</i>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564273"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>NULL</b></span> is returned if execution fails on the client side.  </p>
+<p><span class="bold"><b>BadMatch</b></span> is generated if the context to be created would not share the address space or the screen of the context specified by <i>shareList</i>.  </p>
+<p><span class="bold"><b>BadValue</b></span> is generated if <i>vis</i> is not a valid visual (e.g., if the GLX implementation does not support it).  </p>
+<p><span class="bold"><b>GLX_Bad_Context</b></span> is generated if <i>shareList</i> is not a GLX context and is not <span class="bold"><b>NULL</b></span>.  </p>
+<p><span class="bold"><b>BadAlloc</b></span> is generated if the server does not have enough resources to allocate the new context.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564370"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id16440">&quot;glXDestroyContext&quot;</a>
+, <a href="ch07.html#id20394">&quot;glXGetConfig&quot;</a>
+, <a href="ch07.html#id35153">&quot;glXIsDirect&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5564444"></a><a name="id29709"></a>glXCreateGLXPixmap</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564472"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXCreateGLXPixmap </b></span>- create an off-screen GLX rendering area  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564488"></a>C SPECIFICATION</h3></div></div>
+<p>GLXPixmap <span class="bold"><b>glXCreateGLXPixmap</b></span>( Display <i>*dpy</i>, XVisualInfo <i>*vis</i>, Pixmap <i>pixmap</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564514"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>vis</i></span></td><td width="10"> </td><td><p>Specifies the visual that defines the structure of the rendering area.  It is a pointer to an <span class="bold"><b>XVisualInfo</b></span> structure, not a visual ID or a pointer to a <span class="bold"><b>Visual</b></span>.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>pixmap</i></span></td><td width="10"> </td><td><p>Specifies the X pixmap that will be used as the front left color buffer of the off-screen rendering area.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564583"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXCreateGLXPixmap</b></span> creates an off-screen rendering area and returns its XID.  Any GLX rendering context that was created with respect to <i>vis</i> can be used to render into this off-screen area.  Use <span class="bold"><b>glXMakeCurrent</b></span> to associate the rendering area with a GLX rendering context.  </p>
+<p>The X pixmap identified by <i>pixmap</i> is used as the front left buffer of the resulting off-screen rendering area.  All other buffers specified by <i>vis</i>, including color buffers other than the front left buffer, are created without externally visible names.  GLX pixmaps with double-buffering are supported.  However, <span class="bold"><b>glXSwapBuffers</b></span> is ignored by these pixmaps.  </p>
+<p>Direct rendering contexts cannot be used to render into GLX pixmaps.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564662"></a>NOTES</h3></div></div>
+<p><span class="bold"><b>XVisualInfo</b></span> is defined in <i>Xutil.h.</i> It is a structure that includes <i>visual</i>, <i>visualID</i>, <i>screen</i>, and <i>depth</i> elements.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564694"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>BadMatch</b></span> is generated if the depth of <i>pixmap</i> does not match the <span class="bold"><b>GLX_BUFFER_SIZE</b></span> value of <i>vis</i>, or if <i>pixmap</i> was not created with respect to the same screen as <i>vis</i>.  </p>
+<p><span class="bold"><b>BadValue</b></span> is generated if <i>vis</i> is not a valid XVisualInfo pointer (e.g., if the GLX implementation does not support this visual).  </p>
+<p><span class="bold"><b>BadPixmap</b></span> is generated if <i>pixmap</i> is not a valid pixmap.  </p>
+<p><span class="bold"><b>BadAlloc</b></span> is generated if the server cannot allocate the GLX pixmap.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564840"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id35153">&quot;glXIsDirect&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5564895"></a><a name="id16440"></a>glXDestroyContext</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564903"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXDestroyContext </b></span>- destroy a GLX context  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564918"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXDestroyContext</b></span>( Display <i>*dpy</i>, GLXContext <i>ctx</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564941"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>ctx</i></span></td><td width="10"> </td><td><p>Specifies the GLX context to be destroyed.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5564977"></a>DESCRIPTION</h3></div></div>
+<p>If GLX rendering context <i>ctx</i> is not current to any thread, <span class="bold"><b>glXDestroyContext</b></span> destroys it immediately.  Otherwise, <i>ctx</i> is destroyed when it becomes not current to any thread.  In either case, the resource ID referenced by <i>ctx</i> is freed immediately.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565006"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_Bad_Context</b></span> is generated if <i>ctx</i> is not a valid GLX context.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565044"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5565070"></a>glXDestroyGLXPixmap</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565074"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXDestroyGLXPixmap </b></span>- destroy a GLX pixmap  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565088"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXDestroyGLXPixmap</b></span>( Display <i>*dpy</i>, GLXPixmap <i>pix</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565111"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>pix</i></span></td><td width="10"> </td><td><p>Specifies the GLX pixmap to be destroyed.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565168"></a>DESCRIPTION</h3></div></div>
+<p>If GLX pixmap <i>pix</i> is not current to any client, <span class="bold"><b>glXDestroyGLXPixmap</b></span> destroys it immediately.  Otherwise, <i>pix</i> is destroyed when it becomes not current to any client.  In either case, the resource ID is freed immediately.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565223"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_Bad_Pixmap</b></span> is generated if <i>pix</i> is not a valid GLX pixmap.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565241"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id29709">&quot;glXCreateGLXPixmap&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5565267"></a><a name="id20394"></a>glXGetConfig</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565276"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXGetConfig </b></span>- return information about GLX visuals  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565291"></a>C SPECIFICATION</h3></div></div>
+<p>int <span class="bold"><b>glXGetConfig</b></span>( Display <i>*dpy</i>, XVisualInfo <i>*vis</i>, int <i>attrib</i>, int <i>*value</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565341"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>vis</i></span></td><td width="10"> </td><td><p>Specifies the visual to be queried.  It is a pointer to an <span class="bold"><b>XVisualInfo</b></span> structure, not a visual ID or a pointer to a <span class="bold"><b>Visual</b></span>.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>attrib</i></span></td><td width="10"> </td><td><p>Specifies the visual attribute to be returned.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>value</i></span></td><td width="10"> </td><td><p>Returns the requested value.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5565421"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXGetConfig</b></span> sets <i>value</i> to the <i>attrib</i> value of windows or GLX pixmaps created with respect to <i>vis</i>.  <span class="bold"><b>glXGetConfig</b></span> returns an error code if it fails for any reason.  Otherwise, zero is returned.  </p>
+<p><i>attrib</i> is one of the following: </p>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_USE_GL</b></span></span></td><td width="10"> </td><td><p><span class="bold"><b>True</b></span> if OpenGL rendering is supported by this visual, <span class="bold"><b>False</b></span> otherwise.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_BUFFER_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits per color buffer.  For RGBA visuals, <span class="bold"><b>GLX_BUFFER_SIZE</b></span> is the sum of <span class="bold"><b>GLX_RED_SIZE</b></span>, <span class="bold"><b>GLX_GREEN_SIZE</b></span>, <span class="bold"><b>GLX_BLUE_SIZE</b></span>, and <span class="bold"><b>GLX_ALPHA_SIZE</b></span>.  For color index visuals, <span class="bold"><b>GLX_BUFFER_SIZE</b></span> is the size of the color indexes.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_LEVEL</b></span></span></td><td width="10"> </td><td><p>Frame buffer level of the visual.  Level zero is the default frame buffer.  Positive levels correspond to frame buffers that overlay the default buffer, and negative levels correspond to frame buffers that underlay the default buffer.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_RGBA</b></span></span></td><td width="10"> </td><td><p><span class="bold"><b>True</b></span> if color buffers store red, green, blue, and alpha values, <span class="bold"><b>False</b></span> if they store color indexes.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_DOUBLEBUFFER</b></span></span></td><td width="10"> </td><td><p><br>
+<span class="bold"><b>True</b></span> if color buffers exist in front/back pairs that can be swapped, <span class="bold"><b>False</b></span> otherwise.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_STEREO</b></span></span></td><td width="10"> </td><td><p><span class="bold"><b>True</b></span> if color buffers exist in left/right pairs, <span class="bold"><b>False</b></span> otherwise.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_AUX_BUFFERS</b></span></span></td><td width="10"> </td><td><p><br>
+Number of auxiliary color buffers that are available.  Zero indicates that no auxiliary color buffers exist.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_RED_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of red stored in each color buffer.  Undefined if <span class="bold"><b>GLX_RGBA</b></span> is <span class="bold"><b>False</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_GREEN_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of green stored in each color buffer.  Undefined if <span class="bold"><b>GLX_RGBA</b></span> is <span class="bold"><b>False</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_BLUE_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of blue stored in each color buffer.  Undefined if <span class="bold"><b>GLX_RGBA</b></span> is <span class="bold"><b>False</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ALPHA_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of alpha stored in each color buffer.  Undefined if <span class="bold"><b>GLX_RGB</b></span> is <span class="bold"><b>False</b></span>.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_DEPTH_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits in the depth buffer.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_STENCIL_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits in the stencil buffer.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_RED_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of red stored in the accumulation buffer.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_GREEN_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of green stored in the accumulation buffer.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_BLUE_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of blue stored in the accumulation buffer.  </p>
+
+</td></tr><tr valign="top"><td><span class="term"><span class="bold"><b>GLX_ACCUM_ALPHA_SIZE</b></span></span></td><td width="10"> </td><td><p><br>
+Number of bits of alpha stored in the accumulation buffer.  </p>
+
+</td></tr></table></div><p>The X protocol allows a single visual ID to be instantiated with different numbers of bits per pixel.  Windows or GLX pixmaps that will be rendered with OpenGL, however, must be instantiated with a color buffer depth of <span class="bold"><b>GLX_BUFFER_SIZE</b></span>.  </p>
+<p>Although a GLX implementation can export many visuals that support OpenGL rendering, it must support at least two.  One is an RGBA visual with at least one color buffer, a stencil buffer of at least 1 bit, a depth buffer of at least 12 bits, and an accumulation buffer.  Alpha bitplanes are optional in this visual.  However, its color buffer size must be as great as that of the deepest <span class="bold"><b>TrueColor</b></span>, <span class="bold"><b>DirectColor</b></span>, <span class="bold"><b>PseudoColor</b></span>, or <span class="bold"><b>StaticColor</b></span> visual supported on level zero, and it must itself be made available on level zero.  </p>
+<p>The other required visual is a color index one with at least one color buffer, a stencil buffer of at least 1 bit, and a depth buffer of at least 12 bits.  This visual must have as many color bitplanes as the deepest <span class="bold"><b>PseudoColor</b></span> or <span class="bold"><b>StaticColor</b></span> visual supported on level zero, and it must itself be made available on level zero.  </p>
+<p>Applications are best written to select the visual that most closely meets their requirements.  Creating windows or GLX pixmaps with unnecessary buffers can result in reduced rendering performance as well as poor resource allocation.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566177"></a>NOTES</h3></div></div>
+<p><span class="bold"><b>XVisualInfo</b></span> is defined in <i>Xutil.h.</i> It is a structure that includes <i>visual</i>, <i>visualID</i>, <i>screen</i>, and <i>depth</i> elements.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566209"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_NO_EXTENSION</b></span> is returned if <i>dpy</i> does not support the GLX extension.   <span class="bold"><b>GLX_BAD_SCREEN</b></span> is returned if the screen of <i>vis</i> does not correspond to a screen.   <span class="bold"><b>GLX_BAD_ATTRIB</b></span> is returned if <i>attrib</i> is not a valid GLX attribute.   <span class="bold"><b>GLX_BAD_VISUAL</b></span> is returned if <i>vis</i> doesn't support GLX and an attribute other than <span class="bold"><b>GLX_USE_GL</b></span> is requested.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566317"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id12682">&quot;glXChooseVisual&quot;</a>
+, <a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5566343"></a>glXGetCurrentContext</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566347"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXGetCurrentContext </b></span>- return the current context  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566361"></a>C SPECIFICATION</h3></div></div>
+<p>GLXContext <span class="bold"><b>glXGetCurrentContext</b></span>( void ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566377"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXGetCurrentContext</b></span> returns the current context, as specified by <span class="bold"><b>glXMakeCurrent</b></span>.  If there is no current context, <span class="bold"><b>NULL</b></span> is returned.   <span class="bold"><b>glXGetCurrentContext</b></span> returns client-side information.  It does not make a round trip to the server.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566415"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5566461"></a>glXGetCurrentDrawable</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566465"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXGetCurrentDrawable </b></span>- return the current drawable  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566479"></a>C SPECIFICATION</h3></div></div>
+<p>GLXDrawable <span class="bold"><b>glXGetCurrentDrawable</b></span>( void ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566495"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXGetCurrentDrawable</b></span> returns the current drawable, as specified by <span class="bold"><b>glXMakeCurrent</b></span>.  If there is no current drawable, <span class="bold"><b>None</b></span> is returned.   <span class="bold"><b>glXGetCurrentDrawable</b></span> returns client-side information.  It does not make a round trip to the server.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566533"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id29709">&quot;glXCreateGLXPixmap&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5566579"></a>glXIntro</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566583"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXIntro </b></span>- Introduction to OpenGL in the X window system   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566598"></a>OVERVIEW</h3></div></div>
+<p>OpenGL is a high-performance 3-D-oriented renderer.  It is available in the X window system through the GLX extension.  Use <span class="bold"><b>glXQueryExtension</b></span> and <span class="bold"><b>glXQueryVersion</b></span> to establish whether the GLX extension is supported by an X server, and if so, what version is supported.   GLX extended servers make a subset of their visuals available for OpenGL rendering.  Drawables created with these visuals can also be rendered using the core X renderer and with the renderer of any other X extension that is compatible with all core X visuals.   GLX extends drawables with several buffers other than the standard color buffer.  These buffers include back and auxiliary color buffers, a depth buffer, a stencil buffer, and a color accumulation buffer.  Some or all are included in each X visual that supports OpenGL.   To render using OpenGL into an X drawable, you must first choose a visual that defines the required OpenGL buffers.  <span class="bold"><b>glXChooseVisual</b></span> can be used to simplify selecting a compatible visual.  If more control of the selection process is required, use <span class="bold"><b>XGetVisualInfo</b></span> and <span class="bold"><b>glXGetConfig</b></span> to select among all the available visuals.   Use the selected visual to create both a GLX context and an X drawable.  GLX contexts are created with <span class="bold"><b>glXCreateContext</b></span>, and drawables are created with either <span class="bold"><b>XCreateWindow</b></span> or <span class="bold"><b>glXCreateGLXPixmap</b></span>.  Finally, bind the context and the drawable together using <span class="bold"><b>glXMakeCurrent</b></span>.  This context/drawable pair becomes the current context and current drawable, and it is used by all OpenGL commands until <span class="bold"><b>glXMakeCurrent</b></span> is called with different arguments.   Both core X and OpenGL commands can be used to operate on the current drawable.  The X and OpenGL command streams are not synchronized, however, except at explicitly created boundaries generated by calling <span class="bold"><b>glXWaitGL</b></span>, <span class="bold"><b>glXWaitX</b></span>, <span class="bold"><b>XSync</b></span>, and <span class="bold"><b>glFlush</b></span>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566767"></a>EXAMPLES</h3></div></div>
+<p>Below is the minimum code required to create an RGBA-format, OpenGL-compatible X window and clear it to yellow.  The code is correct, but it does not include any error checking.  Return values <i>dpy</i>, <i>vi</i>, <i>cx</i>, <i>cmap</i>, and <i>win</i> should all be tested.  </p>
+<table bgcolor="#E0E0E0" width="90%" border="1" cellpadding="10"><tr><td><pre class="literallayout">
+#include  &lt;GL/glx.h&gt;
+#include  &lt;GL/gl.h&gt;
+#include  &lt;unistd.h&gt;
+static int attributeList[] = { GLX_RGBA, None };
+static Bool WaitForNotify(Display *d, XEvent *e, char *arg) {
+    return (e-&gt;type == MapNotify) &amp;&amp; (e-&gt;xmap.window == (Window)arg);
+}
+int main(int argc, char **argv) {
+    Display *dpy;
+    XVisualInfo *vi;
+    Colormap cmap;
+    XSetWindowAttributes swa;
+    Window win;
+    GLXContext cx;
+    XEvent event;
+    /* get a connection */
+    dpy = XOpenDisplay(0);
+    /* get an appropriate visual */
+    vi = glXChooseVisual(dpy, DefaultScreen(dpy), attributeList);
+    /* create a GLX context */
+    cx = glXCreateContext(dpy, vi, 0, GL_FALSE);
+    /* create a color map */
+    cmap = XCreateColormap(dpy, RootWindow(dpy, vi-&gt;screen),
+     vi-&gt;visual, AllocNone);
+    /* create a window */
+    swa.colormap = cmap;
+    swa.border_pixel = 0;
+    swa.event_mask = StructureNotifyMask;
+    win = XCreateWindow(dpy, RootWindow(dpy, vi-&gt;screen), 0, 0, 100, 100,
+                        0, vi-&gt;depth, InputOutput, vi-&gt;visual,
+                        CWBorderPixel|CWColormap|CWEventMask, &amp;swa);
+    XMapWindow(dpy, win);
+    XIfEvent(dpy, &amp;event, WaitForNotify, (char*)win);
+    /* connect the context to the window */
+    glXMakeCurrent(dpy, win, cx);
+    /* clear the buffer */
+    glClearColor(1,1,0,1);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glFlush();
+    /* wait a while */
+    sleep(10);
+}
+</pre></td></tr></table><br></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566862"></a>NOTES</h3></div></div>
+<p>A color map must be created and passed to <span class="bold"><b>XCreateWindow</b></span>.  See the example code above.</p>
+<p>A GLX context must be created and attached to an X drawable before OpenGL commands can be executed.  OpenGL commands issued while no context/drawable pair is current are ignored.</p>
+<p>Exposure events indicate that <i>all</i> buffers associated with the specified window may be damaged and should be repainted.  Although certain buffers of some visuals on some systems may never require repainting (the depth buffer, for example), it is incorrect to code assuming that these buffers will not be damaged.</p>
+<p>GLX commands manipulate XVisualInfo structures rather than pointers to visuals or visual IDs.  XVisualInfo structures contain <i>visual</i>, <i>visualID</i>, <i>screen</i>, and <i>depth</i> elements, as well as other X-specific information.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5566922"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id21959">&quot;glFinish&quot;</a>
+, <a href="ch05.html#id38698">&quot;glFlush&quot;</a>
+, <a href="ch07.html#id12682">&quot;glXChooseVisual&quot;</a>
+, <a href="ch07.html#id20649">&quot;glXCopyContext&quot;</a>
+, <a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id29709">&quot;glXCreateGLXPixmap&quot;</a>
+, <a href="ch07.html#id16440">&quot;glXDestroyContext&quot;</a>
+, <a href="ch07.html#id20394">&quot;glXGetConfig&quot;</a>
+, <a href="ch07.html#id35153">&quot;glXIsDirect&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+, <a href="ch07.html#id40311">&quot;glXQueryExtension&quot;</a>
+, <a href="ch07.html#id26048">&quot;glXQueryVersion&quot;</a>
+, <a href="ch07.html#id14650">&quot;glXSwapBuffers&quot;</a>
+, <a href="ch07.html#id20603">&quot;glXUseXFont&quot;</a>
+, <a href="ch07.html#id37102">&quot;glXWaitGL&quot;</a>
+, <a href="ch07.html#id18364">&quot;glXWaitX&quot;</a>
+, <span class="bold"><b>XCreateColormap</b></span>,<span class="bold"><b> XCreateWindow</b></span>,<span class="bold"><b> XSync</b></span></p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5567162"></a><a name="id35153"></a>glXIsDirect</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567170"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXIsDirect </b></span>- indicate whether direct rendering is enabled  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567186"></a>C SPECIFICATION</h3></div></div>
+<p>Bool <span class="bold"><b>glXIsDirect</b></span>( Display <i>*dpy</i>, GLXContext <i>ctx</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567209"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>ctx</i></span></td><td width="10"> </td><td><p>Specifies the GLX context that is being queried.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567265"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXIsDirect</b></span> returns <span class="bold"><b>True</b></span> if <i>ctx</i> is a direct rendering context, <span class="bold"><b>False</b></span> otherwise.  Direct rendering contexts pass rendering commands directly from the calling process's address space to the rendering system, bypassing the X server.  Nondirect rendering contexts pass all rendering commands to the X server.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567302"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_Bad_Context</b></span> is generated if <i>ctx</i> is not a valid GLX context.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567320"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5567337"></a><a name="id17886"></a>glXMakeCurrent</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567346"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXMakeCurrent </b></span>- attach a GLX context to a window or a GLX pixmap  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567381"></a>C SPECIFICATION</h3></div></div>
+<p>Bool <span class="bold"><b>glXMakeCurrent</b></span>( Display <i>*dpy</i>, GLXDrawable <i>drawable</i>, GLXContext <i>ctx</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567408"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>drawable</i></span></td><td width="10"> </td><td><p>Specifies a GLX drawable.  Must be either an X window ID or a GLX pixmap ID.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>ctx</i></span></td><td width="10"> </td><td><p>Specifies a GLX rendering context that is to be attached to <i>drawable</i>.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567493"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXMakeCurrent</b></span> does two things: It makes <i>ctx</i> the current GLX rendering context of the calling thread, replacing the previously current context if there was one, and it attaches <i>ctx</i> to a GLX drawable, either a window or a GLX pixmap.  As a result of these two actions, subsequent OpenGL rendering calls use rendering context <i>ctx</i> to modify GLX drawable <i>drawable</i>.  Because <span class="bold"><b>glXMakeCurrent</b></span> always replaces the current rendering context with <i>ctx</i>, there can be only one current context per thread.  </p>
+<p>Pending commands to the previous context, if any, are flushed before it is released.  </p>
+<p>The first time <i>ctx</i> is made current to any thread, its viewport is set to the full size of <i>drawable</i>.  Subsequent calls by any thread to <span class="bold"><b>glXMakeCurrent</b></span> with <i>ctx</i> have no effect on its viewport.  </p>
+<p>To release the current context without assigning a new one, call <span class="bold"><b>glXMakeCurrent</b></span> with <i>drawable</i> and <i>ctx</i> set to <span class="bold"><b>None</b></span> and <span class="bold"><b>NULL</b></span> respectively.  </p>
+<p><span class="bold"><b>glXMakeCurrent</b></span> returns <span class="bold"><b>True</b></span> if it is successful, <span class="bold"><b>False</b></span> otherwise.  If <span class="bold"><b>False</b></span> is returned, the previously current rendering context and drawable (if any) remain unchanged.    </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567656"></a>NOTES</h3></div></div>
+<p>A <i>process</i> is a single-execution environment, implemented in a single address space, consisting of one or more threads.  </p>
+<p>A <i>thread</i> is one of a set of subprocesses that share a single address space, but maintain separate program counters, stack spaces, and other related global data.  A <i>thread</i> that is the only member of its subprocess group is equivalent to a <i>process</i>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567690"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>BadMatch</b></span> is generated if <i>drawable</i> was not created with the same X screen and visual as <i>ctx</i>.  It is also generated if <i>drawable</i> is <span class="bold"><b>None</b></span> and <i>ctx</i> is not <span class="bold"><b>None</b></span>.  </p>
+<p><span class="bold"><b>BadAccess</b></span> is generated if <i>ctx</i> was current to another thread at the time <span class="bold"><b>glXMakeCurrent</b></span> was called.  </p>
+<p><span class="bold"><b>GLX_Bad_Drawable</b></span> is generated if <i>drawable</i> is not a valid GLX drawable.  </p>
+<p><span class="bold"><b>GLX_Bad_Context</b></span> is generated if <i>ctx</i> is not a valid GLX context.  </p>
+<p><span class="bold"><b>GLX_Bad_Context_State</b></span> is generated if the rendering context current to the calling thread has OpenGL renderer state <span class="bold"><b>GL_FEEDBACK</b></span> or <span class="bold"><b>GL_SELECT</b></span>.  </p>
+<p><span class="bold"><b>GLX_Bad_Current_Window</b></span> is generated if there are pending OpenGL commands for the previous context and the current drawable is a window that is no longer valid.  </p>
+<p><span class="bold"><b>BadAlloc</b></span> may be generated if the server has delayed allocation of ancillary buffers until <span class="bold"><b>glXMakeCurrent</b></span> is called, only to find that it has insufficient resources to complete the allocation.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567888"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id28362">&quot;glXCreateContext&quot;</a>
+, <a href="ch07.html#id29709">&quot;glXCreateGLXPixmap&quot;</a>
+  </p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5567915"></a><a name="id40311"></a>glXQueryExtension</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567962"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXQueryExtension </b></span>- indicate whether the GLX extension is supported  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5567998"></a>C SPECIFICATION</h3></div></div>
+<p>Bool <span class="bold"><b>glXQueryExtension</b></span>( Display <i>*dpy</i>, int <i>*errorBase</i>, int <i>*eventBase</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568024"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>errorBase</i></span></td><td width="10"> </td><td><p>Returns the base error code of the GLX server extension.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>eventBase</i></span></td><td width="10"> </td><td><p>Returns the base event code of the GLX server extension.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568076"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXQueryExtension</b></span> returns <span class="bold"><b>True</b></span> if the X server of connection <i>dpy</i> supports the GLX extension, <span class="bold"><b>False</b></span> otherwise.  If <span class="bold"><b>True</b></span> is returned, then <i>errorBase</i> and <i>eventBase</i> return the error base and event base of the GLX extension.  Otherwise, <i>errorBase</i> and <i>eventBase</i> are unchanged.  </p>
+<p><i>errorBase</i> and <i>eventBase</i> do not return values if they are specified as <span class="bold"><b>NULL</b></span>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568149"></a>NOTES</h3></div></div>
+<p><i>eventBase</i> is included for future extensions.  GLX does not currently define any events.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568182"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id26048">&quot;glXQueryVersion&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5568200"></a><a name="id26048"></a>glXQueryVersion</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568238"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXQueryVersion </b></span>- return the version numbers of the GLX extension  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568253"></a>C SPECIFICATION</h3></div></div>
+<p>Bool <span class="bold"><b>glXQueryVersion</b></span>( Display <i>*dpy</i>, int <i>*major</i>, int <i>*minor</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568280"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>major</i></span></td><td width="10"> </td><td><p>Returns the major version number of the GLX server extension.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>minor</i></span></td><td width="10"> </td><td><p>Returns the minor version number of the GLX server extension.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568352"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXQueryVersion</b></span> returns the major and minor version numbers of the GLX extension implemented by the server associated with connection <i>dpy</i>.  Implementations with the same major version number are upward compatible, meaning that the implementation with the higher minor number is a superset of the version with the lower minor number.  </p>
+<p><i>major</i> and <i>minor</i> do not return values if they are specified as <span class="bold"><b>NULL</b></span>.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568394"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>glXQueryVersion</b></span> returns <span class="bold"><b>False</b></span> if it fails, <span class="bold"><b>True</b></span> otherwise.  <i>major</i> and <i>minor</i> are not updated when <span class="bold"><b>False</b></span> is returned.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568436"></a>SEE ALSO</h3></div></div>
+<p><a href="ch07.html#id40311">&quot;glXQueryExtension&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5568454"></a><a name="id14650"></a>glXSwapBuffers</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568482"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXSwapBuffers </b></span>- make back buffer visible  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568496"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXSwapBuffers</b></span>( Display <i>*dpy</i>, GLXDrawable <i>drawable</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568519"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>dpy</i></span></td><td width="10"> </td><td><p>Specifies the connection to the X server.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>drawable</i></span></td><td width="10"> </td><td><p>Specifies the window whose buffers are to be swapped.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568586"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXSwapBuffers</b></span> promotes the contents of the back buffer of <i>drawable</i> to become the contents of the front buffer of <i>drawable</i>.  The contents of the back buffer then become undefined.  The update typically takes place during the vertical retrace of the monitor, rather than immediately after <span class="bold"><b>glXSwapBuffers</b></span> is called.  All GLX rendering contexts share the same notion of which are front buffers and which are back buffers.  </p>
+<p>An implicit <span class="bold"><b>glFlush</b></span> is done by <span class="bold"><b>glXSwapBuffers</b></span> before it returns.  Subsequent OpenGL commands can be issued immediately after calling <span class="bold"><b>glXSwapBuffers</b></span>, but are not executed until the buffer exchange is completed.  </p>
+<p>If <i>drawable</i> was not created with respect to a double-buffered visual, <span class="bold"><b>glXSwapBuffers</b></span> has no effect, and no error is generated.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568667"></a>NOTES</h3></div></div>
+<p>Synchronization of multiple GLX contexts rendering to the same double-buffered window is the responsibility of the clients.  The X Synchronization Extension can be used to facilitate such cooperation.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568700"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_Bad_Drawable</b></span> is generated if <i>drawable</i> is not a valid GLX drawable.  </p>
+<p><span class="bold"><b>GLX_Bad_Current_Window</b></span> is generated if <i>dpy</i> and <i>drawable</i> are respectively the display and drawable associated with the current context of the calling thread, and <i>drawable</i> identifies a window that is no longer valid.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568742"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id38698">&quot;glFlush&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5568759"></a><a name="id20603"></a>glXUseXFont</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568768"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXUseXFont </b></span>- create bitmap display lists from an X font  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568783"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXUseXFont</b></span>( Font <i>font</i>, int <i>first</i>, int <i>count</i>, int <i>listBase</i> ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568813"></a>PARAMETERS</h3></div></div>
+<div class="variablelist"><table border="0" cellspacing="3"><tr valign="top"><td><span class="term"><i>font</i></span></td><td width="10"> </td><td><p>Specifies the font from which character glyphs are to be taken.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>first</i></span></td><td width="10"> </td><td><p>Specifies the index of the first glyph to be taken.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>count</i></span></td><td width="10"> </td><td><p>Specifies the number of glyphs to be taken.   </p>
+
+</td></tr><tr valign="top"><td><span class="term"><i>listBase</i></span></td><td width="10"> </td><td><p>Specifies the index of the first display list to be generated.   </p>
+
+</td></tr></table></div></div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5568900"></a>DESCRIPTION</h3></div></div>
+<p><span class="bold"><b>glXUseXFont</b></span> generates <i>count</i> display lists, named <i>listBase</i> through <i>listBase </i>+ <i>count </i>- 1, each containing a single <span class="bold"><b>glBitmap</b></span> command.  The parameters of the <span class="bold"><b>glBitmap</b></span> command of display list <i>listBase + i</i> are derived from glyph <i>first + i</i>.  Bitmap parameters <i>xorig, yorig, width,</i> and <i>height</i> are computed from font metrics as <i>descent-1, -lbearing,</i> <i>rbearing-lbearing,</i> and <i>ascent+descent</i>, respectively.  <i>xmove</i> is taken from the glyph's <i>width</i> metric, and <i>ymove</i> is set to zero.  Finally, the glyph's image is converted to the appropriate format for <span class="bold"><b>glBitmap</b></span>.  </p>
+<p>Using <span class="bold"><b>glXUseXFont</b></span> may be more efficient than accessing the X font and generating the display lists explicitly, both because the display lists are created on the server without requiring a round trip of the glyph data, and because the server may choose to delay the creation of each bitmap until it is accessed.  </p>
+<p>Empty display lists are created for all glyphs that are requested and are not defined in <i>font</i>.  <span class="bold"><b>glXUseXFont</b></span> is ignored if there is no current GLX context.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569102"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>BadFont</b></span> is generated if <i>font</i> is not a valid font.  </p>
+<p><span class="bold"><b>GLX_Bad_Context_State</b></span> is generated if the current GLX context is in display-list construction mode.  </p>
+<p><span class="bold"><b>GLX_Bad_Current_Window</b></span> is generated if the drawable associated with the current context of the calling thread is a window, and that window is no longer valid.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569163"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id23412">&quot;glBitmap&quot;</a>
+, <a href="ch07.html#id17886">&quot;glXMakeCurrent&quot;</a>
+</p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5569190"></a><a name="id37102"></a>glXWaitGL</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569198"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXWaitGL </b></span>- complete GL execution prior to subsequent X calls  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569213"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXWaitGL</b></span>( void ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569229"></a>DESCRIPTION</h3></div></div>
+<p>OpenGL rendering calls made prior to <span class="bold"><b>glXWaitGL</b></span> are guaranteed to be executed before X rendering calls made after <span class="bold"><b>glXWaitGL</b></span>.  Although this same result can be achieved using <span class="bold"><b>glFinish</b></span>, <span class="bold"><b>glXWaitGL</b></span> does not require a round trip to the server, and it is therefore more efficient in cases where client and server are on separate machines.  </p>
+<p><span class="bold"><b>glXWaitGL</b></span> is ignored if there is no current GLX context.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569301"></a>NOTES</h3></div></div>
+<p><span class="bold"><b>glXWaitGL</b></span> may or may not flush the X stream.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569316"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_Bad_Current_Window</b></span> is generated if the drawable associated with the current context of the calling thread is a window, and that window is no longer valid.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569333"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id21959">&quot;glFinish&quot;</a>
+, <a href="ch05.html#id38698">&quot;glFlush&quot;</a>
+, <a href="ch07.html#id18364">&quot;glXWaitX&quot;</a>
+, <span class="bold"><b>XSync</b></span></p>
+</div></div><div class="section"><div class="titlepage"><div><h2 class="title"><a name="id5569404"></a><a name="id18364"></a>glXWaitX</h2></div></div>
+<div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569432"></a>NAME</h3></div></div>
+<p><span class="bold"><b>glXWaitX </b></span>- complete X execution prior to subsequent OpenGL calls  </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569447"></a>C SPECIFICATION</h3></div></div>
+<p>void <span class="bold"><b>glXWaitX</b></span>( void ) </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569463"></a>DESCRIPTION</h3></div></div>
+<p>X rendering calls made prior to <span class="bold"><b>glXWaitX</b></span> are guaranteed to be executed before OpenGL rendering calls made after <span class="bold"><b>glXWaitX</b></span>.  Although this same result can be achieved using <span class="bold"><b>XSync</b></span>, <span class="bold"><b>glXWaitX</b></span> does not require a round trip to the server, and it is therefore more efficient in cases where client and server are on separate machines.  </p>
+<p><span class="bold"><b>glXWaitX</b></span> is ignored if there is no current GLX context.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569516"></a>NOTES</h3></div></div>
+<p><span class="bold"><b>glXWaitX</b></span> may or may not flush the OpenGL stream.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569531"></a>ERRORS</h3></div></div>
+<p><span class="bold"><b>GLX_Bad_Current_Window</b></span> is generated if the drawable associated with the current context of the calling thread is a window, and that window is no longer valid.   </p>
+</div><div class="section"><div class="titlepage"><div><h3 class="title"><a name="id5569548"></a>SEE ALSO</h3></div></div>
+<p><a href="ch05.html#id21959">&quot;glFinish&quot;</a>
+, <a href="ch05.html#id38698">&quot;glFlush&quot;</a>
+, <a href="ch07.html#id37102">&quot;glXWaitGL&quot;</a>
+, <span class="bold"><b>XSync</b></span></p>
+</div></div></div><!--CONTENT_END--><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Table of Contents</a></td><td width="40%" align="right"> </td></tr><tr><td width="40%" align="left">Chapter 6. GLU Reference Pages </td><td width="20%" align="center"> </td><td width="40%" align="right"> </td></tr></table></div></body></html>

@@ -1,0 +1,709 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title>Chapter 4. Defined Constants and Associated Commands</title><meta name="generator" content="DocBook XSL Stylesheets V1.49"><meta name="generator" content="SGI XSL DocBook Customization Stylesheets V1.0"><link rel="home" href="index.html" title="OpenGL Reference Manual (Addison-Wesley Publishing Company)"><link rel="up" href="bk02.html" title="OpenGL Reference Manual"><link rel="previous" href="ch03.html" title="Chapter 3. Summary of Commands and Routines"><link rel="next" href="ch05.html" title="Chapter 5. OpenGL Reference Pages"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Defined Constants and Associated Commands</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">OpenGL Reference Manual</th><td width="20%" align="right"> <a accesskey="n" href="ch05.html">Next</a></td></tr></table><hr></div><!--CONTENT_BEGIN--><div class="chapter"><div class="titlepage"><div><h2 class="title"><a name="id5443393"></a>Chapter 4. <a name="id68318"></a>Defined Constants and Associated Commands</h2></div></div>
+<p>This chapter lists all the defined constants in OpenGL and their corresponding commands; these constants might indicate a parameter name, a value for a parameter, a mode, a query target, or a return value. The list is intended to be used as another index into the reference pages: if you remember the name of a constant, you can use this table to find out which functions use it, and then you can refer to the reference pages for those functions for more information. Note that all the constants listed can be used directly by the corresponding commands; the reference pages list additional, related commands that might be of interest. </p>
+<div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr valign="top"><th valign="top"><p>Constant</p>
+</th><th valign="top"><p>Associated Commands</p>
+</th></tr></thead><tbody><tr valign="top"><td valign="top"><p>GL_2D, GL_3D, GL_3D_COLOR, 
+GL_COLOR_TEXTURE, 
+GL_4D_COLOR_TEXTURE</p>
+</td><td valign="top"><p>glFeedbackBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_2_BYTES, GL_3_BYTES, GL_4_BYTES</p>
+</td><td valign="top"><p>glCallLists()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ACCUM</p>
+</td><td valign="top"><p>glAccum()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ACCUM_ALPHA_BITS, 
+GL_ACCUM_BLUE_BITS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ACCUM_BUFFER_BIT</p>
+</td><td valign="top"><p>glClear(), glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ACCUM_CLEAR_VALUE, 
+GL_ACCUM_GREEN_BITS, 
+GL_ACCUM_RED_BITS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ADD</p>
+</td><td valign="top"><p>glAccum()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALL_ATTRIB_BITS</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALPHA</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALPHA_BIAS</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALPHA_BITS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALPHA_SCALE</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALPHA_TEST</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALPHA_TEST_FUNC, 
+GL_ALPHA_TEST_REF</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ALWAYS</p>
+</td><td valign="top"><p>glAlphaFunc(), glDepthFunc(), 
+glStencilFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_AMBIENT</p>
+</td><td valign="top"><p>glLight*(), glGetLight*(), 
+glMaterial*(), glGetMaterial*(), 
+glColorMaterial()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_AMBIENT_AND_DIFFUSE</p>
+</td><td valign="top"><p>glMaterial*(), glGetMaterial*(), 
+glColorMaterial()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_AND, GL_AND_INVERTED, 
+GL_AND_REVERSE</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ATTRIB_STACK_DEPTH </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_AUTO_NORMAL</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_AUX0 through GL_AUX3</p>
+</td><td valign="top"><p>glDrawBuffer(), glReadBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_AUX_BUFFERS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BACK</p>
+</td><td valign="top"><p>glColorMaterial(), glCullFace(), 
+glDrawBuffer(), glReadBuffer(), 
+glMaterial*(), glGetMaterial*(), 
+glPolygonMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BACK_LEFT, GL_BACK_RIGHT</p>
+</td><td valign="top"><p>glDrawBuffer(), glReadBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BITMAP</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BITMAP_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BLEND</p>
+</td><td valign="top"><p>glTexEnv*(), glGetTexEnv*(), 
+glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BLEND_DST, GL_BLEND_SRC</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BLUE</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BLUE_BIAS</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BLUE_BITS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BLUE_SCALE</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_BYTE</p>
+</td><td valign="top"><p>glCallLists(), glDrawPixels(), 
+glReadPixels(), glTexImage1D(), 
+glTexImage2D(), glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CCW</p>
+</td><td valign="top"><p>glFrontFace()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CLAMP</p>
+</td><td valign="top"><p>glTexParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CLEAR</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CLIP_PLANE</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CLIP_PLANE0 through GL_CLIP_PLANE5</p>
+</td><td valign="top"><p>glClipPlane(), glGetClipPlane(), 
+glEnable(), glIsEnabled()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COEFF</p>
+</td><td valign="top"><p>glGetMap*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR</p>
+</td><td valign="top"><p>glCopyPixels()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_BUFFER_BIT</p>
+</td><td valign="top"><p>glClear(), glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_CLEAR_VALUE </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_INDEX</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_INDEXES</p>
+</td><td valign="top"><p>glMaterial*(), glGetMaterial*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_MATERIAL</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_MATERIAL_FACE, 
+GL_COLOR_MATERIAL_PARAMETER</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COLOR_WRITEMASK </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COMPILE, 
+GL_COMPILE_AND_EXECUTE</p>
+</td><td valign="top"><p>glNewList()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CONSTANT_ATTENUATION</p>
+</td><td valign="top"><p>glLight*(), glGetLight*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COPY, GL_COPY_INVERTED</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_COPY_PIXEL_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CULL_FACE</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CULL_FACE_MODE </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CURRENT_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CURRENT_COLOR, 
+GL_CURRENT_INDEX, 
+GL_CURRENT_NORMAL, 
+GL_CURRENT_RASTER_COLOR, 
+GL_CURRENT_RASTER_INDEX, 
+GL_CURRENT_RASTER_POSITION, 
+GL_CURRENT_RASTER_POSITION_VALID, 
+GL_CURRENT_RASTER_TEXTURE_COORDS,
+GL_CURRENT_TEXTURE_COORDS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_CW</p>
+</td><td valign="top"><p>glFrontFace()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DECAL</p>
+</td><td valign="top"><p>glTexEnv*(), glGetTexEnv*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DECR</p>
+</td><td valign="top"><p>glStencilOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH</p>
+</td><td valign="top"><p>glCopyPixels()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_BIAS</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_BITS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_BUFFER_BIT</p>
+</td><td valign="top"><p>glClear(), glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_CLEAR_VALUE </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_COMPONENT</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_FUNC </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_RANGE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_SCALE</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_TEST</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DEPTH_WRITEMASK </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DIFFUSE</p>
+</td><td valign="top"><p>glLight*(), glGetLight*(), 
+glMaterial*(), glGetMaterial*(), 
+glColorMaterial()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DITHER</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DOMAIN</p>
+</td><td valign="top"><p>glGetMap*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DONT_CARE</p>
+</td><td valign="top"><p>glHint()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DOUBLEBUFFER </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DRAW_BUFFER</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DRAW_PIXEL_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_DST_ALPHA, GL_DST_COLOR</p>
+</td><td valign="top"><p>glBlendFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EDGE_FLAG </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EMISSION</p>
+</td><td valign="top"><p>glMaterial*(), glGetMaterial*(), 
+glColorMaterial()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ENABLE_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EQUAL</p>
+</td><td valign="top"><p>glAlphaFunc(), glDepthFunc(), 
+glStencilFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EQUIV</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EVAL_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EXP, GL_EXP2</p>
+</td><td valign="top"><p>glFog*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EXTENSIONS</p>
+</td><td valign="top"><p>glGetString()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EYE_LINEAR</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_EYE_PLANE</p>
+</td><td valign="top"><p>glTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FALSE</p>
+</td><td valign="top"><p>glColorMask(), glGet*(), 
+glIsEnabled(), glIsList()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FASTEST</p>
+</td><td valign="top"><p>glHint()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FEEDBACK</p>
+</td><td valign="top"><p>glRenderMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FILL</p>
+</td><td valign="top"><p>glPolygonMode(), glEvalMesh2()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FLAT</p>
+</td><td valign="top"><p>glShadeModel()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FLOAT</p>
+</td><td valign="top"><p>glCallLists(), glDrawPixels(), 
+glReadPixels(), glTexImage1D(), 
+glTexImage2D(), glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FOG</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FOG_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FOG_COLOR, GL_FOG_DENSITY, 
+GL_FOG_END</p>
+</td><td valign="top"><p>glFog*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FOG_HINT</p>
+</td><td valign="top"><p>glHint()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FOG_INDEX, GL_FOG_MODE, 
+GL_FOG_START</p>
+</td><td valign="top"><p>glFog*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FRONT</p>
+</td><td valign="top"><p>glColorMaterial(), glCullFace(), 
+glDrawBuffer(), glReadBuffer(), 
+glMaterial*(), glGetMaterial*(), 
+glPolygonMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FRONT_AND_BACK</p>
+</td><td valign="top"><p>glColorMaterial(), glDrawBuffer(), 
+glMaterial*(), glPolygonMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FRONT_FACE </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_FRONT_LEFT, GL_FRONT_RIGHT</p>
+</td><td valign="top"><p>glDrawBuffer(), glReadBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_GEQUAL, GL_GREATER</p>
+</td><td valign="top"><p>glDepthFunc(), glAlphaFunc(), 
+glStencilFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_GREEN</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_GREEN_BIAS</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_GREEN_BITS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_GREEN_SCALE</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_HINT_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INCR</p>
+</td><td valign="top"><p>glStencilOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INDEX_BITS, GL_INDEX_CLEAR_VALUE, 
+GL_INDEX_MODE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INDEX_OFFSET, GL_INDEX_SHIFT</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INDEX_WRITEMASK </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INT</p>
+</td><td valign="top"><p>glCallLists(), glDrawPixels(), 
+glReadPixels(), glTexImage1D(), 
+glTexImage2D(), glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INVALID_ENUM, 
+GL_INVALID_OPERATION, 
+GL_INVALID_VALUE</p>
+</td><td valign="top"><p>glGetError()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_INVERT</p>
+</td><td valign="top"><p>glLogicOp(), glStencilOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_KEEP</p>
+</td><td valign="top"><p>glStencilOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LEFT</p>
+</td><td valign="top"><p>glDrawBuffer(), glReadBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LEQUAL, GL_LESS</p>
+</td><td valign="top"><p>glDepthFunc(), glAlphaFunc(), 
+glStencilFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIGHT0 through GL_LIGHT7</p>
+</td><td valign="top"><p>glLight*(), glGetLight*(), glEnable(), 
+glIsEnabled()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIGHTING</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIGHTING_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIGHT_MODEL_AMBIENT, 
+GL_LIGHT_MODEL_LOCAL_VIEWER, 
+GL_LIGHT_MODEL_TWO_SIDE</p>
+</td><td valign="top"><p>glLightModel*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE</p>
+</td><td valign="top"><p>glPolygonMode(), glEvalMesh*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINEAR</p>
+</td><td valign="top"><p>glFog*(), glTexParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINEAR_ATTENUATION</p>
+</td><td valign="top"><p>glLight*(), glGetLight*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINEAR_MIPMAP_LINEAR, 
+GL_LINEAR_MIPMAP_NEAREST</p>
+</td><td valign="top"><p>glTexParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINES</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_LOOP</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_RESET_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_SMOOTH</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_SMOOTH_HINT</p>
+</td><td valign="top"><p>glHint(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_STIPPLE</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_STIPPLE_PATTERN, 
+GL_LINE_STIPPLE_REPEAT</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_STRIP</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LINE_WIDTH, 
+GL_LINE_WIDTH_GRANULARITY, 
+GL_LINE_WIDTH_RANGE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIST_BASE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIST_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LIST_INDEX, GL_LIST_MODE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LOAD</p>
+</td><td valign="top"><p>glAccum()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LOGIC_OP</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LOGIC_OP_MODE </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_LUMINANCE, GL_LUMINANCE_ALPHA</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP1_COLOR_4</p>
+</td><td valign="top"><p>glMap1*(), glEnable(), glIsEnabled(), 
+glGetMap*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP1_GRID_DOMAIN, 
+GL_MAP1_GRID_SEGMENTS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP1_INDEX, GL_MAP1_NORMAL, 
+GL_MAP1_TEXTURE_COORD_1 through 
+GL_MAP1_TEXTURE_COORD_4, 
+GL_MAP1_VERTEX_3, GL_MAP1_VERTEX_4</p>
+</td><td valign="top"><p>glMap1*(), glEnable(), glIsEnabled(), 
+glGetMap*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP2_COLOR_4</p>
+</td><td valign="top"><p>glMap2*(), glEnable(), glIsEnabled(), 
+glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP2_GRID_DOMAIN</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP2_GRID_SEGMENTS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP2_INDEX, GL_MAP2_NORMAL, 
+GL_MAP2_TEXTURE_COORD_1 through 
+GL_MAP2_TEXTURE_COORD_4, 
+GL_MAP2_VERTEX_3, GL_MAP2_VERTEX_4</p>
+</td><td valign="top"><p>glMap2*(), glEnable(), glIsEnabled(), 
+glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAP_COLOR, GL_MAP_STENCIL</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MATRIX_MODE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MAX_ATTRIB_STACK_DEPTH, 
+GL_MAX_CLIP_PLANES, 
+GL_MAX_EVAL_ORDER, GL_MAX_LIGHTS, 
+GL_MAX_LIST_NESTING, 
+GL_MAX_MODELVIEW_STACK_DEPTH, 
+GL_MAX_NAME_STACK_DEPTH, 
+GL_MAX_PIXEL_MAP_TABLE, 
+GL_MAX_PROJECTION_STACK_DEPTH, 
+GL_MAX_TEXTURE_SIZE, 
+GL_MAX_TEXTURE_STACK_DEPTH, 
+GL_MAX_VIEWPORT_DIMS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MODELVIEW</p>
+</td><td valign="top"><p>glMatrixMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MODELVIEW_MATRIX, 
+GL_MODELVIEW_STACK_DEPTH</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MODULATE</p>
+</td><td valign="top"><p>glTexEnv*(), glGetTexEnv*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_MULT</p>
+</td><td valign="top"><p>glAccum()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NAME_STACK_DEPTH</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NAND</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NEAREST, 
+GL_NEAREST_MIPMAP_LINEAR, 
+GL_NEAREST_MIPMAP_NEAREST</p>
+</td><td valign="top"><p>glTexParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NEVER</p>
+</td><td valign="top"><p>glDepthFunc(), glAlphaFunc(), 
+glStencilFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NICEST</p>
+</td><td valign="top"><p>glHint()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NONE</p>
+</td><td valign="top"><p>glDrawBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NOOP, GL_NOR</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NORMALIZE</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NOTEQUAL</p>
+</td><td valign="top"><p>glDepthFunc(), glAlphaFunc(), 
+glStencilFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_NO_ERROR</p>
+</td><td valign="top"><p>glGetError()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_OBJECT_LINEAR</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_OBJECT_PLANE</p>
+</td><td valign="top"><p>glTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ONE, GL_ONE_MINUS_DST_ALPHA, 
+GL_ONE_MINUS_DST_COLOR, 
+GL_ONE_MINUS_SRC_ALPHA, 
+GL_ONE_MINUS_SRC_COLOR</p>
+</td><td valign="top"><p>glBlendFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_OR, GL_OR_INVERTED, 
+GL_OR_REVERSE</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ORDER</p>
+</td><td valign="top"><p>glGetMap*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_OUT_OF_MEMORY</p>
+</td><td valign="top"><p>glGetError()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PACK_ALIGNMENT, 
+GL_PACK_LSB_FIRST, 
+GL_PACK_ROW_LENGTH, 
+GL_PACK_SKIP_PIXELS, 
+GL_PACK_SKIP_ROWS, 
+GL_PACK_SWAP_BYTES</p>
+</td><td valign="top"><p>glPixelStore*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PASS_THROUGH_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PERSPECTIVE_CORRECTION_HINT</p>
+</td><td valign="top"><p>glHint(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PIXEL_MAP_*_TO_*</p>
+</td><td valign="top"><p>glPixelMap*(), glGetPixelMap*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PIXEL_MAP_*_TO_*_SIZE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PIXEL_MODE_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINT</p>
+</td><td valign="top"><p>glPolygonMode(), glEvalMesh*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINTS</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINT_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINT_SIZE, 
+GL_POINT_SIZE_GRANULARITY, 
+GL_POINT_SIZE_RANGE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINT_SMOOTH</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINT_SMOOTH_HINT</p>
+</td><td valign="top"><p>glHint(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POINT_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_MODE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_SMOOTH</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_SMOOTH_HINT</p>
+</td><td valign="top"><p>glHint(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_STIPPLE</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_STIPPLE_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POLYGON_TOKEN</p>
+</td><td valign="top"><p>glPassThrough()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_POSITION</p>
+</td><td valign="top"><p>glLight*(), glGetLight*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PROJECTION</p>
+</td><td valign="top"><p>glMatrixMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_PROJECTION_MATRIX, 
+GL_PROJECTION_STACK_DEPTH</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_Q</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_QUADRATIC_ATTENUATION</p>
+</td><td valign="top"><p>glLight*(), glGetLight*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_QUADS, GL_QUAD_STRIP</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_R</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_READ_BUFFER</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RED</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RED_BIAS</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RED_BITS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RED_SCALE</p>
+</td><td valign="top"><p>glPixelTransfer*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RENDER</p>
+</td><td valign="top"><p>glRenderMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RENDERER</p>
+</td><td valign="top"><p>glGetString()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RENDER_MODE</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_REPEAT</p>
+</td><td valign="top"><p>glTexParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_REPLACE</p>
+</td><td valign="top"><p>glStencilOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RETURN</p>
+</td><td valign="top"><p>glAccum()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RGB</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RGBA</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RGBA_MODE </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_RIGHT</p>
+</td><td valign="top"><p>glDrawBuffer(), glReadBuffer()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_S</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SCISSOR_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SCISSOR_BOX</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SCISSOR_TEST</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SELECT</p>
+</td><td valign="top"><p>glRenderMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SET</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SHININESS</p>
+</td><td valign="top"><p>glMaterial*(), glGetMaterial*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SHADE_MODEL</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SHORT</p>
+</td><td valign="top"><p>glCallLists(), glDrawPixels(), 
+glReadPixels(), glTexImage1D(), 
+glTexImage2D(), glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SMOOTH</p>
+</td><td valign="top"><p>glShadeModel()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SPECULAR</p>
+</td><td valign="top"><p>glLight*(), glGetLight*(), 
+glMaterial*(), glGetMaterial*(), 
+glColorMaterial()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SPHERE_MAP</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SPOT_CUTOFF, GL_SPOT_DIRECTION, 
+GL_SPOT_EXPONENT</p>
+</td><td valign="top"><p>glLight*(), glGetLight*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SRC_ALPHA, 
+GL_SRC_ALPHA_SATURATE, 
+GL_SRC_COLOR</p>
+</td><td valign="top"><p>glBlendFunc()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STACK_OVERFLOW, 
+GL_STACK_UNDERFLOW</p>
+</td><td valign="top"><p>glGetError()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL</p>
+</td><td valign="top"><p>glCopyPixels()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL_BITS</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL_BUFFER_BIT</p>
+</td><td valign="top"><p>glClear(), glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL_INDEX</p>
+</td><td valign="top"><p>glDrawPixels(), glReadPixels(), 
+glTexImage1D(), glTexImage2D(), 
+glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL_CLEAR_VALUE, 
+GL_STENCIL_FAIL, GL_STENCIL_FUNC, 
+GL_STENCIL_PASS_DEPTH_FAIL, 
+GL_STENCIL_PASS_DEPTH_PASS, 
+GL_STENCIL_REF</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL_TEST</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STENCIL_VALUE_MASK, 
+GL_STENCIL_WRITEMASK</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_STEREO</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_SUBPIXEL_BITS </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_T</p>
+</td><td valign="top"><p>glTexGen*(), glGetTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE</p>
+</td><td valign="top"><p>glMatrixMode()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_1D</p>
+</td><td valign="top"><p>glTexImage1D(), glGetTexImage(), 
+glTexParameter*(), 
+glGetTexParameter*(), 
+glGetTexLevelParameter*(), 
+glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_2D</p>
+</td><td valign="top"><p>glTexImage2D(), glGetTexImage(), 
+glTexParameter*(), 
+glGetTexParameter*(), 
+glGetTexLevelParameter*(), 
+glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_BORDER </p>
+</td><td valign="top"><p>glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_BORDER_COLOR</p>
+</td><td valign="top"><p>glTexParameter*(), 
+glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_COMPONENTS </p>
+</td><td valign="top"><p>glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_ENV, 
+GL_TEXTURE_ENV_COLOR, 
+GL_TEXTURE_ENV_MODE</p>
+</td><td valign="top"><p>glTexEnv*(), glGetTexEnv*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_GEN_MODE</p>
+</td><td valign="top"><p>glTexGen*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_GEN_Q, 
+GL_TEXTURE_GEN_R, GL_TEXTURE_GEN_S, 
+GL_TEXTURE_GEN_T</p>
+</td><td valign="top"><p>glEnable(), glIsEnabled(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_HEIGHT </p>
+</td><td valign="top"><p>glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_MAG_FILTER </p>
+</td><td valign="top"><p>glTexParameter*(), 
+glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_MATRIX </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_MIN_FILTER </p>
+</td><td valign="top"><p>glTexParameter*(), 
+glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_STACK_DEPTH </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_WIDTH </p>
+</td><td valign="top"><p>glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TEXTURE_WRAP_S, 
+GL_TEXTURE_WRAP_T</p>
+</td><td valign="top"><p>glTexParameter*(), 
+glGetTexParameter*(), 
+glGetTexLevelParameter*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TRANSFORM_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TRIANGLES, GL_TRIANGLE_FAN, 
+GL_TRIANGLE_STRIP</p>
+</td><td valign="top"><p>glBegin()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_TRUE</p>
+</td><td valign="top"><p>glColorMask(), glGet*(), 
+glIsEnabled(), glIsList()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_UNPACK_ALIGNMENT, 
+GL_UNPACK_LSB_FIRST, 
+GL_UNPACK_ROW_LENGTH, 
+GL_UNPACK_SKIP_PIXELS, 
+GL_UNPACK_SKIP_ROWS, 
+GL_UNPACK_SWAP_BYTES</p>
+</td><td valign="top"><p>glPixelStore*(), glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_UNSIGNED_BYTE, GL_UNSIGNED_INT, 
+GL_UNSIGNED_SHORT</p>
+</td><td valign="top"><p>glCallLists(), glDrawPixels(), 
+glReadPixels(), glTexImage1D(), 
+glTexImage2D(), glGetTexImage()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_VENDOR, GL_VERSION</p>
+</td><td valign="top"><p>glGetString()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_VIEWPORT </p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_VIEWPORT_BIT</p>
+</td><td valign="top"><p>glPushAttrib()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_XOR</p>
+</td><td valign="top"><p>glLogicOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ZERO</p>
+</td><td valign="top"><p>glBlendFunc(), glStencilOp()</p>
+</td></tr><tr valign="top"><td valign="top"><p>GL_ZOOM_X, GL_ZOOM_Y</p>
+</td><td valign="top"><p>glGet*()</p>
+</td></tr></tbody></table></div><br></div><!--CONTENT_END--><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Table of Contents</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05.html">Next</a></td></tr><tr><td width="40%" align="left">Chapter 3. Summary of Commands and Routines </td><td width="20%" align="center"> </td><td width="40%" align="right">Chapter 5. OpenGL Reference Pages </td></tr></table></div></body></html>
